@@ -1,31 +1,41 @@
-import { createGlobalStyle } from "styled-components"
+import { createGlobalStyle } from "styled-components";
+function fontFace(name, src, fontWeight = "normal", fontStyle = "normal") {
+    return `
+    @font-face{
+        font-family: "${name}";
+        src: url(${require("./library/fonts/" + src + ".eot")});
+        src: url(${require("./library/fonts/" +
+            src +
+            ".eot")}?#iefix) format("embedded-opentype"),
+             url(${require("./library/fonts/" + src + ".woff")}) format("woff"),
+             url(${require("./library/fonts/" +
+                 src +
+                 ".ttf")}) format("truetype"),
 
+        font-style: ${fontStyle};
+        font-weight: ${fontWeight};
+    }
+`;
+}
 export const GlobalStyles = createGlobalStyle`
+  ${fontFace("FuturaPt", "FuturaPT-Light", 300, "normal")}
+  ${fontFace("FuturaPt", "FuturaPT-Medium", "normal", "normal")}
+  ${fontFace("FuturaPt", "FuturaPT-Bold", 600, "normal")}
   body {
-    font-family: "Alegreya Sans", "Open Sans", sans-serif;
+    font-family: "FuturaPt", "Open Sans", sans-serif;
     height: 100vh;
     overflow: hidden;
     -webkit-font-smoothing: antialiased;
   }
 
   :root {
-    font-size: 10px;
+    // font-size: 10px;
   }
 
   body {
-    display: flex;
-    flex-flow: column nowrap;
-    align-items: stretch;
-    height: 100vh;
-    overflow: hidden;
-    background-color: var(--canvas);
-    color: var(--canvas-text);
   }
 
   #root {
-    height: 100vh;
-    display: flex;
-    flex-direction: row;
   }
 
   tt,
@@ -33,8 +43,5 @@ export const GlobalStyles = createGlobalStyle`
   kbd,
   samp,
   listing {
-    font-family: hasklig, Hack, "Fira Code", "Source Code Pro", monaco, menlo,
-      consolas, monospace;
-    font-variant-ligatures: contextual;
   }
-`
+`;
