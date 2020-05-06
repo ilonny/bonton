@@ -18,11 +18,12 @@ function fontFace(name, src, fontWeight = "normal", fontStyle = "normal") {
 `;
 }
 export const GlobalStyles = createGlobalStyle`
-  ${fontFace("FuturaPt", "FuturaPT-Light", 300, "normal")}
+  ${fontFace("FuturaPt", "FuturaPT-Light", 100, "normal")}
+  ${fontFace("FuturaPt", "FuturaPT-Book", 300, "normal")}
   ${fontFace("FuturaPt", "FuturaPT-Medium", "normal", "normal")}
   ${fontFace("FuturaPt", "FuturaPT-Bold", 600, "normal")}
   body {
-    font-family: "FuturaPt", "Open Sans", sans-serif;
+    font-family: "Helvetica", "FuturaPt", "Open Sans", sans-serif;
     height: 100vh;
     overflow: hidden;
     -webkit-font-smoothing: antialiased;

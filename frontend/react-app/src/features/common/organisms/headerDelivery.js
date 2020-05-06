@@ -12,7 +12,6 @@ const HeaderDeliveryWrapper = styled.div`
     padding: 10px;
     color: #fff;
     text-align: center;
-    font-weight: bold;
     font-size: 18px;
     ${Media.mobile} {
         padding: 7px;
