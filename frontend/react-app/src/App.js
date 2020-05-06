@@ -1,26 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import * as React from "react";
+import { hot } from "react-hot-loader";
+import { Normalize } from "styled-normalize";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import { Routes } from "./routes";
+import { GlobalStyles } from "./global-styles";
 
-export default App;
+export const config = {
+    base: "14px",
+    lineHeight: 1.4,
+    ratio: "28px at 6",
+    tablet: {
+        breakpoint: "768px",
+    },
+    desktop: {
+        breakpoint: "992px",
+    },
+};
+
+export const App = hot(module)(() => (
+    <>
+        <Normalize />
+        <GlobalStyles />
+        <Routes />
+    </>
+));
