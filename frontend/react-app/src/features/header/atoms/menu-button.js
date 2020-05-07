@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import menuButttonIcon from "../../../assets/icons/menu-button.svg";
 import { Media } from "../../../lib";
-console.log('media lolll', Media)
 export const MenuButton = ({ toggleSideBar }) => (
     <MenuButtonContainer onClick={toggleSideBar}>
         <MenuButttonImg src={menuButttonIcon} />
@@ -19,7 +18,7 @@ const MenuButtonContainer = styled.button`
     background: transparent;
     border: none;
     &:hover {
-        opacity: 0.8;
+        opacity: 0.3;
     }
 `;
 const MenuButttonImg = styled.img`

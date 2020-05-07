@@ -34,7 +34,7 @@ const IconWrapper = styled.div`
     align-items: center;
     transition: all 250ms ease;
     &:hover {
-        opacity: 0.8;
+        opacity: 0.3;
     }
 `;
 

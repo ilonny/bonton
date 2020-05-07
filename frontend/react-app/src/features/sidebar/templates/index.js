@@ -2,9 +2,12 @@ import React from "react";
 import styled from "styled-components";
 import { MenuHeader } from "../molecules/menu-header";
 export const SideBarTemplate = (props) => {
-    return <SideBarContainer {...props}>
-        <MenuHeader />
-    </SideBarContainer>;
+    const { toggleSideBar } = props;
+    return (
+        <SideBarContainer {...props}>
+            <MenuHeader action={toggleSideBar} />
+        </SideBarContainer>
+    );
 };
 
 const SideBarContainer = styled.div`
