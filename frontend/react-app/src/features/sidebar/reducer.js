@@ -7,3 +7,6 @@ export const sideBarReducer = (state = { isOpen: false }, action) => {
             return state;
     }
 };
+
+sideBarReducer.onSetSiderBarIsOpen = (params) => (dispatch) =>
+    dispatch({ type: SET_SIDEBAR_IS_OPEN, params });
