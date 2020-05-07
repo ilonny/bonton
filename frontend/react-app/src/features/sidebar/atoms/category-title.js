@@ -3,8 +3,8 @@ import styled from "styled-components";
 import { Color } from "../../../lib";
 
 export const CategoryTitle = (props) => {
-    let fontSize, fontWeight, color;
     const { text, type } = props;
+    let fontSize, fontWeight, color;
     switch (type) {
         case "first":
             fontSize = "26px";
@@ -21,15 +21,24 @@ export const CategoryTitle = (props) => {
             color = "#717171";
             break;
     }
-    const CategoryTitleText = styled.p`
-        color: ${color ? color : "inherit"};
-        font-size: ${fontSize};
-        font-weight: ${fontWeight};
-        margin: 0;
-    `;
-    return <CategoryTitleText {...props}>{text}</CategoryTitleText>;
+    return (
+        <CategoryTitleText
+            {...props}
+            fontSize={fontSize}
+            fontWeight={fontWeight}
+            color={color}
+        >
+            {text}
+        </CategoryTitleText>
+    );
 };
 
+const CategoryTitleText = styled.p`
+    color: ${(props) => (props.color ? props.color : "inherit")};
+    font-size: ${(props) => props.fontSize};
+    font-weight: ${(props) => props.fontWeight};
+    margin: 0;
+`;
 // const WrapperBig = styled.div`
 //     padding: 20px;
 // `;

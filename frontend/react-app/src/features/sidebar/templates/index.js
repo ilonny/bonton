@@ -7,7 +7,9 @@ export const SideBarTemplate = (props) => {
     return (
         <SideBarContainer {...props}>
             <MenuHeader action={toggleSideBar} />
-            <MenuCategoryToggle type="first" text="Мужское"></MenuCategoryToggle>
+            <MenuCategoryToggle type="first" text="Мужское">
+                <p>COntententne</p>
+            </MenuCategoryToggle>
         </SideBarContainer>
     );
 };

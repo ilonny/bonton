@@ -32,18 +32,8 @@ export const MenuCategory = (props) => {
         default:
             break;
     }
-    const MenuCategoryWrapper = styled.div`
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        cursor: pointer;
-        transition: all 250ms ease;
-        padding: ${padding};
-        ${hover}
-    `;
-
     return (
-        <MenuCategoryWrapper>
+        <MenuCategoryWrapper padding={padding} hover={hover}>
             <CategoryTitle {...props} />
             <ArrowDown />
             {/* <Icon
@@ -56,3 +46,13 @@ export const MenuCategory = (props) => {
         </MenuCategoryWrapper>
     );
 };
+
+const MenuCategoryWrapper = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: all 250ms ease;
+    padding: ${(props) => props.padding};
+    ${(props) => props.hover}
+`;
