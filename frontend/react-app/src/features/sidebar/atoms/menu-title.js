@@ -4,6 +4,6 @@ export const MenuTitle = () => <Title>Меню Сайта</Title>;
 
 const Title = styled.h5`
     font-size: 36px;
-    font-weight: bold;
+    font-weight: 600;
     margin: 0;
 `;
