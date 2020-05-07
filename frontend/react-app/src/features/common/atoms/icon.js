@@ -5,6 +5,10 @@ import { Color } from "../../../lib/theme";
 export const Icon = (props) => {
     switch (props.type) {
         //планируется доработка если будут другие типы иконок
+        case "simple":
+            return (
+                <IconImage src={Image[props.name]} {...props} />
+            )
         default:
             return (
                 <IconWrapper {...props}>

@@ -9,7 +9,11 @@ export const Header = () => (
     <>
         <HeaderDelivery />
         <HeaderContent>
-            <Container style={containerStyles}>
+            <Container
+                display="flex"
+                justifyContent="space-between"
+                alignItems="center"
+            >
                 <HeaderLeft>
                     <MenuButton />
                     <IconsWrapper>
@@ -33,6 +37,12 @@ export const Header = () => (
                         </SocialLink>
                     </IconsWrapper>
                 </HeaderLeft>
+                <a href="/">
+                    <Icon name="logo" type="simple" width={120} height={54} />
+                </a>
+                <a href="/">
+                    
+                </a>
             </Container>
         </HeaderContent>
     </>
@@ -44,12 +54,6 @@ const HeaderContent = styled.div`
 `;
 const HeaderLeft = styled.div`
     display: flex;
-    align-items: center;
-`;
-
-const containerStyles = styled.div`
-    display: flex;
-    justify-content: space-between;
     align-items: center;
 `;
 
