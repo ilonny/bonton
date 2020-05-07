@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { vk_link, ig_link } from "../../../lib";
+import { vk_link, ig_link, Color } from "../../../lib";
 import { Container } from "../templates/container";
 import { HeaderDelivery } from "./headerDelivery";
 import { MenuButton } from "../atoms/menu-button";
@@ -40,9 +40,19 @@ export const Header = () => (
                 <a href="/">
                     <Icon name="logo" type="simple" width={120} height={54} />
                 </a>
-                <a href="/">
-                    
-                </a>
+                <CartLink href="/">
+                    <CartLinkSpan>В корзине: &nbsp;</CartLinkSpan>
+                    <CartLinkSpanGray>0 товаров на 0 руб.</CartLinkSpanGray>
+                    <Icon
+                        name="cart"
+                        width={17}
+                        height={17}
+                        color="white"
+                        wrapperHeight={42}
+                        wrapperWidth={42}
+                        type="fill"
+                    />
+                </CartLink>
             </Container>
         </HeaderContent>
     </>
@@ -65,4 +75,24 @@ const IconsWrapper = styled.div`
 
 const SocialLink = styled.a`
     margin: 0 6px;
+`;
+
+const CartLinkSpan = styled.span`
+    color: ${Color.red};
+    text-decoration: none;
+`;
+const CartLinkSpanGray = styled.span`
+    color: ${Color.gray};
+    margin-right: 20px;
+    text-decoration: underline;
+`;
+
+const CartLink = styled.a`
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    text-decoration: none;
+    &:hover ${CartLinkSpanGray} {
+        text-decoration: none;
+    }
 `;

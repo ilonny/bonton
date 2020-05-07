@@ -6,9 +6,13 @@ export const Icon = (props) => {
     switch (props.type) {
         //планируется доработка если будут другие типы иконок
         case "simple":
+            return <IconImage src={Image[props.name]} {...props} />;
+        case "fill":
             return (
-                <IconImage src={Image[props.name]} {...props} />
-            )
+                <IconWrapper {...props}>
+                    <IconImage src={Image[props.name]} {...props} />
+                </IconWrapper>
+            );
         default:
             return (
                 <IconWrapper {...props}>
@@ -23,6 +27,8 @@ const IconWrapper = styled.div`
     padding: ${(props) => props.padding}px;
     border-radius: 100px;
     border: 1px solid ${(props) => (props.color ? props.color : Color.black)};
+    background: ${(props) =>
+        props.type === "fill" ? Color.black : "transparent"};
     display: flex;
     justify-content: center;
     align-items: center;
