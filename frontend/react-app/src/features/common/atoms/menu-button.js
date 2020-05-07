@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import menuButttonIcon from "../../../library/icons/menu-button.svg";
+import { Media } from "../../../lib"
 
 export const MenuButton = () => (
     <MenuButtonContainer>
@@ -24,5 +25,7 @@ const MenuButttonImg = styled.img`
 `;
 const MenuButtonText = styled.p`
     margin-left: 20px;
-
+    ${Media.mobile} {
+        display: none;
+    }
 `
