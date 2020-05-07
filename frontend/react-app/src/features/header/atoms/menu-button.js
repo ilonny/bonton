@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import menuButttonIcon from "../../../library/icons/menu-button.svg";
+import menuButttonIcon from "../../../assets/icons/menu-button.svg";
 import { Media } from "../../../lib";
-
+console.log('media lolll', Media)
 export const MenuButton = ({ toggleSideBar }) => (
     <MenuButtonContainer onClick={toggleSideBar}>
         <MenuButttonImg src={menuButttonIcon} />
@@ -16,6 +16,8 @@ const MenuButtonContainer = styled.button`
     transition: all 250ms ease;
     cursor: pointer;
     padding: 0px;
+    background: transparent;
+    border: none;
     &:hover {
         opacity: 0.8;
     }

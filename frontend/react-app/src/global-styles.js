@@ -4,12 +4,12 @@ function fontFace(name, src, fontWeight = "normal", fontStyle = "normal") {
     return `
     @font-face{
         font-family: "${name}";
-        src: url(${require("./library/fonts/" + src + ".eot")});
-        src: url(${require("./library/fonts/" +
+        src: url(${require("./assets/fonts/" + src + ".eot")});
+        src: url(${require("./assets/fonts/" +
             src +
             ".eot")}?#iefix) format("embedded-opentype"),
-             url(${require("./library/fonts/" + src + ".woff")}) format("woff"),
-             url(${require("./library/fonts/" +
+             url(${require("./assets/fonts/" + src + ".woff")}) format("woff"),
+             url(${require("./assets/fonts/" +
                  src +
                  ".ttf")}) format("truetype"),
 
