@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import { Color } from "./lib/theme";
 function fontFace(name, src, fontWeight = "normal", fontStyle = "normal") {
     return `
     @font-face{
@@ -27,6 +28,7 @@ export const GlobalStyles = createGlobalStyle`
     height: 100vh;
     overflow: hidden;
     -webkit-font-smoothing: antialiased;
+    color: ${Color.black}
   }
 
   :root {
