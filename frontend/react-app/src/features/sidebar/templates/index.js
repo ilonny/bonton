@@ -1,11 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 import { MenuHeader } from "../molecules/menu-header";
+import { MenuCategoryToggle } from "../organisms/menu-category-toggle";
 export const SideBarTemplate = (props) => {
     const { toggleSideBar } = props;
     return (
         <SideBarContainer {...props}>
             <MenuHeader action={toggleSideBar} />
+            <MenuCategoryToggle type="first" text="Мужское"></MenuCategoryToggle>
         </SideBarContainer>
     );
 };

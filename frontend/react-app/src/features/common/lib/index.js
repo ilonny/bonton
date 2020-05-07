@@ -4,4 +4,5 @@ export const Image = {
     logo: require('../../../assets/icons/logo.svg'),
     cart: require('../../../assets/icons/cart.svg'),
     close: require('../../../assets/icons/close.svg'),
+    arrow_down: require('../../../assets/icons/arrow_down.svg'),
 }
