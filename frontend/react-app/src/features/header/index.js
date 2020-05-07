@@ -1,1 +1,1 @@
-export {Header} from './templates/header'
+export {Header} from './connect'

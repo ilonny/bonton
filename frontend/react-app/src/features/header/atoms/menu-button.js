@@ -1,20 +1,21 @@
 import React from "react";
 import styled from "styled-components";
 import menuButttonIcon from "../../../library/icons/menu-button.svg";
-import { Media } from "../../../lib"
+import { Media } from "../../../lib";
 
-export const MenuButton = () => (
-    <MenuButtonContainer>
+export const MenuButton = ({ toggleSideBar }) => (
+    <MenuButtonContainer onClick={toggleSideBar}>
         <MenuButttonImg src={menuButttonIcon} />
         <MenuButtonText>МЕНЮ</MenuButtonText>
     </MenuButtonContainer>
 );
 
-const MenuButtonContainer = styled.div`
+const MenuButtonContainer = styled.button`
     display: flex;
     align-items: center;
     transition: all 250ms ease;
     cursor: pointer;
+    padding: 0px;
     &:hover {
         opacity: 0.8;
     }
@@ -28,4 +29,4 @@ const MenuButtonText = styled.p`
     ${Media.mobile} {
         display: none;
     }
-`
+`;
