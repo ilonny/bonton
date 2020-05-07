@@ -1,13 +1,15 @@
 import { combineReducers, createStore, applyMiddleware } from "redux";
 import { createLogger } from "redux-logger";
 import thunk from "redux-thunk";
+import { sideBarReducer } from "../../features";
 
-const mainReducer = (state = {test: 123}, action) => {
+const mainReducer = (state = { test: 123 }, action) => {
     return { ...state };
 };
 
 const rootReducer = combineReducers({
     main: mainReducer,
+    sidebar: sideBarReducer,
 });
 
 let enhacers;
@@ -20,7 +22,7 @@ if (!process.env.NODE_ENV || process.env.NODE_ENV === "development") {
 
 function configureStore() {
     const store = createStore(rootReducer, undefined, enhacers);
-    return store ;
+    return store;
 }
 
 export const store = configureStore();

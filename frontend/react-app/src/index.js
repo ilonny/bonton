@@ -7,7 +7,6 @@ import { history } from "./lib";
 import { App } from "./app";
 import { store } from "./lib";
 const root = document.querySelector("#root");
-
 const render = () => {
     if (root) {
         ReactDOM.render(
