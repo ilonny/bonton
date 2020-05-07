@@ -25,6 +25,7 @@ function fontFace(name, src, fontWeight = "normal", fontStyle = "normal") {
 // ${fontFace("Futura", "FuturaPT-Bold", 600, "normal")}
 // ${fontFace("Futura", "futura_pt_book", "normal", "normal")}
 export const GlobalStyles = createGlobalStyle`
+// ${fontFace("Futura", "FuturaPT-Light", 100, "normal")}
   body {
     font-family: "Futura PT", "Helvetica", "Open Sans", sans-serif;
     height: 100vh;
