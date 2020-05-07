@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import { vk_link, ig_link, Color, Media } from "../../../lib";
-import { Container } from "../templates/container";
-import { HeaderDelivery } from "./headerDelivery";
+import { Container } from "../../common/templates/container";
+import { HeaderDelivery } from "../atoms/headerDelivery";
 import { MenuButton } from "../atoms/menu-button";
-import { Icon } from "../atoms/icon";
+import { Icon } from "../../common/atoms/icon";
 export const Header = () => (
     <>
         <HeaderDelivery />
@@ -128,4 +128,4 @@ const LogoWrapper = styled.a`
             width: 90px;
         }
     }
-`
+`;

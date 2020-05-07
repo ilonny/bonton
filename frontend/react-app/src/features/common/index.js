@@ -1,2 +1,2 @@
-export { Header } from "./organisms";
+export { Header } from "../header";
 export { HomeTemplate } from "./templates/";
