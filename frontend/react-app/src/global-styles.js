@@ -33,7 +33,10 @@ export const GlobalStyles = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
     color: ${Color.black}
   }
-
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
   :root {
     // font-size: 10px;
   }

@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { MenuHeader } from "../molecules/menu-header";
-import { MenuCategoryToggle } from "../organisms/menu-category-toggle";
+import { MenuCategoryToggle, MenuCategoryLink } from "../organisms";
 export const SideBarTemplate = (props) => {
     const { toggleSideBar } = props;
     return (
@@ -9,18 +9,33 @@ export const SideBarTemplate = (props) => {
             <MenuHeader action={toggleSideBar} />
             <MenuCategoryToggle type="first" text="Мужское">
                 <MenuCategoryToggle type="second" text="Верхняя одежда">
-                    <p>content Верхняя одежда</p>
+                <MenuCategoryLink type="third" text="Куртки" />
+                <MenuCategoryLink type="third" text="Брюки" />
+                <MenuCategoryLink type="third" text="Джинсы" />
                 </MenuCategoryToggle>
-                <MenuCategoryToggle type="second" text="Футболки">
-                    <p>content Футболки</p>
-                </MenuCategoryToggle>
+                <MenuCategoryLink type="second" text="Футболки" />
                 <MenuCategoryToggle type="second" text="Аксессуары">
-                    <p>content Аксессуары</p>
+                    <MenuCategoryLink type="third" text="Часы" />
+                    <MenuCategoryLink type="third" text="Сумки" />
+                    <MenuCategoryLink type="third" text="Ремни" />
                 </MenuCategoryToggle>
             </MenuCategoryToggle>
             <MenuCategoryToggle type="first" text="Женское">
-                <p>Женский контент</p>
+                <MenuCategoryToggle type="second" text="Верхняя одежда">
+                <MenuCategoryLink type="third" text="Куртки" />
+                <MenuCategoryLink type="third" text="Брюки" />
+                <MenuCategoryLink type="third" text="Джинсы" />
+                </MenuCategoryToggle>
+                <MenuCategoryLink type="second" text="Футболки" />
+                <MenuCategoryToggle type="second" text="Аксессуары">
+                    <MenuCategoryLink type="third" text="Часы" />
+                    <MenuCategoryLink type="third" text="Сумки" />
+                    <MenuCategoryLink type="third" text="Ремни" />
+                </MenuCategoryToggle>
             </MenuCategoryToggle>
+            <MenuCategoryLink type="first" text="Доставка" />
+            <MenuCategoryLink type="first" text="Возврат" />
+            <MenuCategoryLink type="first" text="Контакты" />
         </SideBarContainer>
     );
 };

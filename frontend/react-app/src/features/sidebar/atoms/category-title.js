@@ -16,9 +16,9 @@ export const CategoryTitle = (props) => {
             break;
         case "third":
             fontSize = "18px";
+            color = "#717171";
             break;
         default:
-            color = "#717171";
             break;
     }
     return (

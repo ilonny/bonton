@@ -4,7 +4,7 @@ import { CategoryTitle } from "../atoms/category-title";
 import { Color } from "../../../lib";
 import { ReactComponent as ArrowDown } from "../../../assets/icons/arrow_down.svg";
 export const MenuCategory = (props) => {
-    const { type, opened } = props;
+    const { type, opened, simple } = props;
     let paddingHorizontal, paddingVertical, hover, activeStyles, borderBottom;
     switch (type) {
         case "first":
@@ -24,10 +24,35 @@ export const MenuCategory = (props) => {
             `;
             break;
         case "second":
-            // padding = "10px 20px";
+            paddingHorizontal = "0px 20px";
+            paddingVertical = "10px 0px";
+            borderBottom = `1px solid rgb(210, 210, 210)`;
+            activeStyles = `
+            p {
+                font-weight: 600;
+            }`;
+            hover = `
+                &:hover {
+                    opacity: 0.5;
+                    p: {
+                        color: ${Color.red}
+                    }
+                }
+            `;
             break;
         case "third":
-            // padding = "5px";
+            paddingHorizontal = "0px 20px";
+            paddingVertical = "5px 0px";
+            borderBottom = `none`;
+            activeStyles = `
+            p {
+                font-weight: 600;
+            }`;
+            hover = `
+                &:hover {
+                    opacity: 0.5;
+                }
+            `;
             break;
         default:
             break;
@@ -44,9 +69,11 @@ export const MenuCategory = (props) => {
                 paddingVertical={paddingVertical}
             >
                 <CategoryTitle {...props} />
-                <SvgWrapper {...props}>
-                    <ArrowDown />
-                </SvgWrapper>
+                {!simple && (
+                    <SvgWrapper {...props}>
+                        <ArrowDown />
+                    </SvgWrapper>
+                )}
             </MenuCategoryWrapperInner>
         </MenuCategoryWrapper>
     );
