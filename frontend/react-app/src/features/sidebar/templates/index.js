@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { MenuHeader } from "../molecules/menu-header";
+import { MenuHeader, MenuBottom } from "../molecules";
 import { MenuCategoryToggle, MenuCategoryLink } from "../organisms";
 export const SideBarTemplate = (props) => {
     const { toggleSideBar } = props;
@@ -36,6 +36,7 @@ export const SideBarTemplate = (props) => {
             <MenuCategoryLink type="first" text="Доставка" />
             <MenuCategoryLink type="first" text="Возврат" />
             <MenuCategoryLink type="first" text="Контакты" />
+            <MenuBottom />
         </SideBarContainer>
     );
 };
@@ -44,6 +45,8 @@ const SideBarContainer = styled.div`
     position: fixed;
     left: 0;
     top: 0;
+    bottom: 0;
+    overflow: auto;
     width: 100%;
     max-width: 600px;
     background: #fff;
