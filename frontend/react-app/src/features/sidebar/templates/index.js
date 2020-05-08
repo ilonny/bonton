@@ -8,7 +8,18 @@ export const SideBarTemplate = (props) => {
         <SideBarContainer {...props}>
             <MenuHeader action={toggleSideBar} />
             <MenuCategoryToggle type="first" text="Мужское">
-                <p>COntententne</p>
+                <MenuCategoryToggle type="second" text="Верхняя одежда">
+                    <p>content Верхняя одежда</p>
+                </MenuCategoryToggle>
+                <MenuCategoryToggle type="second" text="Футболки">
+                    <p>content Футболки</p>
+                </MenuCategoryToggle>
+                <MenuCategoryToggle type="second" text="Аксессуары">
+                    <p>content Аксессуары</p>
+                </MenuCategoryToggle>
+            </MenuCategoryToggle>
+            <MenuCategoryToggle type="first" text="Женское">
+                <p>Женский контент</p>
             </MenuCategoryToggle>
         </SideBarContainer>
     );
