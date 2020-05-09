@@ -1,15 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 import { Block } from "../organisms/block";
-import { ImageView, Gradient } from "../../common";
+import { ImageView, Gradient, HoverButton } from "../../common";
 const data = [
     {
         image: require("../../../assets/images/big-banner-men.png"),
-        btnText: "Мужчинам",
+        btnText: "МУЖЧИНАМ",
     },
     {
         image: require("../../../assets/images/big-banner-women.png"),
-        btnText: "Женщинам",
+        btnText: "ЖЕНЩИНАМ",
     },
 ];
 export const BigBanner = () => (
@@ -19,7 +19,7 @@ export const BigBanner = () => (
                 <ImageView src={block.image} />
                 <BlockAbsoluteContentWrapper>
                     <Gradient absoluteView={true} dark={true} />
-                    
+                    <HoverButton color="#fff" backgroundColor="transparent">{block.btnText}</HoverButton>
                 </BlockAbsoluteContentWrapper>
             </Block>
         ))}
@@ -41,4 +41,10 @@ const BlockAbsoluteContentWrapper = styled.div`
     right: 0;
     top: 0;
     bottom: 0;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0px 100px 120px 100px;
 `;
