@@ -16,7 +16,7 @@ const data = [
 export const BigBanner = () => (
     <BigBannerWrapper>
         {data.map((block) => (
-            <Block>
+            <Block key={block.btnText}>
                 <ImageView src={block.image} />
                 <BlockAbsoluteContentWrapper>
                     <Gradient absoluteView={true} dark={true} />

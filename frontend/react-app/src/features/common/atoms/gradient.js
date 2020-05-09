@@ -9,7 +9,7 @@ const GradientStyled = styled.div`
     right: 0;
     bottom: 0;
     position: absolute;
-    background: linear-gradient(transparent, black);
+    background: linear-gradient(transparent 50%, black);
 `;
 // const GradientStyled = styled.div`
 //     ${props.absoluteView && props.dark

@@ -20,6 +20,10 @@ const StyledButton = styled.button`
     &:hover {
         color: ${(props) => (props.color ? invert(props.color) : "inherit")};
         background-color: ${(props) =>
-            props.backgroundColor ? props.backgroundColor =='transparent' ? props.color : invert(props.backgroundColor) : "inherit"};
+            props.backgroundColor
+                ? props.backgroundColor === "transparent"
+                    ? props.color
+                    : invert(props.backgroundColor)
+                : "inherit"};
     }
 `;
