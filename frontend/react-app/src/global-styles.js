@@ -41,6 +41,9 @@ export const GlobalStyles = createGlobalStyle`
   }
   * {
     box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+    border-width: 0px;
   }
   body {
   }

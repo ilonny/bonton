@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-export const Gradient = (props) => <GradientStyled {...props} />;
+export const Gradient = (props) => <GradientStyled data-gradient {...props} />;
 
 const GradientStyled = styled.div`
     top: 0;
@@ -9,7 +9,8 @@ const GradientStyled = styled.div`
     right: 0;
     bottom: 0;
     position: absolute;
-    background: linear-gradient(transparent 50%, black);
+    background: linear-gradient(transparent ${props => props.percent ? props.percent : '50%'}, black);
+    transition: all 250ms ease;
 `;
 // const GradientStyled = styled.div`
 //     ${props.absoluteView && props.dark
