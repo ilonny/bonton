@@ -6,7 +6,7 @@ import { BlockAbsoluteContentWrapper } from "../organisms/block-absolute-content
 import { CategoryName } from "../organisms/category-name";
 import { ImageView, Gradient, HoverButton } from "../../common";
 import { Row } from "../../styled-components-layout";
-import {Media} from "../../../lib";
+import { Media } from "../../../lib";
 const data = [
     {
         image: require("../../../assets/images/big-banner-men.png"),
@@ -27,41 +27,46 @@ const dataSmall1 = [
         btnText: "Женская обувь",
     },
 ];
-export const BigBanner = () => (
+export const Banner = (props) => (
     <>
-        <BigBannerWrapper>
-            {data.map((block) => (
-                <Block key={block.btnText} gap={true}>
-                    <ImageView src={block.image} />
-                    <BlockAbsoluteContentWrapper>
-                        <Gradient absoluteView={true} dark={true} />
-                        <HoverButton color="#fff" backgroundColor="transparent">
-                            {block.btnText}
-                        </HoverButton>
-                    </BlockAbsoluteContentWrapper>
-                </Block>
-            ))}
-        </BigBannerWrapper>
-        <Row align="center" gap="20px" mobileWrap>
-            {dataSmall1.map((block) => (
-                <LinkStyled href="/">
-                    <Block key={block.btnText}>
+        {!props.small ? (
+            <BigBannerWrapper>
+                {data.map((block) => (
+                    <Block key={block.btnText} gap={true}>
                         <ImageView src={block.image} />
-                        <BlockAbsoluteContentWrapper small={true}>
-                            <Gradient
-                                absoluteView={true}
-                                dark={true}
-                                percent="0%"
-                            />
-                            <CategoryName name={block.btnText} />
+                        <BlockAbsoluteContentWrapper>
+                            <Gradient absoluteView={true} dark={true} />
+                            <HoverButton
+                                color="#fff"
+                                backgroundColor="transparent"
+                            >
+                                {block.btnText}
+                            </HoverButton>
                         </BlockAbsoluteContentWrapper>
                     </Block>
-                </LinkStyled>
-            ))}
-        </Row>
+                ))}
+            </BigBannerWrapper>
+        ) : (
+            <Row align="center" gap="20px" mobileWrap>
+                {dataSmall1.map((block) => (
+                    <LinkStyled href="/">
+                        <Block key={block.btnText}>
+                            <ImageView src={block.image} />
+                            <BlockAbsoluteContentWrapper small={true}>
+                                <Gradient
+                                    absoluteView={true}
+                                    dark={true}
+                                    percent="0%"
+                                />
+                                <CategoryName name={block.btnText} />
+                            </BlockAbsoluteContentWrapper>
+                        </Block>
+                    </LinkStyled>
+                ))}
+            </Row>
+        )}
     </>
 );
-
 const LinkStyled = styled.a`
     display: block;
     &:hover [data-gradient="true"] {

@@ -1,8 +1,11 @@
 import React from "react";
 import { HomeTemplate } from "../../features/common";
-import { BigBanner } from "../../features/banner";
+import { Banner } from "../../features/banner";
+import {pageData} from './data';
+
 export const HomePage = () => (
     <HomeTemplate>
-        <BigBanner />
+        <Banner data={pageData.big}/>
+        <Banner data={pageData.small1} small={true}/>
     </HomeTemplate>
 );

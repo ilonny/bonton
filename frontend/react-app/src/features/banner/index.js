@@ -1,1 +1,1 @@
-export {BigBanner} from "./templates";
+export { Banner } from "./templates";
