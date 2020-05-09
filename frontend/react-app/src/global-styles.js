@@ -29,7 +29,6 @@ export const GlobalStyles = createGlobalStyle`
   body {
     font-family: "Futura PT", "Helvetica", "Open Sans", sans-serif;
     height: 100vh;
-    overflow: hidden;
     -webkit-font-smoothing: antialiased;
     color: ${Color.black}
   }

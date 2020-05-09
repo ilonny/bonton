@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Block } from "../organisms/block";
 import { ImageView, Gradient, HoverButton } from "../../common";
+import { Media } from "../../../lib";
 const data = [
     {
         image: require("../../../assets/images/big-banner-men.png"),
@@ -33,6 +34,10 @@ const BigBannerWrapper = styled.div`
     flex: 1;
     align-items: stretch;
     justify-content: stretch;
+    ${Media.mobile} {
+        flex-wrap: wrap;
+        margin: 10px 0;
+    }
 `;
 
 const BlockAbsoluteContentWrapper = styled.div`
@@ -47,4 +52,10 @@ const BlockAbsoluteContentWrapper = styled.div`
     justify-content: flex-end;
     align-items: center;
     padding: 0px 100px 120px 100px;
+    ${Media.smallDesktop} {
+        padding: 70px;
+    }
+    ${Media.tablet} {
+        padding: 30px;
+    }
 `;
