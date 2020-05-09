@@ -43,6 +43,7 @@ export const SideBarTemplate = (props) => {
 
 const SideBarContainer = styled.div`
     position: fixed;
+    z-index: 11;
     left: 0;
     top: 0;
     bottom: 0;

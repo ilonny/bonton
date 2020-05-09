@@ -40,7 +40,9 @@ export const GlobalStyles = createGlobalStyle`
   :root {
     // font-size: 10px;
   }
-
+  * {
+    box-sizing: border-box;
+  }
   body {
   }
 

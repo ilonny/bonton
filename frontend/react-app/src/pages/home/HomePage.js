@@ -1,7 +1,8 @@
 import React from "react";
 import { HomeTemplate } from "../../features/common";
+import { BigBanner } from "../../features/big-banner";
 export const HomePage = () => (
     <HomeTemplate>
-        <h1>Home Page </h1>
+        <BigBanner />
     </HomeTemplate>
 );
