@@ -1,0 +1,1 @@
+export {HomePageAdvantage} from "./templates";

@@ -17,7 +17,7 @@ export const Banner = (props) => {
         for (let i = 0; i < Math.ceil(array.length / size); i++) {
             subarray[i] = array.slice(i * size, i * size + size);
         }
-        console.log('subarray', subarray)
+        console.log("subarray", subarray);
     }
     return (
         <>
@@ -40,16 +40,14 @@ export const Banner = (props) => {
                 </BigBannerWrapper>
             ) : (
                 <>
-                {subarray.map(row => (
-                    <Row
-                        align="center"
-                        // gap={props.multiline ? "0px" : "20px"}
-                        gap={"20px"}
-                        mobile_wrap="true"
-                        // wrap={props.multiline ? "wrap" : "nowrap"}
-                    >
-                        {row.map((block) => (
-                            <>
+                    {subarray.map((row, index) => (
+                        <Row
+                            align="center"
+                            gap={"20px"}
+                            mobile_wrap="true"
+                            key={row[index].btnText}
+                        >
+                            {row.map((block) => (
                                 <LinkStyled
                                     href="/"
                                     key={block.btnText}
@@ -58,20 +56,23 @@ export const Banner = (props) => {
                                 >
                                     <Block key={block.btnText}>
                                         <ImageView src={block.image} />
-                                        <BlockAbsoluteContentWrapper small={true}>
+                                        <BlockAbsoluteContentWrapper
+                                            small={true}
+                                        >
                                             <Gradient
                                                 absoluteView={true}
                                                 dark={true}
                                                 percent="0%"
                                             />
-                                            <CategoryName name={block.btnText} />
+                                            <CategoryName
+                                                name={block.btnText}
+                                            />
                                         </BlockAbsoluteContentWrapper>
                                     </Block>
                                 </LinkStyled>
-                            </>
-                        ))}
-                    </Row>
-                ))}
+                            ))}
+                        </Row>
+                    ))}
                 </>
             )}
         </>
