@@ -4,7 +4,7 @@ import { vk_link, ig_link, Color, Media } from "../../../lib";
 import { Container } from "../../common/templates/container";
 import { HeaderDelivery } from "../atoms/headerDelivery";
 import { MenuButton } from "../atoms/menu-button";
-import { Icon } from "../../common/atoms/icon";
+import { Icon } from "../../common/atoms";
 export const HeaderTemplate = ({ toggleSideBar }) => {
     return (
         <>

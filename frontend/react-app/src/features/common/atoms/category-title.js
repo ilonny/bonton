@@ -20,8 +20,15 @@ const Line = styled.div`
 const Title = styled.h6`
     font-size: 36px;
     margin-top: 20px;
+    font-weight: 500;
+    margin-bottom: 30px;
     ${Media.tablet} {
         font-size: 22px;
         margin-top: 10px;
+        margin-bottom: 20px;
+    }
+    ${Media.mobile} {
+        font-size: 18px;
+        margin-top: 5px;
     }
 `;

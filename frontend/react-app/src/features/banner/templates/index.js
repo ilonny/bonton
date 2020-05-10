@@ -7,67 +7,80 @@ import { CategoryName } from "../organisms/category-name";
 import { ImageView, Gradient, HoverButton } from "../../common";
 import { Row } from "../../styled-components-layout";
 import { Media } from "../../../lib";
-const data = [
-    {
-        image: require("../../../assets/images/big-banner-men.png"),
-        btnText: "МУЖЧИНАМ",
-    },
-    {
-        image: require("../../../assets/images/big-banner-women.png"),
-        btnText: "ЖЕНЩИНАМ",
-    },
-];
-const dataSmall1 = [
-    {
-        image: require("../../../assets/images/small_banner_1.png"),
-        btnText: "Мужская обувь",
-    },
-    {
-        image: require("../../../assets/images/small_banner_2.png"),
-        btnText: "Женская обувь",
-    },
-];
-export const Banner = (props) => (
-    <>
-        {!props.small ? (
-            <BigBannerWrapper>
-                {data.map((block) => (
-                    <Block key={block.btnText} gap={true}>
-                        <ImageView src={block.image} />
-                        <BlockAbsoluteContentWrapper>
-                            <Gradient absoluteView={true} dark={true} />
-                            <HoverButton
-                                color="#fff"
-                                backgroundColor="transparent"
-                            >
-                                {block.btnText}
-                            </HoverButton>
-                        </BlockAbsoluteContentWrapper>
-                    </Block>
-                ))}
-            </BigBannerWrapper>
-        ) : (
-            <Row align="center" gap="20px" mobileWrap>
-                {dataSmall1.map((block) => (
-                    <LinkStyled href="/">
-                        <Block key={block.btnText}>
+
+export const Banner = (props) => {
+    let subarray, array, size;
+    if (props.small) {
+        array = props.data; //массив, можно использовать массив объектов
+        size = props.colSize || 2; //размер подмассива
+        subarray = []; //массив в который будет выведен результат.
+        for (let i = 0; i < Math.ceil(array.length / size); i++) {
+            subarray[i] = array.slice(i * size, i * size + size);
+        }
+        console.log('subarray', subarray)
+    }
+    return (
+        <>
+            {!props.small ? (
+                <BigBannerWrapper>
+                    {props.data.map((block) => (
+                        <Block key={block.btnText} gap={true}>
                             <ImageView src={block.image} />
-                            <BlockAbsoluteContentWrapper small={true}>
-                                <Gradient
-                                    absoluteView={true}
-                                    dark={true}
-                                    percent="0%"
-                                />
-                                <CategoryName name={block.btnText} />
+                            <BlockAbsoluteContentWrapper>
+                                <Gradient absoluteView={true} dark={true} />
+                                <HoverButton
+                                    color="#fff"
+                                    backgroundColor="transparent"
+                                >
+                                    {block.btnText}
+                                </HoverButton>
                             </BlockAbsoluteContentWrapper>
                         </Block>
-                    </LinkStyled>
+                    ))}
+                </BigBannerWrapper>
+            ) : (
+                <>
+                {subarray.map(row => (
+                    <Row
+                        align="center"
+                        // gap={props.multiline ? "0px" : "20px"}
+                        gap={"20px"}
+                        mobile_wrap="true"
+                        // wrap={props.multiline ? "wrap" : "nowrap"}
+                    >
+                        {row.map((block) => (
+                            <>
+                                <LinkStyled
+                                    href="/"
+                                    key={block.btnText}
+                                    multiline={true}
+                                    flex={props.multiline ? "1 1 50%" : "1"}
+                                >
+                                    <Block key={block.btnText}>
+                                        <ImageView src={block.image} />
+                                        <BlockAbsoluteContentWrapper small={true}>
+                                            <Gradient
+                                                absoluteView={true}
+                                                dark={true}
+                                                percent="0%"
+                                            />
+                                            <CategoryName name={block.btnText} />
+                                        </BlockAbsoluteContentWrapper>
+                                    </Block>
+                                </LinkStyled>
+                            </>
+                        ))}
+                    </Row>
                 ))}
-            </Row>
-        )}
-    </>
-);
+                </>
+            )}
+        </>
+    );
+};
+
 const LinkStyled = styled.a`
+    flex: ${(props) => props.flex};
+    margin-bottom: ${(props) => (props.multiline ? "20px" : "0px")};
     display: block;
     &:hover [data-gradient="true"] {
         background: linear-gradient(transparent 50%, black);

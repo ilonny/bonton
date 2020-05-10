@@ -34,7 +34,8 @@ export const mixins = (props) => css`
     order: ${prop(props.order)};
     padding: ${prop(props.padding)};
     width: ${prop(props.width)};
-    ${props.mobileWrap && `${Media.mobile} {
+    flex-wrap: ${prop(props.wrap)};
+    ${props.mobile_wrap && `${Media.mobile} {
       flex-wrap: wrap;
     }`} 
 `;
