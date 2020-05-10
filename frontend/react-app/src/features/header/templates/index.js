@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import { vk_link, ig_link, Color, Media } from "../../../lib";
+import { Color, Media } from "../../../lib";
 import { Container } from "../../common/templates/container";
+import { SocialLinks } from "../../common/organisms";
 import { HeaderDelivery } from "../atoms/headerDelivery";
 import { MenuButton } from "../atoms/menu-button";
 import { Icon } from "../../common/atoms";
@@ -17,26 +18,9 @@ export const HeaderTemplate = ({ toggleSideBar }) => {
                 >
                     <HeaderLeft>
                         <MenuButton toggleSideBar={toggleSideBar} />
-                        <IconsWrapper>
-                            <SocialLink href={vk_link} target="_blank">
-                                <Icon
-                                    name="VK"
-                                    width={16}
-                                    height={10}
-                                    wrapperWidth={"30"}
-                                    wrapperHeight={30}
-                                />
-                            </SocialLink>
-                            <SocialLink href={ig_link} target="_blank">
-                                <Icon
-                                    name="IG"
-                                    width={13}
-                                    height={13}
-                                    wrapperWidth={"30"}
-                                    wrapperHeight={30}
-                                />
-                            </SocialLink>
-                        </IconsWrapper>
+                        <HeaderSocialLinksMargin>
+                            <SocialLinks />
+                        </HeaderSocialLinksMargin>
                     </HeaderLeft>
                     <LogoWrapper href="/">
                         <Icon
@@ -78,9 +62,7 @@ const HeaderLeft = styled.div`
     align-items: center;
 `;
 
-const IconsWrapper = styled.div`
-    display: flex;
-    align-items: center;
+const HeaderSocialLinksMargin = styled.div`
     margin-left: 100px;
     @media screen and (max-width: 1025px) {
         margin-left: 30px;
@@ -89,11 +71,6 @@ const IconsWrapper = styled.div`
         display: none;
     }
 `;
-
-const SocialLink = styled.a`
-    margin: 0 6px;
-`;
-
 const CartLinkSpan = styled.span`
     color: ${Color.red};
     text-decoration: none;

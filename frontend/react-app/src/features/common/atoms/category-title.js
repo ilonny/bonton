@@ -18,7 +18,7 @@ const Line = styled.div`
     }
 `;
 const Title = styled.h6`
-    font-size: 36px;
+    font-size: 30px;
     margin-top: 20px;
     font-weight: 500;
     margin-bottom: 30px;

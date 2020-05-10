@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Color, Media } from "../../../lib";
 export const Button = styled.button`
     width: 372px;
-    height: 60px;
+    height: 50px;
     background: ${Color.red};
     font-size: 20px;
     color: #fff;
