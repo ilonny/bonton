@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
-import {Media} from "../../lib";
+import { Media } from "../../lib";
 export const WithTag = ({ as: HtmlTagName, children, ...props }) => (
     <HtmlTagName {...props}>{children}</HtmlTagName>
 );
@@ -35,9 +35,14 @@ export const mixins = (props) => css`
     padding: ${prop(props.padding)};
     width: ${prop(props.width)};
     flex-wrap: ${prop(props.wrap)};
-    ${props.mobile_wrap && `${Media.mobile} {
+    ${props.mobile_wrap &&
+    `${Media.mobile} {
       flex-wrap: wrap;
-    }`} 
+    }`}
+    ${props.tablet_wrap &&
+    `${Media.tablet} {
+        flex-wrap: wrap;
+      }`}
 `;
 
 export const Row = styled(WithTag)`

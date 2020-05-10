@@ -9,6 +9,7 @@ import { Banner } from "../../features/banner";
 import { Row } from "../../features/styled-components-layout";
 import { HomePageAdvantage } from "../../features/homepage-advantage";
 import { CatalogList } from "../../features/catalog-list";
+import {HomePageAbout} from "../../features/homepage-about";
 import { Color } from "../../lib";
 import { pageData } from "./data";
 export const HomePage = () => (
@@ -33,6 +34,8 @@ export const HomePage = () => (
                 Перейти в каталог
             </HoverButton>
         </Row>
+        <Spacer />
+        <HomePageAbout/>
         <Spacer />
     </HomeTemplate>
 );
