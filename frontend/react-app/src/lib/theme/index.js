@@ -2,6 +2,7 @@ export const Color = {
     black: "#333",
     red: "#cc3333",
     gray: "rgb(113, 113, 113)",
+    light_gray: "#F2F2F2",
 };
 
 export const Media = {
