@@ -1,10 +1,16 @@
 import React from "react";
-import { HomeTemplate, CategoryTitle, Spacer } from "../../features/common";
+import {
+    HomeTemplate,
+    CategoryTitle,
+    Spacer,
+    HoverButton,
+} from "../../features/common";
 import { Banner } from "../../features/banner";
+import { Row } from "../../features/styled-components-layout";
 import { HomePageAdvantage } from "../../features/homepage-advantage";
 import { CatalogList } from "../../features/catalog-list";
+import { Color } from "../../lib";
 import { pageData } from "./data";
-
 export const HomePage = () => (
     <HomeTemplate>
         <Banner data={pageData.big} />
@@ -16,6 +22,17 @@ export const HomePage = () => (
         </section>
         <HomePageAdvantage />
         <CategoryTitle>Популярное</CategoryTitle>
-        <CatalogList data={pageData.catalogList}/>
+        <CatalogList data={pageData.catalogList} />
+        <Row justify="center" align="center">
+            <HoverButton
+                maxWidth={"372px"}
+                color={Color.red}
+                backgroundColor={"transparent"}
+                hoverColor={"white"}
+            >
+                Перейти в каталог
+            </HoverButton>
+        </Row>
+        <Spacer />
     </HomeTemplate>
 );
