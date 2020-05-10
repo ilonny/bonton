@@ -52,6 +52,9 @@ export const Row = styled(WithTag)`
                 margin-left: ${p.gap};
             }
         `}
+    &:not(:first-child) {
+        margin-top: 30px;
+    }
 `;
 
 export const Col = styled(WithTag)`

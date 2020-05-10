@@ -30,5 +30,6 @@ const Title = styled.h6`
     ${Media.mobile} {
         font-size: 18px;
         margin-top: 5px;
+        margin-bottom: 16px;
     }
 `;

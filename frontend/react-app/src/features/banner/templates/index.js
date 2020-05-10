@@ -79,8 +79,6 @@ export const Banner = (props) => {
 };
 
 const LinkStyled = styled.a`
-    flex: ${(props) => props.flex};
-    margin-bottom: ${(props) => (props.multiline ? "20px" : "0px")};
     display: block;
     &:hover [data-gradient="true"] {
         background: linear-gradient(transparent 50%, black);
