@@ -3,10 +3,12 @@ export const pageData = {
         {
             image: require("../../assets/images/big-banner-men.png"),
             btnText: "МУЖЧИНАМ",
+            href: '/catalog?type=men'
         },
         {
             image: require("../../assets/images/big-banner-women.png"),
             btnText: "ЖЕНЩИНАМ",
+            href: '/catalog?type=women'
         },
     ],
     small1: [

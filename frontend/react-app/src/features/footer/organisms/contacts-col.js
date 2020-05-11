@@ -19,10 +19,10 @@ export const ContactsCol = () => (
                     </LinkStyled>
                     <LinkStyled>
                         <strong>Напишите нам: </strong>
-                        <a href="/" class="wa">
+                        <a href="/" className="wa">
                             WhatsApp
                         </a>{" "}
-                        <a href="/" class="vb">
+                        <a href="/" className="vb">
                             Viber
                         </a>
                     </LinkStyled>

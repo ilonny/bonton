@@ -6,6 +6,7 @@ import { SocialLinks } from "../../common/organisms";
 import { HeaderDelivery } from "../atoms/headerDelivery";
 import { MenuButton } from "../atoms/menu-button";
 import { Icon } from "../../common/atoms";
+import { Link } from "react-router-dom";
 export const HeaderTemplate = ({ toggleSideBar }) => {
     return (
         <>
@@ -22,13 +23,15 @@ export const HeaderTemplate = ({ toggleSideBar }) => {
                             <SocialLinks />
                         </HeaderSocialLinksMargin>
                     </HeaderLeft>
-                    <LogoWrapper href="/">
-                        <Icon
-                            name="logo"
-                            type="simple"
-                            width={120}
-                            height={54}
-                        />
+                    <LogoWrapper>
+                        <Link to="/">
+                            <Icon
+                                name="logo"
+                                type="simple"
+                                width={120}
+                                height={54}
+                            />
+                        </Link>
                     </LogoWrapper>
                     <CartLink href="/">
                         <CartLinkSpan>В корзине: &nbsp;</CartLinkSpan>
@@ -101,7 +104,7 @@ const CartLink = styled.a`
     }
 `;
 
-const LogoWrapper = styled.a`
+const LogoWrapper = styled.div`
     position: absolute;
     left: 50%;
     margin-left: -60px;

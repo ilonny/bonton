@@ -7,7 +7,7 @@ import { CategoryName } from "../organisms/category-name";
 import { ImageView, Gradient, HoverButton } from "../../common";
 import { Row } from "../../styled-components-layout";
 import { Media } from "../../../lib";
-
+import { Link } from "react-router-dom";
 export const Banner = (props) => {
     let subarray, array, size;
     if (props.small) {
@@ -27,12 +27,14 @@ export const Banner = (props) => {
                             <ImageView src={block.image} />
                             <BlockAbsoluteContentWrapper>
                                 <Gradient absoluteView={true} dark={true} />
-                                <HoverButton
-                                    color="#fff"
-                                    backgroundColor="transparent"
-                                >
-                                    {block.btnText}
-                                </HoverButton>
+                                <Link to={block.href}>
+                                    <HoverButton
+                                        color="#fff"
+                                        backgroundColor="transparent"
+                                    >
+                                        {block.btnText}
+                                    </HoverButton>
+                                </Link>
                             </BlockAbsoluteContentWrapper>
                         </Block>
                     ))}

@@ -8,13 +8,13 @@ export const LogoCol = () => (
             src={require("../../../assets/images/logo_big.png")}
             className="logo"
         />
-        <p class="title">
+        <p className="title">
             Магазин стильной
             <br />
             одежды в Сургуте
         </p>
-        <p class="copy gray-text">© BONTON 2020 </p>
-        <a class="copy link gray-text" href="/">
+        <p className="copy gray-text">© BONTON 2020 </p>
+        <a className="copy link gray-text" href="/">
             Политика конфиденциальности
         </a>
     </LogoColStyled>

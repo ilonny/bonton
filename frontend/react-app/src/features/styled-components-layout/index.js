@@ -6,6 +6,9 @@ export const WithTag = ({ as: HtmlTagName, children, ...props }) => (
     <HtmlTagName {...props}>{children}</HtmlTagName>
 );
 
+WithTag.defaultProps = {
+    as: "div",
+};
 WithTag.propTypes = {
     /**
      * set html tag name
@@ -14,12 +17,9 @@ WithTag.propTypes = {
      * <WithTag as="some-web-component" />
      */
     as: PropTypes.string,
-    children: PropTypes.node.isRequired,
+    // children: PropTypes.node.isRequired,
 };
 
-WithTag.defaultProps = {
-    as: "div",
-};
 
 const is = (value) => typeof value !== "undefined";
 const prop = (value) => (is(value) ? value : "initial");

@@ -1,10 +1,16 @@
 import { HomePage } from "./home";
+import { CatalogPage } from "./catalog";
 export const routes = () => [
     {
         path: "/",
         exact: true,
         component: HomePage,
     },
+    {
+      path: "/catalog/:gender?/:type?/:subtype?/:filters?",
+      // exact: true,
+      component: CatalogPage,
+  },
     /*
     {
       path: "/join",

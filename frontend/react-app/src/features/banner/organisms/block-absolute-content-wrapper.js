@@ -19,4 +19,8 @@ export const BlockAbsoluteContentWrapper = styled.div`
     ${Media.tablet} {
         padding: ${props => props.small ? '15px' : '30px'};
     }
+    & a {
+        display: block;
+        width: 100%;
+    }
 `;
