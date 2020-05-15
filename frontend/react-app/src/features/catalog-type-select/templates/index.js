@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Wrapper } from "../atoms";
 import { Type } from "../organisms";
-import { Container } from "../../common/templates";
 import { useHistory } from "react-router-dom";
 import {Spacer} from "../../common"
 export const CatalogTypeSelect = (props) => {
