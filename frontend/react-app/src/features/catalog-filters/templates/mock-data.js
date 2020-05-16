@@ -1,4 +1,4 @@
-export const categories = [
+export const categoriesMock = [
     {
         name: "Верхняя одежда",
         code: "top_dress",

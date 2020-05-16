@@ -6,5 +6,9 @@ export const CatalogFilters = connect(
     (dispatch) => ({
         setCategories: (params) =>
             dispatch(categoriesReducer.setCategories(params)),
+        toggleCategory: (params) =>
+            dispatch(categoriesReducer.toggleCategory(params)),
+        syncCategoriesWithParams: () =>
+            dispatch(categoriesReducer.syncCategoriesWithParams()),
     })
 )(CatalogFiltersTemplate);

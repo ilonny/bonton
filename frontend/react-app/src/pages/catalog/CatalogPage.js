@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import {
     HomeTemplate,
     // CategoryTitle,
@@ -14,13 +14,10 @@ import { CatalogFilters } from "../../features/catalog-filters";
 import { pageData } from "../home/data";
 export const CatalogPage = (props) => {
     // console.log("props", props);
-    useEffect(() => {
-        // console.log("update effect", props.location.search);
-    }, [props.location.search]);
     return (
         <HomeTemplate>
             <CatalogTypeSelect />
-            <CatalogFilters />
+            <CatalogFilters {...props} />
             <CatalogList data={pageData.catalogList} />
             <Spacer />
             <SubscribeForm />
