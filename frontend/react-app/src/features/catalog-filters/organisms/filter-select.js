@@ -1,15 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import { Row } from "../../styled-components-layout";
 import {
     FilterSelectTitle,
     FilterSelectWrapper,
     FilterSelectItem,
+    FilterSelectPrice
 } from "../atoms";
 import { ReactComponent as SvgArrow } from "../../../assets/icons/arrow_down_red.svg";
 import { Icon } from "../../common";
 export const FilterSelect = (props) => {
     const { toggleCategory, type, toggleFilter } = props;
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(true);
     return (
         <FilterSelectWrapper active={isOpen} type={type}>
             <Row
@@ -40,26 +41,51 @@ export const FilterSelect = (props) => {
                     {props.data &&
                         type === "filters" &&
                         props.data.map((filter) => (
-                            <div className="filter-item" key={filter.name}>
-                                <span className="filter-item__name">
-                                    {filter.name}
-                                </span>
-                                {filter.items.map((item) => (
-                                    <FilterSelectItem
-                                        active={item.active}
-                                        key={item.name}
-                                        onClick={() => toggleFilter({...item, parent_code: filter.code})}
+                            <Fragment key={filter.name}>
+                                {filter.code !== "price" ? (
+                                    <div className="filter-item">
+                                        <span className="filter-item__name">
+                                            {filter.name}
+                                        </span>
+                                        {filter.items.map((item) => (
+                                            <FilterSelectItem
+                                                active={item.active}
+                                                key={item.name}
+                                                onClick={() =>
+                                                    toggleFilter({
+                                                        ...item,
+                                                        parent_code:
+                                                            filter.code,
+                                                    })
+                                                }
+                                            >
+                                                {item.name}
+                                                {item.active && (
+                                                    <Icon
+                                                        name="close_red"
+                                                        type="simple"
+                                                    />
+                                                )}
+                                            </FilterSelectItem>
+                                        ))}
+                                    </div>
+                                ) : (
+                                    <div
+                                        className="filter-item"
+                                        key={filter.name}
                                     >
-                                        {item.name}
-                                        {item.active && (
-                                            <Icon
-                                                name="close_red"
-                                                type="simple"
-                                            />
-                                        )}
-                                    </FilterSelectItem>
-                                ))}
-                            </div>
+                                        <span className="filter-item__name">
+                                            {filter.name}
+                                        </span>
+                                        <FilterSelectPrice>
+                                            <span>от</span>
+                                            <input onInput={(e) => console.log(e.target.value)} />
+                                            <span>до</span>
+                                            <input />
+                                        </FilterSelectPrice>
+                                    </div>
+                                )}
+                            </Fragment>
                         ))}
                 </div>
             )}
