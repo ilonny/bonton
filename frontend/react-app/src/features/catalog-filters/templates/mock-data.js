@@ -23,11 +23,11 @@ export const filtersMock = [
                 name: "Белый",
             },
             {
-                code: "white",
+                code: "gray",
                 name: "Серый",
             },
             {
-                code: "white",
+                code: "black",
                 name: "Черный",
             },
         ],
@@ -55,15 +55,15 @@ export const filtersMock = [
         name: "Сезон",
         items: [
             {
-                code: "white",
+                code: "winter",
                 name: "Зима",
             },
             {
-                code: "white",
+                code: "summer",
                 name: "Лето",
             },
             {
-                code: "white",
+                code: "spring",
                 name: "Весна",
             },
         ],
@@ -73,11 +73,11 @@ export const filtersMock = [
         name: "Скидки",
         items: [
             {
-                code: "sale",
+                code: "1",
                 name: "Со скидкой",
             },
             {
-                code: "not_sale",
+                code: "0",
                 name: "Без скидки",
             },
         ],
@@ -87,11 +87,11 @@ export const filtersMock = [
         name: "Цена",
         items: [
             {
-                code: "min",
+                code: "min_price",
                 name: "4900",
             },
             {
-                code: "max",
+                code: "max_price",
                 name: "16990",
             },
         ],

@@ -8,7 +8,7 @@ import {
 import { ReactComponent as SvgArrow } from "../../../assets/icons/arrow_down_red.svg";
 import { Icon } from "../../common";
 export const FilterSelect = (props) => {
-    const { toggleCategory, type } = props;
+    const { toggleCategory, type, toggleFilter } = props;
     const [isOpen, setIsOpen] = useState(false);
     return (
         <FilterSelectWrapper active={isOpen} type={type}>
@@ -48,7 +48,7 @@ export const FilterSelect = (props) => {
                                     <FilterSelectItem
                                         active={item.active}
                                         key={item.name}
-                                        onClick={() => toggleCategory(item)}
+                                        onClick={() => toggleFilter({...item, parent_code: filter.code})}
                                     >
                                         {item.name}
                                         {item.active && (

@@ -46,3 +46,12 @@ export const getUrlParamsArray = (name) => {
         return [];
     }
 };
+
+export const getAllUrlParamsArray = () => {
+    let searchParams = new URLSearchParams(window.location.search);
+    try {
+        return Array.from(searchParams.entries()) || [];
+    } catch (e) {
+        return [];
+    }
+};

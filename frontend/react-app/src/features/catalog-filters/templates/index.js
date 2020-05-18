@@ -10,6 +10,7 @@ export const CatalogFiltersTemplate = (props) => {
         categories,
         filters,
         toggleCategory,
+        toggleFilter,
         location: { search },
         syncCategoriesWithParams,
     } = props;
@@ -39,7 +40,7 @@ export const CatalogFiltersTemplate = (props) => {
                     type="filters"
                     title={"Фильтры"}
                     data={filters}
-                    toggleCategory={toggleCategory}
+                    toggleFilter={toggleFilter}
                 />
             </Row>
         </div>
