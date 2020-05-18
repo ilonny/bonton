@@ -1,7 +1,7 @@
 import { history } from "../../../lib";
-export const setSearchParams = (name, value) => {
-    // console.log("SetSearchParams name", name);
-    const { code } = value;
+export const setSearchParams = (name, _value) => {
+    console.log("SetSearchParams name", name, _value);
+    const { code } = _value;
     let searchParams = new URLSearchParams(window.location.search);
     const searchArray = Array.from(searchParams.entries());
     let searchMap = {};
@@ -16,18 +16,22 @@ export const setSearchParams = (name, value) => {
             // console.log(1);
             new_param = code;
         } else {
-            // console.log("getAll", searchParams.getAll(name)[0].split("+"));
-            const param_arr = searchParams.getAll(name)[0].split("+");
-            if (param_arr.includes(code)) {
-                // console.log(3);
-                new_param = param_arr.filter((val) => val !== code).join("+");
-                if (!new_param.length) {
-                    searchParams.delete(name);
-                    // return;
-                }
+            if (name === "price_min" || name === "price_max") {
+                new_param = code;
             } else {
-                // console.log(2);
-                new_param = searchParams.get(name) + "+" + code;
+                // console.log("getAll", searchParams.getAll(name)[0].split("+"));
+                const param_arr = searchParams.getAll(name)[0].split("+");
+                if (param_arr.includes(code)) {
+                    // console.log(3);
+                    new_param = param_arr.filter((val) => val !== code).join("+");
+                    if (!new_param.length) {
+                        searchParams.delete(name);
+                        // return;
+                    }
+                } else {
+                    // console.log(2);
+                    new_param = searchParams.get(name) + "+" + code;
+                }
             }
         }
     } catch (e) {}

@@ -4,13 +4,13 @@ import {
     FilterSelectTitle,
     FilterSelectWrapper,
     FilterSelectItem,
-    FilterSelectPrice
+    FilterSelectPrice,
 } from "../atoms";
 import { ReactComponent as SvgArrow } from "../../../assets/icons/arrow_down_red.svg";
 import { Icon } from "../../common";
 export const FilterSelect = (props) => {
     const { toggleCategory, type, toggleFilter } = props;
-    const [isOpen, setIsOpen] = useState(true);
+    const [isOpen, setIsOpen] = useState(false);
     return (
         <FilterSelectWrapper active={isOpen} type={type}>
             <Row
@@ -79,9 +79,26 @@ export const FilterSelect = (props) => {
                                         </span>
                                         <FilterSelectPrice>
                                             <span>от</span>
-                                            <input onInput={(e) => console.log(e.target.value)} />
+                                            <input
+                                                onChange={(e) =>
+                                                    toggleFilter({
+                                                        parent_code: 'price_min',
+                                                        value: e.target.value,
+                                                    })
+                                                }
+                                                value={filter.items[0].name}
+                                            />
                                             <span>до</span>
-                                            <input />
+                                            <input
+                                                onChange={(e) =>
+                                                    toggleFilter({
+                                                        parent_code: 'price_max',
+                                                        value: e.target.value,
+
+                                                    })
+                                                }
+                                                value={filter.items[1].name}
+                                            />
                                         </FilterSelectPrice>
                                     </div>
                                 )}

@@ -9,9 +9,9 @@ export const FilterSelectPrice = styled.div`
         color: #717171;
     }
     & input {
-        max-width: 50px;
+        max-width: 60px;
         border-bottom: 1px solid #c4c4c4;
-        // padding: 5px;
+        padding: 0 5px;
         margin: 0 5px;
     }
 `;

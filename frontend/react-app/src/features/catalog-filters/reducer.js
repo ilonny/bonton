@@ -3,6 +3,7 @@ import {
     setSearchParams,
     getUrlParamsArray,
     getAllUrlParamsArray,
+    // debounce
 } from "./lib";
 const initialState = {
     categories: [],
@@ -52,6 +53,16 @@ export const categoriesReducer = (state = initialState, action) => {
                             };
                         });
                     }
+                    if (urlKey === 'price_min' && filter.code === 'price') {
+                        console.log(filter)
+                        filter.items[0].name = urlValue
+                        console.log(filter)
+                    }
+                    if (urlKey === 'price_max' && filter.code === 'price') {
+                        console.log(filter)
+                        filter.items[1].name = urlValue
+                        console.log(filter)
+                    }
                 });
             });
             return {
@@ -82,23 +93,8 @@ categoriesReducer.syncCategoriesWithParams = (params) => (
 
 categoriesReducer.toggleCategory = (params) => (dispatch, getState) => {
     setSearchParams("categories", params);
-    // console.log("toggleCategory", params);
     const allCategories = getState().categories.categories;
-    // console.log("allCategories", allCategories);
     const newState = allCategories;
-    // const newState = allCategories.map((cat) => {
-    //     return {
-    //         ...cat,
-    //         // active: params.code === cat.code && !cat.active,
-    //         active: ((cat) => {
-    //             if (cat.code === params.code) {
-    //                 return !cat.active;
-    //             } else {
-    //                 return cat.active;
-    //             }
-    //         })(cat),
-    //     };
-    // });
     dispatch({ type: SET_CATEGORIES, params: newState });
 };
 
@@ -108,8 +104,11 @@ categoriesReducer.setFilters = (params) => (dispatch) => {
 };
 
 categoriesReducer.toggleFilter = (params) => (dispatch, getState) => {
-    console.log("toggleFilter start", params);
-    setSearchParams(params.parent_code, params);
+    if (params.parent_code === "price_min" || params.parent_code === "price_max") {
+        setSearchParams(params.parent_code, {code: params.value});
+    } else {
+        setSearchParams(params.parent_code, params);
+    }
     const allCategories = getState().categories.filters;
     const newState = allCategories;
     dispatch({ type: SET_FILTERS, params: newState });

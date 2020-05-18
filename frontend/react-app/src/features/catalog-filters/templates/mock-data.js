@@ -87,11 +87,11 @@ export const filtersMock = [
         name: "Цена",
         items: [
             {
-                code: "min_price",
+                code: "price_min",
                 name: "4900",
             },
             {
-                code: "max_price",
+                code: "price_max",
                 name: "16990",
             },
         ],
