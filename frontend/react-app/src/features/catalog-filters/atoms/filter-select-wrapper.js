@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {Color} from "../../../lib";
+import { Color } from "../../../lib";
 export const FilterSelectWrapper = styled.div`
     border-bottom: 1px solid #717171;
     flex: 1;
@@ -43,5 +43,26 @@ export const FilterSelectWrapper = styled.div`
             fill: #fff;
         }
     }
+    `}
+    ${(props) =>
+        props.type === "filters" &&
+        `
+        & .filter-select-content {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+        & .filter-item {
+            flex: 1;
+            flex: 1 1 50%;
+            &:not(:last-child) {
+                margin-bottom: 15px;
+            }
+            &__name {
+                font-weight: 500;
+                text-align: left;
+                display: block;
+            }
+        }
     `}
 `;
