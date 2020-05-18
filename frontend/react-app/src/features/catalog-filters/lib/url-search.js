@@ -10,25 +10,27 @@ export const setSearchParams = (name, value) => {
     }
     // console.log("get all", searchParams.getAll(name));
     let new_param;
-    if (!searchMap[name]) {
-        //add
-        // console.log(1);
-        new_param = code;
-    } else {
-        // console.log("getAll", searchParams.getAll(name)[0].split("+"));
-        const param_arr = searchParams.getAll(name)[0].split("+");
-        if (param_arr.includes(code)) {
-            // console.log(3);
-            new_param = param_arr.filter((val) => val !== code).join("+");
-            if (!new_param.length) {
-                searchParams.delete(name);
-                // return;
-            }
+    try {
+        if (!searchMap[name]) {
+            //add
+            // console.log(1);
+            new_param = code;
         } else {
-            // console.log(2);
-            new_param = searchParams.get(name) + "+" + code;
+            // console.log("getAll", searchParams.getAll(name)[0].split("+"));
+            const param_arr = searchParams.getAll(name)[0].split("+");
+            if (param_arr.includes(code)) {
+                // console.log(3);
+                new_param = param_arr.filter((val) => val !== code).join("+");
+                if (!new_param.length) {
+                    searchParams.delete(name);
+                    // return;
+                }
+            } else {
+                // console.log(2);
+                new_param = searchParams.get(name) + "+" + code;
+            }
         }
-    }
+    } catch (e) {}
     searchParams.set(name, new_param);
     // console.log("searchParams end", searchParams.toString());
     // console.log("URLSearchParams array", searchArray);
@@ -38,5 +40,9 @@ export const setSearchParams = (name, value) => {
 
 export const getUrlParamsArray = (name) => {
     let searchParams = new URLSearchParams(window.location.search);
-    return searchParams.getAll(name)[0].split("+") || [];
+    try {
+        return searchParams.getAll(name)[0].split("+") || [];
+    } catch (e) {
+        return [];
+    }
 };

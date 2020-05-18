@@ -1,4 +1,4 @@
-import { SET_CATEGORIES } from "./actions";
+import { SET_CATEGORIES, SET_FILTERS } from "./actions";
 import { setSearchParams, getUrlParamsArray } from "./lib";
 const initialState = {
     categories: [],
@@ -7,25 +7,33 @@ const initialState = {
 export const categoriesReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_CATEGORIES:
+            {
+                const urlParamArray = getUrlParamsArray("categories");
+                return {
+                    ...state,
+                    categories: action.params.map((cat) => {
+                        return {
+                            ...cat,
+                            active: (() => {
+                                // console.log(urlParamArray);
+                                // console.log(cat);
+                                if (urlParamArray.includes(cat.code)) {
+                                    return true;
+                                } else {
+                                    return false;
+                                }
+                            })(),
+                        };
+                    }),
+                };
+            }
             // console.log("getUrlParamsArray", getUrlParamsArray("categories"));
-            const urlParamArray = getUrlParamsArray("categories");
+        case SET_FILTERS: {
             return {
                 ...state,
-                categories: action.params.map((cat) => {
-                    return {
-                        ...cat,
-                        active: (() => {
-                            // console.log(urlParamArray);
-                            // console.log(cat);
-                            if (urlParamArray.includes(cat.code)) {
-                                return true;
-                            } else {
-                                return false;
-                            }
-                        })(),
-                    };
-                }),
-            };
+                filters: action.params
+            }
+        }
         default:
             return state;
     }
@@ -36,13 +44,15 @@ categoriesReducer.setCategories = (params) => (dispatch) => {
     dispatch({ type: SET_CATEGORIES, params });
 };
 
-categoriesReducer.syncCategoriesWithParams = (params) => (dispatch, getState) => {
+categoriesReducer.syncCategoriesWithParams = (params) => (
+    dispatch,
+    getState
+) => {
     // setSearchParams('categories', params);
     // console.log('syncCategoriesWithParams')
     const allCategories = getState().categories.categories;
     dispatch({ type: SET_CATEGORIES, params: allCategories });
-}
-
+};
 
 categoriesReducer.toggleCategory = (params) => (dispatch, getState) => {
     setSearchParams("categories", params);
@@ -64,4 +74,9 @@ categoriesReducer.toggleCategory = (params) => (dispatch, getState) => {
     //     };
     // });
     dispatch({ type: SET_CATEGORIES, params: newState });
+};
+
+categoriesReducer.setFilters = (params) => (dispatch) => {
+    // setSearchParams('categories', params);
+    dispatch({ type: SET_FILTERS, params });
 };

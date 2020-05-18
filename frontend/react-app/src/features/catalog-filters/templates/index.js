@@ -1,12 +1,14 @@
 import React, { useEffect } from "react";
 import { Row } from "../../styled-components-layout";
 import { FilterSelect } from "../organisms/filter-select";
-import { categoriesMock } from "./mock-data";
+import { categoriesMock, filtersMock } from "./mock-data";
 export const CatalogFiltersTemplate = (props) => {
     // console.log("CatalogFiltersTemplate props", props);
     const {
         setCategories,
+        setFilters,
         categories,
+        filters,
         toggleCategory,
         location: { search },
         syncCategoriesWithParams,
@@ -15,7 +17,8 @@ export const CatalogFiltersTemplate = (props) => {
     // console.log("search", search);
     useEffect(() => {
         setCategories(categoriesMock);
-    }, [setCategories]);
+        setFilters(filtersMock);
+    }, [setCategories, setFilters]);
 
     useEffect(() => {
         // console.log("update effect", props.location.search);
@@ -27,8 +30,15 @@ export const CatalogFiltersTemplate = (props) => {
         <div style={{ marginBottom: "30px" }}>
             <Row align="center" justify="space-between">
                 <FilterSelect
+                    type="categories"
                     title={"Категории"}
                     data={categories}
+                    toggleCategory={toggleCategory}
+                />
+                <FilterSelect
+                    type="filters"
+                    title={"Фильтры"}
+                    data={filters}
                     toggleCategory={toggleCategory}
                 />
             </Row>
