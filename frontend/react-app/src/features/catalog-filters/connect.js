@@ -12,5 +12,6 @@ export const CatalogFilters = connect(
             dispatch(categoriesReducer.syncCategoriesWithParams()),
         setFilters: (params) => dispatch(categoriesReducer.setFilters(params)),
         toggleFilter: (params) => dispatch(categoriesReducer.toggleFilter(params)),
+        setSorting: (params) => dispatch(categoriesReducer.setSorting(params)),
     })
 )(CatalogFiltersTemplate);

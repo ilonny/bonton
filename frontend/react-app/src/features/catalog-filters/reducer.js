@@ -1,4 +1,4 @@
-import { SET_CATEGORIES, SET_FILTERS } from "./actions";
+import { SET_CATEGORIES, SET_FILTERS, SET_SORT } from "./actions";
 import {
     setSearchParams,
     getUrlParamsArray,
@@ -8,6 +8,7 @@ import {
 const initialState = {
     categories: [],
     filters: [],
+    sort_price: 0,
 };
 export const categoriesReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -39,7 +40,6 @@ export const categoriesReducer = (state = initialState, action) => {
                 items: p.items.map((i) => ({ ...i, active: false })),
             }));
             const urlParamArray = getAllUrlParamsArray();
-            console.log("urlParamArray", urlParamArray);
             urlParamArray.forEach(([urlKey, urlValue]) => {
                 const urlValues = urlValue.split("+");
                 params.forEach((filter) => {
@@ -53,15 +53,11 @@ export const categoriesReducer = (state = initialState, action) => {
                             };
                         });
                     }
-                    if (urlKey === 'price_min' && filter.code === 'price') {
-                        console.log(filter)
-                        filter.items[0].name = urlValue
-                        console.log(filter)
+                    if (urlKey === "price_min" && filter.code === "price") {
+                        filter.items[0].name = urlValue;
                     }
-                    if (urlKey === 'price_max' && filter.code === 'price') {
-                        console.log(filter)
-                        filter.items[1].name = urlValue
-                        console.log(filter)
+                    if (urlKey === "price_max" && filter.code === "price") {
+                        filter.items[1].name = urlValue;
                     }
                 });
             });
@@ -69,6 +65,13 @@ export const categoriesReducer = (state = initialState, action) => {
                 ...state,
                 filters: params,
             };
+        }
+        case SET_SORT: {
+            console.log(action);
+            const { sortKey, newVal } = action.params;
+            const newState = state;
+            newState[sortKey] = newVal;
+            return { ...newState };
         }
         default:
             return state;
@@ -104,12 +107,34 @@ categoriesReducer.setFilters = (params) => (dispatch) => {
 };
 
 categoriesReducer.toggleFilter = (params) => (dispatch, getState) => {
-    if (params.parent_code === "price_min" || params.parent_code === "price_max") {
-        setSearchParams(params.parent_code, {code: params.value});
+    if (
+        params.parent_code === "price_min" ||
+        params.parent_code === "price_max"
+    ) {
+        setSearchParams(params.parent_code, { code: params.value });
     } else {
         setSearchParams(params.parent_code, params);
     }
     const allCategories = getState().categories.filters;
     const newState = allCategories;
     dispatch({ type: SET_FILTERS, params: newState });
+};
+
+const sortMap = {
+    0: "up",
+    up: "down",
+    down: 0,
+};
+categoriesReducer.setSorting = (params) => (dispatch, getState) => {
+    const sortKey = params.code;
+    const currentSort = getState().categories[`${sortKey}`];
+    const newVal = sortMap[currentSort];
+    console.log("sortKey", sortKey);
+    console.log("currentSort", currentSort);
+    console.log("newVal", newVal);
+    setSearchParams(sortKey, { code: newVal });
+    dispatch({
+        type: SET_SORT,
+        params: { newVal, sortKey },
+    });
 };
