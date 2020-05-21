@@ -5,10 +5,8 @@ import {
     Spacer,
     // HoverButton,
 } from "../../features/common";
-// import { Row } from "../../features/styled-components-layout";
 import { CatalogList } from "../../features/catalog-list";
 import { SubscribeForm } from "../../features/subscribe-form";
-// import { Color } from "../../lib";
 import { CatalogTypeSelect } from "../../features/catalog-type-select";
 import { CatalogFilters, CatalogPagination } from "../../features/catalog-filters";
 import { pageData } from "../home/data";
