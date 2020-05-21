@@ -5,6 +5,7 @@ import {
     getAllUrlParamsArray,
     // debounce
 } from "./lib";
+import { history } from "../../lib"
 const initialState = {
     categories: [],
     filters: [],
@@ -144,3 +145,8 @@ categoriesReducer.setSorting = (params) => (dispatch, getState) => {
         // params: { newVal, sortKey },
     });
 };
+
+categoriesReducer.reset = () => dispatch => {
+    history.push(`/catalog?type=${getUrlParamsArray("type")[0]}`)
+    dispatch(categoriesReducer.syncCategoriesWithParams);
+}

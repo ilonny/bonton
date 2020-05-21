@@ -6,7 +6,7 @@ export const SortingWrapper = styled.div`
     align-items: center;
     cursor: pointer;
     padding: 5px;
-    min-width: 150px;
+    min-width: 65px;
     ${props => props.value != 0 && `
         & span {
             color: ${Color.red};

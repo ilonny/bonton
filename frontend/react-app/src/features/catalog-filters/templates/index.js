@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Row } from "../../styled-components-layout";
-import { FilterSelect, Sorting } from "../organisms";
+import { FilterSelect, Sorting, ResetButton} from "../organisms";
 import { categoriesMock, filtersMock } from "./mock-data";
 export const CatalogFiltersTemplate = (props) => {
     // console.log("CatalogFiltersTemplate props", props);
@@ -14,7 +14,8 @@ export const CatalogFiltersTemplate = (props) => {
         toggleFilter,
         location: { search },
         syncCategoriesWithParams,
-        setSorting
+        setSorting,
+        reset
     } = props;
     // console.log("categories", categories);
     // console.log("search", search);
@@ -45,6 +46,7 @@ export const CatalogFiltersTemplate = (props) => {
                     toggleFilter={toggleFilter}
                 />
                 <Sorting code="sort_price" title="Цена" value={sort_price} setSorting={setSorting} />
+                <ResetButton reset={reset}/>
             </Row>
         </div>
     );
