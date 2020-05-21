@@ -10,7 +10,7 @@ import { CatalogList } from "../../features/catalog-list";
 import { SubscribeForm } from "../../features/subscribe-form";
 // import { Color } from "../../lib";
 import { CatalogTypeSelect } from "../../features/catalog-type-select";
-import { CatalogFilters } from "../../features/catalog-filters";
+import { CatalogFilters, CatalogPagination } from "../../features/catalog-filters";
 import { pageData } from "../home/data";
 export const CatalogPage = (props) => {
     // console.log("props", props);
@@ -19,6 +19,7 @@ export const CatalogPage = (props) => {
             <CatalogTypeSelect />
             <CatalogFilters {...props} />
             <CatalogList data={pageData.catalogList} />
+            <CatalogPagination />
             <Spacer />
             <SubscribeForm />
             <Spacer />

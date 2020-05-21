@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { CatalogFiltersTemplate } from "./templates";
+import { CatalogFiltersTemplate, CatalogPaginationTemplate } from "./templates";
 import { categoriesReducer } from "./reducer";
 export const CatalogFilters = connect(
     (state) => state.categories,
@@ -16,3 +16,9 @@ export const CatalogFilters = connect(
         reset: () => dispatch(categoriesReducer.reset())
     })
 )(CatalogFiltersTemplate);
+
+
+export const CatalogPagination = connect(
+    (state) => state.categories,
+    (dispatch) => null
+) (CatalogPaginationTemplate);
