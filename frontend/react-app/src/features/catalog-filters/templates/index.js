@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Row } from "../../styled-components-layout";
-import { FilterSelect, Sorting, ResetButton} from "../organisms";
+import { FilterSelect, Sorting, ResetButton } from "../organisms";
 import { categoriesMock, filtersMock } from "./mock-data";
 export const CatalogFiltersTemplate = (props) => {
     // console.log("CatalogFiltersTemplate props", props);
@@ -32,7 +32,7 @@ export const CatalogFiltersTemplate = (props) => {
 
     return (
         <div style={{ marginBottom: "30px" }}>
-            <Row align="flex-end" justify="space-between">
+            <Row align="flex-end" justify="space-between" mobile_wrap="true">
                 <FilterSelect
                     type="categories"
                     title={"Категории"}
@@ -46,7 +46,7 @@ export const CatalogFiltersTemplate = (props) => {
                     toggleFilter={toggleFilter}
                 />
                 <Sorting code="sort_price" title="Цена" value={sort_price} setSorting={setSorting} />
-                <ResetButton reset={reset}/>
+                <ResetButton reset={reset} />
             </Row>
         </div>
     );
