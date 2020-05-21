@@ -67,11 +67,16 @@ export const categoriesReducer = (state = initialState, action) => {
             };
         }
         case SET_SORT: {
-            console.log(action);
-            const { sortKey, newVal } = action.params;
-            const newState = state;
-            newState[sortKey] = newVal;
-            return { ...newState };
+            // console.log(action);
+            const urlParamArray = getUrlParamsArray("sort_price");
+            console.log('set sort urlParamArray', urlParamArray);
+            // const { sortKey, newVal } = action.params;
+            // const newState = state;
+            // newState[sortKey] = newVal;
+            return {
+                ...state,
+                sort_price: getUrlParamsArray("sort_price")[0] || 0,
+            };
         }
         default:
             return state;
@@ -92,6 +97,7 @@ categoriesReducer.syncCategoriesWithParams = (params) => (
     const { categories, filters } = getState().categories;
     dispatch({ type: SET_CATEGORIES, params: categories });
     dispatch({ type: SET_FILTERS, params: filters });
+    dispatch({ type: SET_SORT });
 };
 
 categoriesReducer.toggleCategory = (params) => (dispatch, getState) => {
@@ -135,6 +141,6 @@ categoriesReducer.setSorting = (params) => (dispatch, getState) => {
     setSearchParams(sortKey, { code: newVal });
     dispatch({
         type: SET_SORT,
-        params: { newVal, sortKey },
+        // params: { newVal, sortKey },
     });
 };
