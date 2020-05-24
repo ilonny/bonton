@@ -1,4 +1,4 @@
-import { SET_CATEGORIES, SET_FILTERS, SET_SORT } from "./actions";
+import { SET_CATEGORIES, SET_FILTERS, SET_SORT, SET_PAGINATION } from "./actions";
 import {
     setSearchParams,
     getUrlParamsArray,
@@ -10,6 +10,8 @@ const initialState = {
     categories: [],
     filters: [],
     sort_price: 0,
+    pages: 5,
+    currentPage: 1,
 };
 export const categoriesReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -68,16 +70,17 @@ export const categoriesReducer = (state = initialState, action) => {
             };
         }
         case SET_SORT: {
-            // console.log(action);
-            const urlParamArray = getUrlParamsArray("sort_price");
-            console.log('set sort urlParamArray', urlParamArray);
-            // const { sortKey, newVal } = action.params;
-            // const newState = state;
-            // newState[sortKey] = newVal;
             return {
                 ...state,
                 sort_price: getUrlParamsArray("sort_price")[0] || 0,
             };
+        }
+        case SET_PAGINATION: {
+            const currentPage = parseInt(getUrlParamsArray("page")[0]) || 1;
+            return {
+                ...state,
+                currentPage
+            }
         }
         default:
             return state;
@@ -99,6 +102,7 @@ categoriesReducer.syncCategoriesWithParams = (params) => (
     dispatch({ type: SET_CATEGORIES, params: categories });
     dispatch({ type: SET_FILTERS, params: filters });
     dispatch({ type: SET_SORT });
+    dispatch({ type: SET_PAGINATION })
 };
 
 categoriesReducer.toggleCategory = (params) => (dispatch, getState) => {
