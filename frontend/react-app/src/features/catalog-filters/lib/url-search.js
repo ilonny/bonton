@@ -17,7 +17,7 @@ export const setSearchParams = (name, _value) => {
             new_param = code;
         } else {
             console.log('name', name);
-            if (name === "price_min" || name === "price_max" || name === "sort_price") {
+            if (name === "price_min" || name === "price_max" || name === "sort_price" || name === 'page') {
                 new_param = code;
             } else {
                 // console.log("getAll", searchParams.getAll(name)[0].split("+"));

@@ -154,3 +154,9 @@ categoriesReducer.reset = () => dispatch => {
     history.push(`/catalog?type=${getUrlParamsArray("type")[0]}`)
     dispatch(categoriesReducer.syncCategoriesWithParams);
 }
+
+categoriesReducer.setPagination = page => dispatch => {
+    console.log('setPagination fired', {code: page});
+    setSearchParams('page', {code: page});
+    dispatch({ type: SET_PAGINATION });
+}

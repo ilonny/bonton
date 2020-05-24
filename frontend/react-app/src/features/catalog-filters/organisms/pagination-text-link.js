@@ -1,11 +1,6 @@
-import React from 'react';
 import styled from "styled-components";
 import { Color } from "../../../lib";
-export const PaginationTextLink = ({ left, text }) => (
-    <Wrapper>{text}</Wrapper>
-)
-
-const Wrapper = styled.button`
+export const PaginationTextLink = styled.button`
     border: none;
     background: transparent;
     cursor: pointer;

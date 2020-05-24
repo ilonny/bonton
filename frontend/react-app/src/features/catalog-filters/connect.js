@@ -21,6 +21,6 @@ export const CatalogFilters = connect(
 export const CatalogPagination = connect(
     (state) => state.categories,
     (dispatch) => ({
-        test: () => console.log('test')
+        setPage: page => dispatch(categoriesReducer.setPagination(page))
     })
 )(CatalogPaginationTemplate);
