@@ -1,9 +1,7 @@
 import React from "react";
 import {
     HomeTemplate,
-    // CategoryTitle,
     Spacer,
-    // HoverButton,
 } from "../../features/common";
 import { CatalogList } from "../../features/catalog-list";
 import { SubscribeForm } from "../../features/subscribe-form";

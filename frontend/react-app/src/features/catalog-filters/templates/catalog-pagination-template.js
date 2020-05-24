@@ -3,7 +3,6 @@ import { PaginationTextLink, PaginationButton } from "../organisms";
 import { Row } from "../../styled-components-layout";
 export const CatalogPaginationTemplate = (props) => {
     const { currentPage, pages, setPage } = props;
-    console.log('currentPage, pages', currentPage, pages);
     let p_arr = [
         currentPage - 1 > 2 ? 1 : 0,
         currentPage - 1 > 2 ? '...' : 0,
@@ -13,7 +12,6 @@ export const CatalogPaginationTemplate = (props) => {
         (pages - currentPage > 1) && currentPage !== pages ? '...' : 0,
         currentPage !== pages ? pages : 0
     ].filter(el => el !== 0);
-    console.log(p_arr);
     if (pages > 1) {
         return (
             <Row justify="center" align="center" mobile_wrap="true">
@@ -29,5 +27,7 @@ export const CatalogPaginationTemplate = (props) => {
                 {currentPage !== pages && <PaginationTextLink onClick={() => setPage(currentPage + 1)}>Следующая</PaginationTextLink>}
             </Row>
         );
+    } else {
+        return null;
     }
 };

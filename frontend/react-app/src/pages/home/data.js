@@ -39,41 +39,44 @@ export const pageData = {
             btnText: "Ремни",
         },
     ],
-    catalogList: [
-        {
-            id: 1,
-            image: require("../../assets/images/catalog1.png"),
-            image_hover: require("../../assets/images/catalog2.png"),
-            title: "Футболка красная AR 95356",
-            price: "2400,00 руб",
-        },
-        {
-            id: 2,
-            image: require("../../assets/images/catalog1.png"),
-            image_hover: require("../../assets/images/catalog2.png"),
-            title: "Футболка красная AR 95356",
-            price: "2400,00 руб",
-        },
-        {
-            id: 3,
-            image: require("../../assets/images/catalog1.png"),
-            image_hover: require("../../assets/images/catalog2.png"),
-            title: "Футболка красная AR 95356",
-            price: "2400,00 руб",
-        },
-        {
-            id: 4,
-            image: require("../../assets/images/catalog1.png"),
-            image_hover: require("../../assets/images/catalog2.png"),
-            title: "Футболка красная AR 95356",
-            price: "2400,00 руб",
-        },
-        {
-            id: 5,
-            image: require("../../assets/images/catalog1.png"),
-            image_hover: require("../../assets/images/catalog2.png"),
-            title: "Футболка красная AR 95356",
-            price: "2400,00 руб",
-        },
-    ],
+    catalogList: {
+        pages: 5,
+        list: [
+            {
+                id: 1,
+                image: require("../../assets/images/catalog1.png"),
+                image_hover: require("../../assets/images/catalog2.png"),
+                title: "Футболка красная AR 95356",
+                price: "2400,00 руб",
+            },
+            {
+                id: 2,
+                image: require("../../assets/images/catalog1.png"),
+                image_hover: require("../../assets/images/catalog2.png"),
+                title: "Футболка красная AR 95356",
+                price: "2400,00 руб",
+            },
+            {
+                id: 3,
+                image: require("../../assets/images/catalog1.png"),
+                image_hover: require("../../assets/images/catalog2.png"),
+                title: "Футболка красная AR 95356",
+                price: "2400,00 руб",
+            },
+            {
+                id: 4,
+                image: require("../../assets/images/catalog1.png"),
+                image_hover: require("../../assets/images/catalog2.png"),
+                title: "Футболка красная AR 95356",
+                price: "2400,00 руб",
+            },
+            {
+                id: 5,
+                image: require("../../assets/images/catalog1.png"),
+                image_hover: require("../../assets/images/catalog2.png"),
+                title: "Футболка красная AR 95356",
+                price: "2400,00 руб",
+            },
+        ]
+    },
 };

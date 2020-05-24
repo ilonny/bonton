@@ -10,8 +10,8 @@ const initialState = {
     categories: [],
     filters: [],
     sort_price: 0,
-    pages: 5,
-    currentPage: 1,
+    pages: undefined,
+    currentPage: undefined,
 };
 export const categoriesReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -79,7 +79,8 @@ export const categoriesReducer = (state = initialState, action) => {
             const currentPage = parseInt(getUrlParamsArray("page")[0]) || 1;
             return {
                 ...state,
-                currentPage
+                currentPage,
+                pages: action.pages || state.pages
             }
         }
         default:

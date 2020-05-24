@@ -1,1 +1,1 @@
-export { CatalogList } from "./templates";
+export * from "./connect";

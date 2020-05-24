@@ -1,7 +1,7 @@
 import { combineReducers, createStore, applyMiddleware } from "redux";
 import { createLogger } from "redux-logger";
 import thunk from "redux-thunk";
-import { sideBarReducer, categoriesReducer } from "../../features";
+import { sideBarReducer, categoriesReducer, productReducer } from "../../features";
 
 const mainReducer = (state = { test: 123 }, action) => {
     return { ...state };
@@ -11,6 +11,7 @@ const rootReducer = combineReducers({
     main: mainReducer,
     sidebar: sideBarReducer,
     categories: categoriesReducer,
+    product: productReducer
 });
 
 let enhacers;

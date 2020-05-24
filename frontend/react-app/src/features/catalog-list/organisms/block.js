@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom";
 // import styled from "styled-components";
 import {
     BlockWrapper,
@@ -11,7 +12,7 @@ import {
 import { Row } from "../../styled-components-layout";
 export const Block = ({ item }) => (
     <BlockWrapper>
-        <a href="/">
+        <Link to={`/product/${item.id}`}>
             <ImageWrapper>
                 <img
                     src={item.image_hover}
@@ -22,7 +23,7 @@ export const Block = ({ item }) => (
                 <Image hover_hide="true" src={item.image} />
             </ImageWrapper>
             <Title>{item.title}</Title>
-        </a>
+        </Link>
         <div>
             <Row align="center" mobile_wrap="true">
                 <CartButton active={false} />
