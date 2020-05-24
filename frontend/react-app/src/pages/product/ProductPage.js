@@ -3,13 +3,13 @@ import {
     HomeTemplate,
     Spacer,
 } from "../../features/common";
-
 import { SubscribeForm } from "../../features/subscribe-form";
+import {Product} from "../../features";
 export const ProductPage = props => {
-    console.log('product page props', props);
-    // const {id} = props.match.params;
+    const {id} = props.match.params;
     return (
         <HomeTemplate>
+            <Product id={id} />
             <Spacer />
             <SubscribeForm />
             <Spacer />
