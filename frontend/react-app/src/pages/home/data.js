@@ -1,3 +1,40 @@
+const itemOptions = [
+    {
+        title: 'Цвет',
+        items: [
+            {
+                value: 'white',
+                label: 'Белый',
+            },
+            {
+                value: 'black',
+                label: 'Черный',
+            },
+            {
+                value: 'red',
+                label: 'Красный',
+            },
+        ]
+    },
+    {
+        title: 'Размер',
+        items: [
+            {
+                value: 'S',
+                label: 'S',
+            },
+            {
+                value: 'M',
+                label: 'M',
+            },
+            {
+                value: 'XL',
+                label: 'XL',
+            },
+        ]
+    },
+];
+
 export const pageData = {
     big: [
         {
@@ -48,6 +85,14 @@ export const pageData = {
                 image_hover: require("../../assets/images/catalog2.png"),
                 title: "Футболка красная AR 95356",
                 price: "2400,00 руб",
+                photos: [
+                    {
+                        original: require("../../assets/images/catalog2.png"),
+                        thumbnail: require("../../assets/images/catalog2.png"),
+                    },
+                ],
+                description: "С другой стороны консультация с широким активом позволяет выполнять важные задания по разработке существенных финансовых и административных условий. Разнообразный и богатый опыт постоянный количественный рост и сфера нашей активности играет важную роль в формировании направлений",
+                options: itemOptions
             },
             {
                 id: 2,
@@ -55,6 +100,14 @@ export const pageData = {
                 image_hover: require("../../assets/images/catalog2.png"),
                 title: "Футболка красная AR 95356",
                 price: "2400,00 руб",
+                photos: [
+                    {
+                        original: require("../../assets/images/catalog2.png"),
+                        thumbnail: require("../../assets/images/catalog2.png"),
+                    },
+                ],
+                description: "С другой стороны консультация с широким активом позволяет выполнять важные задания по разработке существенных финансовых и административных условий. Разнообразный и богатый опыт постоянный количественный рост и сфера нашей активности играет важную роль в формировании направлений",
+                options: itemOptions,
             },
             {
                 id: 3,
@@ -62,6 +115,14 @@ export const pageData = {
                 image_hover: require("../../assets/images/catalog2.png"),
                 title: "Футболка красная AR 95356",
                 price: "2400,00 руб",
+                photos: [
+                    {
+                        original: require("../../assets/images/catalog2.png"),
+                        thumbnail: require("../../assets/images/catalog2.png"),
+                    },
+                ],
+                description: "С другой стороны консультация с широким активом позволяет выполнять важные задания по разработке существенных финансовых и административных условий. Разнообразный и богатый опыт постоянный количественный рост и сфера нашей активности играет важную роль в формировании направлений",
+                options: itemOptions,
             },
             {
                 id: 4,
@@ -69,6 +130,14 @@ export const pageData = {
                 image_hover: require("../../assets/images/catalog2.png"),
                 title: "Футболка красная AR 95356",
                 price: "2400,00 руб",
+                photos: [
+                    {
+                        original: require("../../assets/images/catalog2.png"),
+                        thumbnail: require("../../assets/images/catalog2.png"),
+                    },
+                ],
+                description: "С другой стороны консультация с широким активом позволяет выполнять важные задания по разработке существенных финансовых и административных условий. Разнообразный и богатый опыт постоянный количественный рост и сфера нашей активности играет важную роль в формировании направлений",
+                options: itemOptions,
             },
             {
                 id: 5,
@@ -76,6 +145,14 @@ export const pageData = {
                 image_hover: require("../../assets/images/catalog2.png"),
                 title: "Футболка красная AR 95356",
                 price: "2400,00 руб",
+                photos: [
+                    {
+                        original: require("../../assets/images/catalog2.png"),
+                        thumbnail: require("../../assets/images/catalog2.png"),
+                    },
+                ],
+                description: "С другой стороны консультация с широким активом позволяет выполнять важные задания по разработке существенных финансовых и административных условий. Разнообразный и богатый опыт постоянный количественный рост и сфера нашей активности играет важную роль в формировании направлений",
+                options: itemOptions,
             },
         ]
     },

@@ -9,6 +9,7 @@ export const HoverButton = (props) => (
 const StyledButton = styled.button`
     padding: 16px;
     border: 1px solid;
+    font-size: ${(props) => (props.fontSize ? props.fontSsize : "inherit")};
     color: ${(props) => props.color};
     background-color: ${(props) => props.backgroundColor};
     width: ${(props) => (props.width ? props.width : "100%")};
@@ -20,12 +21,13 @@ const StyledButton = styled.button`
     ${(props) => props.styles};
     &:hover {
         color: ${(props) =>
-            props.hoverColor
-                ? props.hoverColor
-                : props.color
+        props.hoverColor
+            ? props.hoverColor
+            : props.color
                 ? invert(props.color)
                 : "inherit"};
         background-color: ${(props) =>
+        props.hoverBackgroundColor ? props.hoverBackgroundColor :
             props.backgroundColor
                 ? props.backgroundColor === "transparent"
                     ? props.color

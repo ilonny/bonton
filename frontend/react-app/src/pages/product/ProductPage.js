@@ -9,6 +9,7 @@ export const ProductPage = props => {
     const {id} = props.match.params;
     return (
         <HomeTemplate>
+            <Spacer />
             <Product id={id} />
             <Spacer />
             <SubscribeForm />
