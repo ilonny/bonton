@@ -15,6 +15,11 @@ export const routes = () => [
     component: HomePage,
   },
   {
+    path: "/bonton",
+    exact: true,
+    component: HomePage,
+  },
+  {
     path: "/catalog/:gender?/:type?/:subtype?/:filters?",
     // exact: true,
     component: CatalogPage,
