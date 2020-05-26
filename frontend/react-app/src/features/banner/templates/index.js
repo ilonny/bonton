@@ -49,12 +49,12 @@ export const Banner = (props) => {
                                 key={row[index].btnText}
                             >
                                 {row.map((block) => (
-                                    <Link to="/">
-                                        <LinkStyled
-                                            key={block.btnText}
-                                            multiline={true}
-                                            flex={props.multiline ? "1 1 50%" : "1"}
-                                        >
+                                    <LinkStyled
+                                        key={block.btnText}
+                                        multiline={true}
+                                        flex={props.multiline ? "1 1 50%" : "1"}
+                                    >
+                                        <Link to="/">
                                             <Block key={block.btnText}>
                                                 <ImageView src={block.image} />
                                                 <BlockAbsoluteContentWrapper
@@ -70,8 +70,8 @@ export const Banner = (props) => {
                                                     />
                                                 </BlockAbsoluteContentWrapper>
                                             </Block>
-                                        </LinkStyled>
-                                    </Link>
+                                        </Link>
+                                    </LinkStyled>
                                 ))}
                             </Row>
                         ))}
@@ -81,7 +81,7 @@ export const Banner = (props) => {
     );
 };
 
-const LinkStyled = styled.a`
+const LinkStyled = styled.div`
     display: block;
     &:hover [data-gradient="true"] {
         background: linear-gradient(transparent 50%, black);
