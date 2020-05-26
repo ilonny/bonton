@@ -7,14 +7,15 @@ import {
     PageTitle
 } from "../../features/common";
 import { SubscribeForm } from "../../features/subscribe-form";
+import {Link} from "react-router-dom";
 export const NotFoundPage = props => {
     return (
         <HomeTemplate>
             <Spacer />
             <PageTitle>Страница не найдена</PageTitle>
-            <a href="/">
+            <Link to="/">
                 <CategoryTitle>На главную</CategoryTitle>
-            </a>
+            </Link>
             <Spacer />
             <SubscribeForm />
             <Spacer />

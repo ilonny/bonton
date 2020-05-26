@@ -40,42 +40,43 @@ export const Banner = (props) => {
                     ))}
                 </BigBannerWrapper>
             ) : (
-                <>
-                    {subarray.map((row, index) => (
-                        <Row
-                            align="center"
-                            gap={"20px"}
-                            mobile_wrap="true"
-                            key={row[index].btnText}
-                        >
-                            {row.map((block) => (
-                                <LinkStyled
-                                    href="/"
-                                    key={block.btnText}
-                                    multiline={true}
-                                    flex={props.multiline ? "1 1 50%" : "1"}
-                                >
-                                    <Block key={block.btnText}>
-                                        <ImageView src={block.image} />
-                                        <BlockAbsoluteContentWrapper
-                                            small={true}
+                    <>
+                        {subarray.map((row, index) => (
+                            <Row
+                                align="center"
+                                gap={"20px"}
+                                mobile_wrap="true"
+                                key={row[index].btnText}
+                            >
+                                {row.map((block) => (
+                                    <Link to="/">
+                                        <LinkStyled
+                                            key={block.btnText}
+                                            multiline={true}
+                                            flex={props.multiline ? "1 1 50%" : "1"}
                                         >
-                                            <Gradient
-                                                absoluteView={true}
-                                                dark={true}
-                                                percent="0%"
-                                            />
-                                            <CategoryName
-                                                name={block.btnText}
-                                            />
-                                        </BlockAbsoluteContentWrapper>
-                                    </Block>
-                                </LinkStyled>
-                            ))}
-                        </Row>
-                    ))}
-                </>
-            )}
+                                            <Block key={block.btnText}>
+                                                <ImageView src={block.image} />
+                                                <BlockAbsoluteContentWrapper
+                                                    small={true}
+                                                >
+                                                    <Gradient
+                                                        absoluteView={true}
+                                                        dark={true}
+                                                        percent="0%"
+                                                    />
+                                                    <CategoryName
+                                                        name={block.btnText}
+                                                    />
+                                                </BlockAbsoluteContentWrapper>
+                                            </Block>
+                                        </LinkStyled>
+                                    </Link>
+                                ))}
+                            </Row>
+                        ))}
+                    </>
+                )}
         </>
     );
 };

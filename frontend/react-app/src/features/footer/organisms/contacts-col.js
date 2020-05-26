@@ -5,6 +5,7 @@ import { SocialLinks } from "../../common/organisms";
 import { Row } from "../../styled-components-layout";
 import { Media } from "../../../lib";
 import { WithTag } from "../../styled-components-layout"
+import { Link } from "react-router-dom";
 export const ContactsCol = (props) => (
     <MenuColStyled {...props}>
         {props.disableTitle ? '' : <ColTitle>Контакты</ColTitle>}
@@ -19,12 +20,12 @@ export const ContactsCol = (props) => (
                     </LinkStyled>
                     <LinkStyled>
                         <strong>Напишите нам: </strong>
-                        <a href="/" className="wa">
+                        <Link to="/" className="wa">
                             WhatsApp
-                        </a>{" "}
-                        <a href="/" className="vb">
+                        </Link>{" "}
+                        <Link to="/" className="vb">
                             Viber
-                        </a>
+                        </Link>
                     </LinkStyled>
                     <LinkStyled>
                         <strong>Время работы:</strong> 10:00 - 22:00
