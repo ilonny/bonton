@@ -11,8 +11,12 @@ export const MenuCol = () => (
         <div>
             <Row>
                 <FirstCol>
-                    <LinkStyled href="/">Мужчинам</LinkStyled>
-                    <LinkStyled href="/">Женщинам</LinkStyled>
+                    <Link to="/catalog?type=men">
+                        <LinkStyled>Мужчинам</LinkStyled>
+                    </Link>
+                    <Link to="/catalog?type=women">
+                        <LinkStyled>Женщинам</LinkStyled>
+                    </Link>
                     <Link to="/delivery">
                         <LinkStyled>Доставка</LinkStyled>
                     </Link>
@@ -21,10 +25,18 @@ export const MenuCol = () => (
                     </Link>
                 </FirstCol>
                 <div>
-                    <LinkStyled href="/">Чем мы можем помочь</LinkStyled>
-                    <LinkStyled href="/">Карта сайта</LinkStyled>
-                    <LinkStyled href="/">О нас</LinkStyled>
-                    <LinkStyled href="/">FAQ</LinkStyled>
+                    <Link to="/delivery">
+                        <LinkStyled>Чем мы можем помочь</LinkStyled>
+                    </Link>
+                    <Link to="/sitemap">
+                        <LinkStyled>Карта сайта</LinkStyled>
+                    </Link>
+                    <Link to="/about">
+                        <LinkStyled >О нас</LinkStyled>
+                    </Link>
+                    <Link to="/faq">
+                        <LinkStyled>FAQ</LinkStyled>
+                    </Link>
                 </div>
             </Row>
         </div>

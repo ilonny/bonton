@@ -7,7 +7,7 @@ import {
     PageTitle
 } from "../../features/common";
 import { SubscribeForm } from "../../features/subscribe-form";
-import { Row } from "../../features/styled-components-layout";
+// import { Row } from "../../features/styled-components-layout";
 // import { Media } from "../../lib";
 export const DeliveryPage = props => {
     return (

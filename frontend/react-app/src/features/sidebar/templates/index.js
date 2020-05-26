@@ -9,28 +9,28 @@ export const SideBarTemplate = (props) => {
             <MenuHeader action={toggleSideBar} />
             <MenuCategoryToggle type="first" text="Мужское">
                 <MenuCategoryToggle type="second" text="Верхняя одежда">
-                    <MenuCategoryLink type="third" text="Куртки" />
-                    <MenuCategoryLink type="third" text="Брюки" />
-                    <MenuCategoryLink type="third" text="Джинсы" />
+                    <MenuCategoryLink type="third" text="Куртки" href="/catalog" toggleSideBar={toggleSideBar} />
+                    <MenuCategoryLink type="third" text="Брюки" href="/catalog" toggleSideBar={toggleSideBar} />
+                    <MenuCategoryLink type="third" text="Джинсы" href="/catalog" toggleSideBar={toggleSideBar} />
                 </MenuCategoryToggle>
-                <MenuCategoryLink type="second" text="Футболки" />
+                <MenuCategoryLink type="second" text="Футболки" href="/catalog" toggleSideBar={toggleSideBar}  />
                 <MenuCategoryToggle type="second" text="Аксессуары">
-                    <MenuCategoryLink type="third" text="Часы" />
-                    <MenuCategoryLink type="third" text="Сумки" />
-                    <MenuCategoryLink type="third" text="Ремни" />
+                    <MenuCategoryLink type="third" text="Часы" href="/catalog" toggleSideBar={toggleSideBar}  />
+                    <MenuCategoryLink type="third" text="Сумки" href="/catalog" toggleSideBar={toggleSideBar}  />
+                    <MenuCategoryLink type="third" text="Ремни"  href="/catalog" toggleSideBar={toggleSideBar} />
                 </MenuCategoryToggle>
             </MenuCategoryToggle>
             <MenuCategoryToggle type="first" text="Женское">
                 <MenuCategoryToggle type="second" text="Верхняя одежда">
-                    <MenuCategoryLink type="third" text="Куртки" />
-                    <MenuCategoryLink type="third" text="Брюки" />
-                    <MenuCategoryLink type="third" text="Джинсы" />
+                    <MenuCategoryLink type="third" text="Куртки" href="/catalog" toggleSideBar={toggleSideBar}  />
+                    <MenuCategoryLink type="third" text="Брюки" href="/catalog" toggleSideBar={toggleSideBar}  />
+                    <MenuCategoryLink type="third" text="Джинсы" href="/catalog" toggleSideBar={toggleSideBar}  />
                 </MenuCategoryToggle>
-                <MenuCategoryLink type="second" text="Футболки" />
+                <MenuCategoryLink type="second" text="Футболки" href="/catalog" toggleSideBar={toggleSideBar}  />
                 <MenuCategoryToggle type="second" text="Аксессуары">
-                    <MenuCategoryLink type="third" text="Часы" />
-                    <MenuCategoryLink type="third" text="Сумки" />
-                    <MenuCategoryLink type="third" text="Ремни" />
+                    <MenuCategoryLink type="third" text="Часы" href="/catalog" toggleSideBar={toggleSideBar}  />
+                    <MenuCategoryLink type="third" text="Сумки" href="/catalog" toggleSideBar={toggleSideBar}  />
+                    <MenuCategoryLink type="third" text="Ремни" href="/catalog" toggleSideBar={toggleSideBar}  />
                 </MenuCategoryToggle>
             </MenuCategoryToggle>
             <MenuCategoryLink type="first" text="Доставка" href="/delivery" toggleSideBar={toggleSideBar} />

@@ -2,12 +2,13 @@ import React from "react";
 import styled from "styled-components";
 import { Row } from "../../styled-components-layout";
 import { Input, WrapperInput } from "../../subscribe-form/atoms"
-import { HoverButton } from "../../common";
+import { HoverButton, CategoryTitle } from "../../common";
 import { Media, Color } from "../../../lib";
 export const CartForm = props => {
     const { setCartState, cart } = props;
     return (
         <Wrapper>
+            <CategoryTitle>Оформление заказа</CategoryTitle>
             <Row gap="20px" tablet_wrap="true">
                 <Input name="name" type="text" placeholder="Ваше имя" />
                 <Input name="name" type="text" placeholder="Телефон" />

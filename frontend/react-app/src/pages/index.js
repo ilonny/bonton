@@ -4,6 +4,10 @@ import { ProductPage } from "./product";
 import { CartPage } from "./cart";
 import { ContactPage } from "./contacts";
 import { DeliveryPage } from "./delivery";
+import { SiteMapPage } from "./sitemap";
+import { AboutPage } from "./about";
+import { FaqPage } from "./faq";
+import { NotFoundPage } from "./not-found";
 export const routes = () => [
   {
     path: "/",
@@ -35,6 +39,22 @@ export const routes = () => [
     exact: true,
     component: DeliveryPage,
   },
+  {
+    path: "/sitemap",
+    exact: true,
+    component: SiteMapPage,
+  },
+  {
+    path: "/about",
+    exact: true,
+    component: AboutPage,
+  },
+  {
+    path: "/faq",
+    exact: true,
+    component: FaqPage,
+  },
+  { component: NotFoundPage },
   /*
   {
     path: "/join/registration",
