@@ -4,6 +4,7 @@ import { ColTitle } from "../atoms";
 // import { LinkStyled } from "../../homepage-about/atoms";
 import { Row } from "../../styled-components-layout";
 import { Media } from "../../../lib";
+import { Link } from "react-router-dom";
 export const MenuCol = () => (
     <MenuColStyled>
         <ColTitle>Меню</ColTitle>
@@ -12,8 +13,12 @@ export const MenuCol = () => (
                 <FirstCol>
                     <LinkStyled href="/">Мужчинам</LinkStyled>
                     <LinkStyled href="/">Женщинам</LinkStyled>
-                    <LinkStyled href="/">Доставка</LinkStyled>
-                    <LinkStyled href="/">Возврат</LinkStyled>
+                    <Link to="/delivery">
+                        <LinkStyled>Доставка</LinkStyled>
+                    </Link>
+                    <Link to="/delivery">
+                        <LinkStyled>Возврат</LinkStyled>
+                    </Link>
                 </FirstCol>
                 <div>
                     <LinkStyled href="/">Чем мы можем помочь</LinkStyled>
@@ -35,7 +40,7 @@ const MenuColStyled = styled.div`
         flex: 1 1 100%;
     }
 `;
-const LinkStyled = styled.a`
+const LinkStyled = styled.span`
     font-size: 18px;
     line-height: 23px;
     display: block;

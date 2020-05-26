@@ -3,6 +3,7 @@ import { CatalogPage } from "./catalog";
 import { ProductPage } from "./product";
 import { CartPage } from "./cart";
 import { ContactPage } from "./contacts";
+import { DeliveryPage } from "./delivery";
 export const routes = () => [
   {
     path: "/",
@@ -29,12 +30,12 @@ export const routes = () => [
     exact: true,
     component: ContactPage,
   },
-  /*
   {
-    path: "/join",
+    path: "/delivery",
     exact: true,
-    component: JoinLoginPage,
+    component: DeliveryPage,
   },
+  /*
   {
     path: "/join/registration",
     exact: true,

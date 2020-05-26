@@ -9,9 +9,9 @@ export const SideBarTemplate = (props) => {
             <MenuHeader action={toggleSideBar} />
             <MenuCategoryToggle type="first" text="Мужское">
                 <MenuCategoryToggle type="second" text="Верхняя одежда">
-                <MenuCategoryLink type="third" text="Куртки" />
-                <MenuCategoryLink type="third" text="Брюки" />
-                <MenuCategoryLink type="third" text="Джинсы" />
+                    <MenuCategoryLink type="third" text="Куртки" />
+                    <MenuCategoryLink type="third" text="Брюки" />
+                    <MenuCategoryLink type="third" text="Джинсы" />
                 </MenuCategoryToggle>
                 <MenuCategoryLink type="second" text="Футболки" />
                 <MenuCategoryToggle type="second" text="Аксессуары">
@@ -22,9 +22,9 @@ export const SideBarTemplate = (props) => {
             </MenuCategoryToggle>
             <MenuCategoryToggle type="first" text="Женское">
                 <MenuCategoryToggle type="second" text="Верхняя одежда">
-                <MenuCategoryLink type="third" text="Куртки" />
-                <MenuCategoryLink type="third" text="Брюки" />
-                <MenuCategoryLink type="third" text="Джинсы" />
+                    <MenuCategoryLink type="third" text="Куртки" />
+                    <MenuCategoryLink type="third" text="Брюки" />
+                    <MenuCategoryLink type="third" text="Джинсы" />
                 </MenuCategoryToggle>
                 <MenuCategoryLink type="second" text="Футболки" />
                 <MenuCategoryToggle type="second" text="Аксессуары">
@@ -33,8 +33,8 @@ export const SideBarTemplate = (props) => {
                     <MenuCategoryLink type="third" text="Ремни" />
                 </MenuCategoryToggle>
             </MenuCategoryToggle>
-            <MenuCategoryLink type="first" text="Доставка" />
-            <MenuCategoryLink type="first" text="Возврат" />
+            <MenuCategoryLink type="first" text="Доставка" href="/delivery" toggleSideBar={toggleSideBar} />
+            <MenuCategoryLink type="first" text="Возврат" href="/delivery" toggleSideBar={toggleSideBar} />
             <MenuCategoryLink type="first" text="Контакты" href="/contacts" toggleSideBar={toggleSideBar} />
             <MenuBottom />
         </SideBarContainer>
