@@ -1,11 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Row } from "../../styled-components-layout";
-import { CartProduct, CartBottom } from "../organisms";
+import { CartProduct, CartBottom, CartForm } from "../organisms";
 import { CategoryTitle } from "../../common";
 import { Link } from "react-router-dom";
 import "./styles.scss";
 export const CartTemplate = props => {
     console.log('Cart props', props);
+    const [cartState, setCartState] = useState('form');
     // const { id, getCurrentProduct } = props;
     const { getCurrentProduct, cart, products } = props;
     const cartProducts = cart.products;
@@ -23,16 +24,22 @@ export const CartTemplate = props => {
     // const cart_products = products.filter(item => cartProductsIds.includes(item.id));
     console.log('cart_products', cart_products);
     if (cart_products.length) {
-        return (
-            <div>
-                {cart_products.map((product, index) => (
-                    <Row justify="flex-start" align="flex-start" tablet_wrap="true" key={index} >
-                        <CartProduct product={product} {...props} />
-                    </Row>
-                ))}
-                <CartBottom {...props} />
-            </div>
-        )
+        if (cartState === 'precheck') {
+            return (
+                <div>
+                    <CategoryTitle>Ваша корзина</CategoryTitle>
+                    {cart_products.map((product, index) => (
+                        <Row justify="flex-start" align="flex-start" tablet_wrap="true" key={index} >
+                            <CartProduct product={product} {...props} />
+                        </Row>
+                    ))}
+                    <CartBottom {...props} setCartState={setCartState} />
+                </div>
+            )
+        }
+        if (cartState === 'form') {
+            return <CartForm {...props} setCartState={setCartState}/>
+        }
     } else {
         return (
             <>

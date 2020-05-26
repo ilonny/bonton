@@ -4,7 +4,7 @@ import { Row } from "../../styled-components-layout";
 import { HoverButton } from "../../common";
 import { Color, Media } from "../../../lib";
 export const CartBottom = props => {
-    const { cart } = props;
+    const { cart, setCartState } = props;
     return (
         <Wrapper>
             <Row justify="space-between" align="center" tablet_wrap="true" className="cart-bottom">
@@ -17,7 +17,7 @@ export const CartBottom = props => {
                 </div>
                 <div>
                     <HoverButton
-                        onClick={() => { }}
+                        onClick={() => {setCartState('form')}}
                         maxWidth={"372px"}
                         color={"white"}
                         backgroundColor={Color.red}
