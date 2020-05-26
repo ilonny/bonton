@@ -1,9 +1,11 @@
 import {
     // CART_ADD,
     // CART_REMOVE,
-    SET_CART_PRODUCTS
+    SET_CART_PRODUCTS,
+    // SAVE_LOCAL_CART,
+    // LOAD_LOCAL_CART
 } from './actions';
-const initialState = {
+const initialState = JSON.parse(localStorage.getItem('cart')) || {
     cart_id: undefined,
     products: [],
     total_price: false,
@@ -31,6 +33,7 @@ cartReducer.addToCart = product_id => (dispatch, getState) => {
         cartProducts.push({ id: product_id, count: 1, price: productPrice })
     }
     dispatch({ type: SET_CART_PRODUCTS, products: cartProducts });
+    localStorage.setItem('cart', JSON.stringify(getState().cart));
 }
 
 
@@ -47,4 +50,5 @@ cartReducer.removeFromCart = product_id => (dispatch, getState) => {
         cartProducts = filterByElem(cartProducts[existingProductIndex], cartProducts);
     }
     dispatch({ type: SET_CART_PRODUCTS, products: cartProducts });
+    localStorage.setItem('cart', JSON.stringify(getState().cart));
 }
