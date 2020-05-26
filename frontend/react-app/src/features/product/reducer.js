@@ -25,22 +25,31 @@ export const productReducer = (state = initialState, action) => {
 }
 
 productReducer.getProducts = (id) => (dispatch, getState) => {
-    id = parseInt(id);
     dispatch({ type: GET_PRODUCTS_START })
-    if (id) {
-        if (getState().product.products.length) {
-            //взять из стора
-            dispatch({ type: GET_CURRENT_PRODUCT_SUCCESS, currentProduct: getState().product.products.find(el => el.id === id) });
-        } else {
-            //сделать запрос
-            setTimeout(() => {
-                dispatch({ type: GET_CURRENT_PRODUCT_SUCCESS, currentProduct: pageData.catalogList.list.find(el => el.id === id) });
-            }, 2000);
-        }
-    } else {
+    if (Array.isArray(id)) {
+        console.log('arr id', id)
+        //зарпос с конкретными айди за продуктами
         setTimeout(() => {
             dispatch({ type: GET_PRODUCTS_SUCCESS, products: pageData.catalogList.list });
             dispatch({ type: SET_PAGINATION, pages: pageData.catalogList.pages });
         }, 2000);
+    } else {
+        id = parseInt(id);
+        if (id) {
+            if (getState().product.products.length) {
+                //взять из стора
+                dispatch({ type: GET_CURRENT_PRODUCT_SUCCESS, currentProduct: getState().product.products.find(el => el.id === id) });
+            } else {
+                //сделать запрос
+                setTimeout(() => {
+                    dispatch({ type: GET_CURRENT_PRODUCT_SUCCESS, currentProduct: pageData.catalogList.list.find(el => el.id === id) });
+                }, 2000);
+            }
+        } else {
+            setTimeout(() => {
+                dispatch({ type: GET_PRODUCTS_SUCCESS, products: pageData.catalogList.list });
+                dispatch({ type: SET_PAGINATION, pages: pageData.catalogList.pages });
+            }, 2000);
+        }
     }
 }

@@ -1,6 +1,7 @@
 import { HomePage } from "./home";
 import { CatalogPage } from "./catalog";
 import { ProductPage } from "./product";
+import { CartPage } from "./cart";
 export const routes = () => [
   {
     path: "/",
@@ -16,6 +17,11 @@ export const routes = () => [
     path: "/product/:id",
     exact: true,
     component: ProductPage,
+  },
+  {
+    path: "/cart",
+    exact: true,
+    component: CartPage,
   },
   /*
   {

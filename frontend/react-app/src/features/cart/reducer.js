@@ -5,11 +5,12 @@ import {
     // SAVE_LOCAL_CART,
     // LOAD_LOCAL_CART
 } from './actions';
-const initialState = JSON.parse(localStorage.getItem('cart')) || {
+const emptyCart = {
     cart_id: undefined,
     products: [],
-    total_price: false,
+    total_price: 0,
 }
+const initialState = JSON.parse(localStorage.getItem('cart')) || emptyCart
 const filterByElem = (item, arr) => arr.filter(a_item => a_item.id !== item.id);
 
 export const cartReducer = (state = initialState, action) => {

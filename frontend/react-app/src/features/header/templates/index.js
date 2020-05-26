@@ -33,19 +33,21 @@ export const HeaderTemplate = ({ toggleSideBar, cart }) => {
                             />
                         </Link>
                     </LogoWrapper>
-                    <CartLink href="/">
-                        <CartLinkSpan>В корзине: &nbsp;</CartLinkSpan>
-                        <CartLinkSpanGray>{cart.products.length} товаров на {cart.total_price} руб.</CartLinkSpanGray>
-                        <Icon
-                            name="cart"
-                            width={17}
-                            height={17}
-                            color="white"
-                            wrapperHeight={42}
-                            wrapperWidth={42}
-                            type="fill"
-                        />
-                    </CartLink>
+                    <Link to={"/cart"}>
+                        <CartLink>
+                            <CartLinkSpan>В корзине: &nbsp;</CartLinkSpan>
+                            <CartLinkSpanGray>{cart.products.length} товаров на {cart.total_price} руб.</CartLinkSpanGray>
+                            <Icon
+                                name="cart"
+                                width={17}
+                                height={17}
+                                color="white"
+                                wrapperHeight={42}
+                                wrapperWidth={42}
+                                type="fill"
+                            />
+                        </CartLink>
+                    </Link>
                 </Container>
             </HeaderContent>
         </>
@@ -90,7 +92,7 @@ const CartLinkSpanGray = styled.span`
     }
 `;
 
-const CartLink = styled.a`
+const CartLink = styled.div`
     display: flex;
     justify-content: flex-end;
     align-items: center;
