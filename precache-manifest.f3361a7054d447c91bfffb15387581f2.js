@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "0377c5108d445a03b6858f600247984c",
+    "revision": "bfd278b8cdd73cc66a26aad3afc3c23c",
     "url": "/bonton/index.html"
   },
   {
-    "revision": "1de58a9e479e0be108f8",
+    "revision": "2cfecf3f8e203cd473a0",
     "url": "/bonton/static/css/main.b2d6f70e.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/bonton/static/js/2.5a6fd9fa.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "1de58a9e479e0be108f8",
-    "url": "/bonton/static/js/main.26ae59e3.chunk.js"
+    "revision": "2cfecf3f8e203cd473a0",
+    "url": "/bonton/static/js/main.0e2bc7e4.chunk.js"
   },
   {
     "revision": "806b68859110bb6c29a0",
