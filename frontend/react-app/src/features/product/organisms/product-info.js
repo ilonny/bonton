@@ -5,7 +5,9 @@ import { Media, Color } from "../../../lib";
 import { Row } from "../../styled-components-layout";
 export const ProductInfo = props => {
     if (props.data) {
-        const { data } = props;
+        const { data, addToCart, removeFromCart } = props;
+        console.log('product info props', props)
+        const inCart = props.cart.products.find(item => item.id === data.id);
         return (
             <InfoWrapper>
                 <CategoryTitle>{data.title}</CategoryTitle>
@@ -27,13 +29,14 @@ export const ProductInfo = props => {
                 <Row justify="space-between" align="center" wrap="wrap">
                     <ProductPrice>{data.price}</ProductPrice>
                     <HoverButton
+                        onClick={() => inCart ? removeFromCart(data.id) : addToCart(data.id)}
                         maxWidth={"372px"}
                         color={"white"}
-                        backgroundColor={Color.red}
+                        backgroundColor={inCart ? Color.gray : Color.red}
                         hoverBackgroundColor={Color.red_hover}
                         fontSize="18px"
                         hoverColor={"white"}
-                    >В корзину</HoverButton>
+                    >{inCart ? 'В корзине' : 'В корзину'}</HoverButton>
                 </Row>
             </InfoWrapper>
         )

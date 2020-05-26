@@ -10,7 +10,7 @@ export const ProductTemplate = props => {
     return (
         <Row justify="flex-start" align="flex-start" tablet_wrap="true">
             <ProductGallery data={props.product.currentProduct} />
-            <ProductInfo data={props.product.currentProduct} />
+            <ProductInfo data={props.product.currentProduct} {...props}/>
         </Row>
     )
 }
