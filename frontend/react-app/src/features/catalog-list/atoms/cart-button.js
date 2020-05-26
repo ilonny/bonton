@@ -4,7 +4,7 @@ import { ReactComponent as CartSvg } from "../../../assets/icons/cart.svg";
 import { Color, Media } from "../../../lib";
 export const CartButton = (props) => (
     <ButtonStyled {...props}>
-        <CartSvg />
+        {!props.active && <CartSvg />}
         <p>{props.active ? "В корзине" : "В корзину"}</p>
     </ButtonStyled>
 );
