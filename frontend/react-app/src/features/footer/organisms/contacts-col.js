@@ -4,10 +4,10 @@ import { ColTitle } from "../atoms";
 import { SocialLinks } from "../../common/organisms";
 import { Row } from "../../styled-components-layout";
 import { Media } from "../../../lib";
-
-export const ContactsCol = () => (
-    <MenuColStyled>
-        <ColTitle>Контакты</ColTitle>
+import { WithTag } from "../../styled-components-layout"
+export const ContactsCol = (props) => (
+    <MenuColStyled {...props}>
+        {props.disableTitle ? '' : <ColTitle>Контакты</ColTitle>}
         <div>
             <Row>
                 <FirstCol>
@@ -40,7 +40,7 @@ export const ContactsCol = () => (
     </MenuColStyled>
 );
 
-const MenuColStyled = styled.div`
+const MenuColStyled = styled(WithTag)`
     flex: 1 1 100%;
     ${Media.tablet} {
         flex: 1 1 50%;

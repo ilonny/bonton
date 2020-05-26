@@ -2,6 +2,7 @@ import { HomePage } from "./home";
 import { CatalogPage } from "./catalog";
 import { ProductPage } from "./product";
 import { CartPage } from "./cart";
+import { ContactPage } from "./contacts";
 export const routes = () => [
   {
     path: "/",
@@ -22,6 +23,11 @@ export const routes = () => [
     path: "/cart",
     exact: true,
     component: CartPage,
+  },
+  {
+    path: "/contacts",
+    exact: true,
+    component: ContactPage,
   },
   /*
   {

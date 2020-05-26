@@ -35,7 +35,7 @@ export const SideBarTemplate = (props) => {
             </MenuCategoryToggle>
             <MenuCategoryLink type="first" text="Доставка" />
             <MenuCategoryLink type="first" text="Возврат" />
-            <MenuCategoryLink type="first" text="Контакты" />
+            <MenuCategoryLink type="first" text="Контакты" href="/contacts" toggleSideBar={toggleSideBar} />
             <MenuBottom />
         </SideBarContainer>
     );
