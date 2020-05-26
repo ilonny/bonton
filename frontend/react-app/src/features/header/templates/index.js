@@ -7,7 +7,7 @@ import { HeaderDelivery } from "../atoms/headerDelivery";
 import { MenuButton } from "../atoms/menu-button";
 import { Icon } from "../../common/atoms";
 import { Link } from "react-router-dom";
-export const HeaderTemplate = ({ toggleSideBar }) => {
+export const HeaderTemplate = ({ toggleSideBar, cart }) => {
     return (
         <>
             <HeaderDelivery />
@@ -35,7 +35,7 @@ export const HeaderTemplate = ({ toggleSideBar }) => {
                     </LogoWrapper>
                     <CartLink href="/">
                         <CartLinkSpan>В корзине: &nbsp;</CartLinkSpan>
-                        <CartLinkSpanGray>0 товаров на 0 руб.</CartLinkSpanGray>
+                        <CartLinkSpanGray>{cart.products.length} товаров на {cart.total_price} руб.</CartLinkSpanGray>
                         <Icon
                             name="cart"
                             width={17}
