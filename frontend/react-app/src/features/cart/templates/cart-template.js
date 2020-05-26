@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import "./styles.scss";
 export const CartTemplate = props => {
     console.log('Cart props', props);
-    const [cartState, setCartState] = useState('form');
+    const [cartState, setCartState] = useState('precheck');
     // const { id, getCurrentProduct } = props;
     const { getCurrentProduct, cart, products } = props;
     const cartProducts = cart.products;
