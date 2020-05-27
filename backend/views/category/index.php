@@ -16,10 +16,10 @@ function renderList($cats) {
                         <div class="col-xs-8">
                             <div class="row">
                                 <div class="col-xs-3 text-right">
-                                    <form action="/category/delete" method="POST">
+                                    <!-- <form action="/category/delete" method="POST">
                                     <input type="hidden" name="id" value="'.$category['id'].'"/>
-                                    <button href="'.Url::to(['category/delete', 'id' => $category['id']]).'" class="btn btn-danger">Удалить</button>
-                                    </form>
+                                    </form> -->
+                                    <a href="'.Url::to(['category/delete', 'id' => $category['id']]).'" class="btn btn-danger">Удалить</a>
                                 </div>
                                 <div class="col-xs-4 text-right">
                                     <a href="'.Url::to(['category/edit', 'id' => $category['id']]).'" class="btn btn-primary">Редактировать</a>
@@ -43,10 +43,10 @@ function renderList($cats) {
                     <div class="col-xs-8">
                         <div class="row">
                             <div class="col-xs-3 text-right">
-                                <form action="/category/delete" method="POST">
+                                <!-- <form action="/category/delete" method="POST">
                                 <input type="hidden" name="id" value="'.$category['id'].'"/>
-                                <button href="'.Url::to(['category/delete', 'id' => $category['id']]).'" class="btn btn-danger">Удалить</button>
-                                </form>
+                                </form> -->
+                                <a href="'.Url::to(['category/delete', 'id' => $category['id']]).'" class="btn btn-danger">Удалить</a>
                             </div>
                             <div class="col-xs-4 text-right">
                                 <a href="'.Url::to(['category/edit', 'id' => $category['id']]).'" class="btn btn-primary">Редактировать</a>
