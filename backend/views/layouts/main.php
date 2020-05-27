@@ -39,6 +39,7 @@ AppAsset::register($this);
         ],
     ]);
     $menuItems = [
+        ['label' => 'Категории', 'url' => ['/category/index']],
         ['label' => 'Home', 'url' => ['/site/index']],
     ];
     if (Yii::$app->user->isGuest) {
@@ -61,7 +62,7 @@ AppAsset::register($this);
     ?>
 
         <div class="container-fluid main-container">
-            <div class="col-md-2 sidebar">
+            <?php /* <div class="col-md-2 sidebar">
                 <div class="row">
                     <!-- uncomment code for absolute positioning tweek see top comment in css -->
                     <div class="absolute-wrapper"> </div>
@@ -80,8 +81,9 @@ AppAsset::register($this);
 
                     </div>
                 </div>
-            </div>
-            <div class="col-md-10 content"><br><br><br>
+            </div> -->
+            */ ?>
+            <div class="col-md-12 content"><br><br><br>
                 <?= $content ?>
             </div>
         </div>

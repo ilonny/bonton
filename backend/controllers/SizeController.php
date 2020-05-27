@@ -11,7 +11,7 @@ use backend\models\Size;
 /**
  * Category controller
  */
-class CategoryController extends Controller
+class SizeController extends Controller
 {
     public function behaviors()
     {
@@ -56,13 +56,13 @@ class CategoryController extends Controller
         return $this->render('index', ['categories' => $res]);
     }
 
-    public function actionCreate($parent_id)
+    public function actionCreate()
     {
-        $model = new Category;
+        $model = new Size;
         if (Yii::$app->request->isPost) {
             if ($model->load(Yii::$app->request->post())) {
                 $model->save();
-                return $this->redirect('/category/index');
+                return $this->redirect('/category/edit?id='.$model->category_id);
                 // return $this->refresh();
             }
         }

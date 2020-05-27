@@ -8,7 +8,7 @@ $this->title = 'My Yii Application';
 
     <div class="jumbotron">
         <h1>Bonton admin panel</h1>
-        <p class="lead">Выберите нужный пункт меню для редактирования слева</p>
+        <p class="lead">Выберите нужный пункт меню для редактирования</p>
         <br/>
         <br/>
         <br/>
