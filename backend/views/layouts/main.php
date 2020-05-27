@@ -5,6 +5,7 @@
 
 use backend\assets\AppAsset;
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
@@ -15,6 +16,7 @@ AppAsset::register($this);
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
+
 <head>
     <meta charset="<?= Yii::$app->charset ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -23,11 +25,12 @@ AppAsset::register($this);
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 </head>
-<body>
-<?php $this->beginBody() ?>
 
-<div class="wrap">
-    <?php
+<body>
+    <?php $this->beginBody() ?>
+
+    <div class="wrap">
+        <?php
     NavBar::begin([
         'brandLabel' => Yii::$app->name,
         'brandUrl' => Yii::$app->homeUrl,
@@ -57,24 +60,43 @@ AppAsset::register($this);
     NavBar::end();
     ?>
 
-    <div class="container">
-        <?= Breadcrumbs::widget([
-            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-        ]) ?>
-        <?= Alert::widget() ?>
-        <?= $content ?>
+        <div class="container-fluid main-container">
+            <div class="col-md-2 sidebar">
+                <div class="row">
+                    <!-- uncomment code for absolute positioning tweek see top comment in css -->
+                    <div class="absolute-wrapper"> </div>
+                    <!-- Menu -->
+                    <div class="side-menu">
+                        <nav class="navbar navbar-default" role="navigation">
+                            <!-- Main Menu -->
+                            <div class="side-menu-container">
+                                <ul class="nav navbar-nav">
+                                    <br><br><br>
+                                    <li><a href="<?= Url::to(['category/index']); ?>"><span class="glyphicon glyphicon-plane"></span> Active Link</a></li>
+                                    <li><a href="#"><span class="glyphicon glyphicon-cloud"></span> Link</a></li>
+                                </ul>
+                            </div><!-- /.navbar-collapse -->
+                        </nav>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-10 content"><br><br><br>
+                <?= $content ?>
+            </div>
+        </div>
     </div>
-</div>
 
-<footer class="footer">
-    <div class="container">
-        <p class="pull-left">&copy; <?= Html::encode(Yii::$app->name) ?> <?= date('Y') ?></p>
+    <footer class="footer">
+        <div class="container">
+            <p class="pull-left">&copy; <?= Html::encode(Yii::$app->name) ?> <?= date('Y') ?></p>
 
-        <p class="pull-right"><?= Yii::powered() ?></p>
-    </div>
-</footer>
+            <p class="pull-right"><?= Yii::powered() ?></p>
+        </div>
+    </footer>
 
-<?php $this->endBody() ?>
+    <?php $this->endBody() ?>
 </body>
+
 </html>
 <?php $this->endPage() ?>
