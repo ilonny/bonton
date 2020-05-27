@@ -72,7 +72,7 @@ AppAsset::register($this);
                             <div class="side-menu-container">
                                 <ul class="nav navbar-nav">
                                     <br><br><br>
-                                    <li><a href="<?= Url::to(['category/index']); ?>"><span class="glyphicon glyphicon-plane"></span> Active Link</a></li>
+                                    <li><a href="<?= Url::to(['category/index']); ?>"><span class="glyphicon glyphicon-plane"></span> Категории</a></li>
                                     <li><a href="#"><span class="glyphicon glyphicon-cloud"></span> Link</a></li>
                                 </ul>
                             </div><!-- /.navbar-collapse -->
