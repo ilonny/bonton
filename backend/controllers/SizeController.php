@@ -71,28 +71,20 @@ class SizeController extends Controller
 
     public function actionEdit($id)
     {
-        $model = Category::findOne($id);
-        $size_arr = Size::find()->andWhere(['category_id' => $model->id])->all();
+        $model = Size::findOne($id);
         if (Yii::$app->request->isPost) {
             if ($model->load(Yii::$app->request->post())) {
                 $model->save();
-                return $this->redirect('/category/index');
-                // return $this->refresh();
+                return $this->redirect('/category/edit?id='.$model->category_id);
             }
         }
-        return $this->render('edit', ['model' => $model, 'size_arr' => $size_arr]);
+        return $this->render('edit', ['model' => $model]);
     }   
 
-    public function actionDelete($id)
+    public function actionDelete($id, $category_id)
     {
-        $model = Category::findOne($id);
+        $model = Size::findOne($id);
         $model->delete();
-        // if (Yii::$app->request->isPost) {
-        //     if ($model->load(Yii::$app->request->post())) {
-        //         return $this->redirect('/category/index');
-        //         // return $this->refresh();
-        //     }
-        // }
-        return $this->redirect('/category/index');
+        return $this->redirect('/category/edit?id='.$category_id);
     } 
 }

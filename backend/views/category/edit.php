@@ -36,7 +36,7 @@ $this->title = 'Редактирование категории';
                                         <!-- <form action="/size/delete" method="POST">
                                         <input type="hidden" name="id" value="'.$size['id'].'"/>
                                         </form> -->
-                                        <a href="'.Url::to(['size/delete', 'id' => $size['id']]).'" class="btn btn-danger">Удалить</a>
+                                        <a href="'.Url::to(['size/delete', 'id' => $size['id'], 'category_id' => $size['category_id']]).'" class="btn btn-danger">Удалить</a>
                                     </div>
                                     <div class="col-xs-4 text-right">
                                         <a href="'.Url::to(['size/edit', 'id' => $size['id']]).'" class="btn btn-primary">Редактировать</a>
