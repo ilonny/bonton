@@ -40,6 +40,7 @@ AppAsset::register($this);
     ]);
     $menuItems = [
         ['label' => 'Категории', 'url' => ['/category/index']],
+        ['label' => 'Товары', 'url' => ['/product/index']],
         ['label' => 'Home', 'url' => ['/site/index']],
     ];
     if (Yii::$app->user->isGuest) {
@@ -98,6 +99,38 @@ AppAsset::register($this);
     </footer>
 
     <?php $this->endBody() ?>
+
+    <style>
+        .just-padding {
+            padding: 15px;
+        }
+
+        .list-group.list-group-root {
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .list-group.list-group-root .list-group {
+            margin-bottom: 0;
+        }
+
+        .list-group.list-group-root .list-group-item {
+            border-radius: 0;
+            border-width: 1px 0 0 0;
+        }
+
+        .list-group.list-group-root>.list-group-item:first-child {
+            border-top-width: 0;
+        }
+
+        .list-group.list-group-root>.list-group>.list-group-item {
+            padding-left: 30px;
+        }
+
+        .list-group.list-group-root>.list-group>.list-group>.list-group-item {
+            padding-left: 45px;
+        }
+    </style>
 </body>
 
 </html>
