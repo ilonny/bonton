@@ -3,7 +3,7 @@
 namespace backend\models;
 
 use Yii;
-
+// use backend\Category;
 /**
  * This is the model class for table "size".
  *
@@ -16,6 +16,22 @@ use Yii;
  * @property string|null $updated_at
  * @property string|null $value
  */
+
+
+function makeSingleArray($arr){
+    if(!is_array($arr)) return false; 
+    $tmp = array();
+    foreach($arr as $val){
+      if(is_array($val)){
+        $tmp = array_merge($tmp, makeSingleArray($val)); 
+      } else {
+        $tmp[] = $val;
+      }
+    }
+    return $tmp;
+}
+
+
 class Size extends \yii\db\ActiveRecord
 {
     /**
@@ -55,5 +71,26 @@ class Size extends \yii\db\ActiveRecord
             'updated_at' => 'Updated At',
             'value' => 'Value',
         ];
+    }
+
+    public function getSizeTree($first_category_child_id) {
+        $res = [];
+        $category = Category::findOne($first_category_child_id);
+        if ($category->parent_id) {
+            foreach (Size::find()->andWhere(['category_id' => $category->id])->all() as $size) {
+                $res[]['id'] = $size->id;
+                $res[]['name'] = $size->name;
+            }
+            $res[] = Size::getSizeTree($category->parent_id);
+            // var_dump($res);
+        } else {
+            // $res[] = Size::find()->andWhere(['category_id' => $category->id])->all();
+            foreach (Size::find()->andWhere(['category_id' => $category->id])->all() as $size) {
+                $res[]['id'] = $size->id;
+                $res[]['name'] = $size->name;
+            }
+        }
+
+        return makeSingleArray($res);
     }
 }
