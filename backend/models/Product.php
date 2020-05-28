@@ -18,6 +18,9 @@ use Yii;
  * @property string|null $other
  * @property string|null $created_at
  * @property string|null $updated_at
+ * @property string|null $is_new
+ * @property float|null $new_price
+ * @property int|null $is_popular
  */
 class Product extends \yii\db\ActiveRecord
 {
@@ -36,9 +39,9 @@ class Product extends \yii\db\ActiveRecord
     {
         return [
             [['name', 'price', 'category_id'], 'required'],
-            [['price'], 'number'],
-            [['description', 'other'], 'string'],
-            [['category_id'], 'integer'],
+            [['price', 'new_price'], 'number'],
+            [['description', 'other', 'is_new'], 'string'],
+            [['category_id', 'is_popular'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['name'], 'string', 'max' => 255],
         ];
@@ -61,6 +64,9 @@ class Product extends \yii\db\ActiveRecord
             'other' => 'Other',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
+            'is_new' => 'Is New',
+            'new_price' => 'New Price',
+            'is_popular' => 'Is Popular',
         ];
     }
 }

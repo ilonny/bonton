@@ -22,6 +22,7 @@ use kartik\select2\Select2
             <?= $form->field($model, 'description')->textInput()->label('Короткое описание (не обязательно)'); ?>
             <?= $form->field($model, 'category_id')->hiddenInput(['value' => $category_id])->label(false); ?>
             <?= $form->field($model, 'price')->textInput()->label('Цена в рублях'); ?>
+            <?= $form->field($model, 'new_price')->textInput()->label('Цена со скидкой в рублях (оставить пустым если скидки нет)'); ?>
             <?= $form->field($model, 'photos[]')->widget(FileInput::classname(), [
                     'options' => [
                         'accept' => 'image/*',
@@ -38,16 +39,34 @@ use kartik\select2\Select2
             ?>
             <?= $form->field($model, 'size')->widget(Select2::classname(), [
                     'data' => $size_arr,
-                    'options' => ['placeholder' => 'Выберите доступные размеры товара'],
+                    'options' => ['placeholder' => 'Выберите доступные размеры товара', 'multiple' => true],
                     'pluginOptions' => [
-                        'allowClear' => true
+                        'allowClear' => true,
                     ],
                 ]);
                 // ->dropDownList($size_arr, ['multiple'=>'true']);
             ?>
             <?= $form->field($model, 'color')->widget(Select2::classname(), [
                     'data' => $color_arr,
-                    'options' => ['placeholder' => 'Выберите доступные цвета товара'],
+                    'options' => ['placeholder' => 'Выберите доступные цвета товара', 'multiple' => true],
+                    'pluginOptions' => [
+                        'allowClear' => true
+                    ],
+                ]);
+                //->dropDownList($color_arr, ['multiple'=>'true']);
+            ?>
+            <?= $form->field($model, 'is_new')->widget(Select2::classname(), [
+                    'data' => ['0' => 'Нет', '1' => 'Да'],
+                    'options' => ['placeholder' => 'Новинка'],
+                    'pluginOptions' => [
+                        'allowClear' => true
+                    ],
+                ]);
+                //->dropDownList($color_arr, ['multiple'=>'true']);
+            ?>
+            <?= $form->field($model, 'is_popular')->widget(Select2::classname(), [
+                    'data' => ['0' => 'Нет', '1' => 'Да'],
+                    'options' => ['placeholder' => 'Популярность'],
                     'pluginOptions' => [
                         'allowClear' => true
                     ],
