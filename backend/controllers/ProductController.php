@@ -63,6 +63,34 @@ class ProductController extends Controller
             $res[$key]['name'] = $main_category->name;
             $res[$key]['parent_id'] = $main_category->parent_id;
         }
+        foreach ($products as $product) {
+            if ($product->size && $product->size !== '""') {
+                $prod_sizes = $product->size ? json_decode($product->size) : [];
+                $sizes_ids = array_map(function ($s) {return intval($s);}, $prod_sizes);
+                $sizes = Size::find()->where(['id' => $sizes_ids])->all();
+                $sizes_arr = [];
+                foreach ($sizes as $size) {
+                    $sizes_arr[] = $size->name;
+                }
+                $sizes = implode(', ', $sizes_arr);
+            } else {
+                $sizes = 'Не указано';
+            }
+            if ($product->color && $product->color !== '""') {
+                $prod_colors = $product->color ? json_decode($product->color) : [];
+                $colors_ids = array_map(function ($s) {return intval($s);}, $prod_colors);
+                $colors = Color::find()->where(['id' => $colors_ids])->all();
+                $colors_arr = [];
+                foreach ($colors as $color) {
+                    $colors_arr[] = $color->name;
+                }
+                $colors = implode(', ', $colors_arr);
+            } else {
+                $colors = 'Не указано';
+            }
+            $product->size = $sizes;
+            $product->color = $colors;
+        }
         $res_cats = (new Category())->buildTree($res);
         return $this->render('index', [
             'products' => $products,

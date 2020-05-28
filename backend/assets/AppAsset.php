@@ -13,8 +13,10 @@ class AppAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         'css/site.css',
+        'https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap.min.css',
     ];
     public $js = [
+        'https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',
