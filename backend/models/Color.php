@@ -5,28 +5,25 @@ namespace backend\models;
 use Yii;
 
 /**
- * This is the model class for table "product".
+ * This is the model class for table "color".
  *
  * @property int $id
  * @property string $name
- * @property float $price
- * @property string|null $photos
- * @property int $category_id
- * @property string|null $size
- * @property string|null $color
+ * @property int|null $category_id
  * @property string|null $description
  * @property string|null $other
  * @property string|null $created_at
  * @property string|null $updated_at
+ * @property string|null $value
  */
-class Product extends \yii\db\ActiveRecord
+class Color extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'product';
+        return 'color';
     }
 
     /**
@@ -35,12 +32,11 @@ class Product extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'price', 'category_id'], 'required'],
-            [['price'], 'number'],
-            [['description', 'other'], 'string'],
+            [['name'], 'required'],
             [['category_id'], 'integer'],
+            [['description', 'other'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
-            [['name'], 'string', 'max' => 255],
+            [['name', 'value'], 'string', 'max' => 255],
         ];
     }
 
@@ -52,15 +48,12 @@ class Product extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'name' => 'Name',
-            'price' => 'Price',
-            'photos' => 'Photos',
             'category_id' => 'Category ID',
-            'size' => 'Size',
-            'color' => 'Color',
             'description' => 'Description',
             'other' => 'Other',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
+            'value' => 'Value',
         ];
     }
 }

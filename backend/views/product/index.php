@@ -44,7 +44,7 @@ function renderListCategories($cats) {
 
 ?>
 <div class="site-index">
-    <h1>Товары</h1>
+    <h1>Товары <?= $cat_name ?></h1>
     <div class="body-content">
         <div class="just-padding">
             <?php if ($category_id == 0):?>
@@ -52,7 +52,7 @@ function renderListCategories($cats) {
                     <?php echo renderListCategories($cats); ?>
                 </div>
             <?php else: ?>
-                lol
+                <a class="btn btn-success" href="<?=Url::to(['/product/create?category_id='.$category_id])?>">Добавить товар</a>
             <?php endif;?>
         </div>
     </div>

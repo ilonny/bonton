@@ -5,10 +5,14 @@ use Yii;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
+use yii\helpers\ArrayHelper;
 use common\models\LoginForm;
 use backend\models\Category;
 use backend\models\Size;
 use backend\models\Product;
+use backend\models\UploadForm;
+use backend\models\Color;
+use yii\web\UploadedFile;
 /**
  * Category controller
  */
@@ -49,6 +53,11 @@ class ProductController extends Controller
         $products = Product::find()->all();
         $res_cats = [];
         $cats = Category::find()->all();
+        $cat_name = '';
+        if ($category_id) {
+            $categoryCurrent = Category::findOne($category_id);
+            $cat_name = $categoryCurrent->name;
+        }
         foreach ($cats as $key => $main_category) {
             $res[$key]['id'] = $main_category->id;
             $res[$key]['name'] = $main_category->name;
@@ -59,20 +68,56 @@ class ProductController extends Controller
             'products' => $products,
             'category_id' => $category_id,
             'cats' => $res_cats,
+            'cat_name' => $cat_name,
         ]);
     }
 
-    public function actionCreate($parent_id)
+    public function actionCreate($category_id)
     {
-        $model = new Category;
+        $model = new Product;
+        $size_arr = (new Size())->getSizeTree($category_id);
+        $size_arr = ArrayHelper::map($size_arr, 'id', 'name');
+        $colors = Color::find()->all();
+        $color_arr = [];
+        foreach ($colors as $key => $value) {
+            $color_arr[$value->id] = $value->name;
+            // $color_arr[$key]['id'] = $value->id;
+            // $color_arr[$key]['name'] = $value->name;
+        }
+        // echo '<pre>';
+        // var_dump($color_arr);die();
+        // echo '</pre>';
         if (Yii::$app->request->isPost) {
+            $model->load(Yii::$app->request->post());
+            var_dump($model->validate());
+            if (count($model->errors)) {
+                echo '<pre>';
+                var_dump($model->errors);
+                echo '</pre>';
+                die();
+            }
+            $uploadFormModel = new UploadForm();
+            $uploadFormModel->imageFiles = UploadedFile::getInstances($model, 'photos');
+            if ($uploadFormModel->upload($model->name)) {
+                // file is uploaded successfully
+                // var_dump($uploadFormModel->imageFiles);
+                $model->photos = json_encode(array_map(function ($image) use ($model) {
+                    return $model->name.'_'.$image->name;
+                }, $uploadFormModel->imageFiles), JSON_UNESCAPED_UNICODE);
+            }
+            $model->color = json_encode(Yii::$app->request->post('Product')['color'], JSON_UNESCAPED_UNICODE);
+            $model->size = json_encode(Yii::$app->request->post('Product')['size'], JSON_UNESCAPED_UNICODE);
+            $model->save();
             if ($model->load(Yii::$app->request->post())) {
-                $model->save();
-                return $this->redirect('/category/index');
+                return $this->redirect('/product/index?category_id='.$category_id);
                 // return $this->refresh();
             }
         }
-        return $this->render('create', ['parent_id' => $parent_id]);
+        return $this->render('create', [
+            'category_id' => $category_id,
+            'size_arr' => $size_arr,
+            'color_arr' => $color_arr,
+        ]);
     }   
 
     public function actionEdit($id)
