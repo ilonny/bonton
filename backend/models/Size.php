@@ -18,17 +18,20 @@ use Yii;
  */
 
 
-function makeSingleArray($arr){
-    if(!is_array($arr)) return false; 
-    $tmp = array();
-    foreach($arr as $val){
-      if(is_array($val)){
-        $tmp = array_merge($tmp, makeSingleArray($val)); 
-      } else {
-        $tmp[] = $val;
-      }
-    }
-    return $tmp;
+function makeSingleArray($array){
+    if (!is_array($array)) { 
+        return FALSE; 
+      } 
+      $result = array(); 
+      foreach ($array as $key => $value) { 
+        if (is_array($value)) { 
+          $result = array_merge($result, makeSingleArray($value)); 
+        } 
+        else { 
+          $result[$key] = $value; 
+        } 
+      } 
+      return $result; 
 }
 
 
@@ -77,9 +80,16 @@ class Size extends \yii\db\ActiveRecord
         $res = [];
         $category = Category::findOne($first_category_child_id);
         if ($category->parent_id) {
+            $tmp = [];
             foreach (Size::find()->andWhere(['category_id' => $category->id])->all() as $size) {
-                $res[]['id'] = $size->id;
-                $res[]['name'] = $size->name;
+                $tmp = [];
+                $tmp['id'] = $size->id;
+                $tmp['name'] = $size->name;
+                $tmp['category_id'] = $size->category_id;
+            }
+            if (count($tmp)) {
+                $res[] = $tmp;
+                $tmp = [];
             }
             $res[] = Size::getSizeTree($category->parent_id);
             // var_dump($res);
@@ -88,9 +98,14 @@ class Size extends \yii\db\ActiveRecord
             foreach (Size::find()->andWhere(['category_id' => $category->id])->all() as $size) {
                 $res[]['id'] = $size->id;
                 $res[]['name'] = $size->name;
+                $res[]['category_id'] = $size->category_id;
             }
         }
-
-        return makeSingleArray($res);
+        foreach ($res as $key => $value) {
+            $res[$key] = makeSingleArray($value);
+        }
+        return array_filter($res, function($el) {
+            return count($el) > 0;
+        });
     }
 }

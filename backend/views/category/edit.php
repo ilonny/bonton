@@ -26,7 +26,8 @@ $this->title = 'Редактирование категории';
         <div>
             <h3>Список доступных размеров</h3>
             <?php foreach ($size_arr as $size):?>
-                <?php echo '
+                <?php 
+                echo '
                     <div class="list-group-item">
                         <div class="row">
                             <div class="col-xs-4">'.$size['name'].'</div>

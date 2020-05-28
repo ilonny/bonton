@@ -74,10 +74,10 @@ class CategoryController extends Controller
         $model = Category::findOne($id);
         // $size_arr = Size::find()->andWhere(['category_id' => $model->id])->all();
         $size_arr = (new Size())->getSizeTree($model->id);
-        echo '<pre>';
-        var_dump($size_arr);
-        echo '</pre>';
-        die();
+        // echo '<pre>';
+        // var_dump($size_arr);
+        // echo '</pre>';
+        // die();
         if (Yii::$app->request->isPost) {
             if ($model->load(Yii::$app->request->post())) {
                 $model->save();
