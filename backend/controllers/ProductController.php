@@ -150,9 +150,14 @@ class ProductController extends Controller
 
     public function actionEdit($id)
     {
-        $model = Category::findOne($id);
+        $model = Product::findOne($id);
+        $category_id = $model->category_id;
+        $size_arr = (new Size())->getSizeTree($category_id);
+        $size_arr = ArrayHelper::map($size_arr, 'id', 'name');
+        $colors = Color::find()->all();
+        $color_arr = [];
         // $size_arr = Size::find()->andWhere(['category_id' => $model->id])->all();
-        $size_arr = (new Size())->getSizeTree($model->id);
+        // $size_arr = (new Size())->getSizeTree($model->id);
         // echo '<pre>';
         // var_dump($size_arr);
         // echo '</pre>';
@@ -160,11 +165,16 @@ class ProductController extends Controller
         if (Yii::$app->request->isPost) {
             if ($model->load(Yii::$app->request->post())) {
                 $model->save();
-                return $this->redirect('/category/index');
+                return $this->redirect('/product/index');
                 // return $this->refresh();
             }
         }
-        return $this->render('edit', ['model' => $model, 'size_arr' => $size_arr]);
+        return $this->render('create', [
+            'model' => $model,
+            'category_id' => $category_id,
+            'size_arr' => $size_arr,
+            'color_arr' => $color_arr,
+        ]);
     }   
 
     public function actionDelete($id)

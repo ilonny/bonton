@@ -6,8 +6,7 @@ use backend\models\Category;
 use backend\models\Size;
 use backend\models\Product;
 use kartik\file\FileInput;
-use kartik\select2\Select2
-
+use kartik\select2\Select2;
 ?>
 
 <div class="site-index">
@@ -16,19 +15,48 @@ use kartik\select2\Select2
         <div id="add" class="tab-pane">
             <?php
                 $form = ActiveForm::begin();
-                $model = new Product;
+                if (!$model) {
+                    $model = new Product;
+                } else {
+                    $current_photos = array_map(function ($photo) {
+                        return '/uploads/'.$photo;
+                    }, json_decode($model->photos));
+                }
             ?>
             <?= $form->field($model, 'name')->textInput()->label('Наименование'); ?>
             <?= $form->field($model, 'description')->textInput()->label('Короткое описание (не обязательно)'); ?>
             <?= $form->field($model, 'category_id')->hiddenInput(['value' => $category_id])->label(false); ?>
             <?= $form->field($model, 'price')->textInput()->label('Цена в рублях'); ?>
             <?= $form->field($model, 'new_price')->textInput()->label('Цена со скидкой в рублях (оставить пустым если скидки нет)'); ?>
+            <div>
+            <?php if ($model->id): ?>
+                <div class="form-group">
+                    <label class="control-label" >Загруженные фотографии</label>
+                    <div class="row">
+                        <?php foreach ($current_photos as $ph): ?>
+                            <div class="col-xs-4 wrapper-img" style="position: relative;">
+                                <img style="max-width: 100%" src="<?= $ph ?>">
+                                <div class="btn btn-danger" id="mark-delete-photo">Удалить</div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+                <input type="hidden" id="deleted-photos" name="deletet_photos">
+                <?= $form->field($model, 'id')->hiddenInput()->label(false); ?>
+            <?php endif; ?>
+            </div>
             <?= $form->field($model, 'photos[]')->widget(FileInput::classname(), [
                     'options' => [
                         'accept' => 'image/*',
                         'multiple' => true,
+                        'label' => 'sho?'
                     ],
                     'pluginOptions' => [
+                        // 'initialPreview'=> array_map(function ($photo) {
+                        //     return '/uploads/'.$photo;
+                        // }, json_decode($model->photos)),
+                        'initialPreviewAsData'=>true,
+                        'overwriteInitial'=>true,
                         'showPreview' => true,
                         'showCaption' => true,
                         'showRemove' => true,
@@ -79,3 +107,18 @@ use kartik\select2\Select2
             <?php ActiveForm::end(); ?>
         </div>
     </div>
+
+
+    <script>
+        window.addEventListener('DOMContentLoaded', function () {
+            var images_to_delete = [];
+            $(document).on('click', '#mark-delete-photo', function() {
+                console.log('images_to_delete');
+                var img_src =$(this).parent().find('img').attr('src').replace('/uploads/', '');
+                images_to_delete.push(img_src);
+                $(this).parent().remove();
+                $("#deleted-photos").val(JSON.stringify(images_to_delete))
+                console.log(images_to_delete);
+            });
+        })
+    </script>
