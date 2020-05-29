@@ -39,6 +39,7 @@ AppAsset::register($this);
         ],
     ]);
     $menuItems = [
+        ['label' => 'Цвета', 'url' => ['/color/index']],
         ['label' => 'Категории', 'url' => ['/category/index']],
         ['label' => 'Товары', 'url' => ['/product/index']],
         ['label' => 'Home', 'url' => ['/site/index']],

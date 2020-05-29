@@ -71,12 +71,15 @@ function renderListCategories($cats) {
                     </thead>
                     <tbody>
                         <?php foreach ($products as $product): ?>
+                            <?php
+                                // echo $product->photos;
+                            ?>
                             <tr>
                                 <th><?= $product->id; ?></th>
                                 <th>
                                     <img
                                         style="max-width: 100px;"
-                                        src="/uploads/<?= $product->photos ? json_decode($product->photos)[0] : null; ?>"
+                                        src="/uploads/<?= ($product->photos != '""' && $product->photos != '[]' && $product->photos) ? json_decode($product->photos)[0] : null; ?>"
                                     />
                                 </th>
                                 <th><?= $product->name; ?></th>

@@ -14,14 +14,20 @@ use kartik\select2\Select2;
     <div class="body-content">
         <div id="add" class="tab-pane">
             <?php
-                $form = ActiveForm::begin();
-                if (!$model) {
+                if (!isset($model)) {
                     $model = new Product;
+                    $product_id = 0;
                 } else {
-                    $current_photos = array_map(function ($photo) {
-                        return '/uploads/'.$photo;
-                    }, json_decode($model->photos));
+                    $current_photos = [];
+                    $category_id = $model->category_id ? $model->category_id : $category_id;
+                    $product_id = $model->id;
+                    if ($model->photos) {
+                        $current_photos = array_map(function ($photo) {
+                            return '/uploads/'.$photo;
+                        }, json_decode($model->photos));
+                    }
                 }
+                $form = ActiveForm::begin(['action' => ['product/save?category_id='.$category_id.'&product_id='.$product_id]]);
             ?>
             <?= $form->field($model, 'name')->textInput()->label('Наименование'); ?>
             <?= $form->field($model, 'description')->textInput()->label('Короткое описание (не обязательно)'); ?>
@@ -52,9 +58,6 @@ use kartik\select2\Select2;
                         'label' => 'sho?'
                     ],
                     'pluginOptions' => [
-                        // 'initialPreview'=> array_map(function ($photo) {
-                        //     return '/uploads/'.$photo;
-                        // }, json_decode($model->photos)),
                         'initialPreviewAsData'=>true,
                         'overwriteInitial'=>true,
                         'showPreview' => true,
@@ -63,7 +66,6 @@ use kartik\select2\Select2;
                         'showUpload' => false
                     ]
                 ]);
-            // ->fileInput(['multiple' => true, 'accept' => 'image/*']);
             ?>
             <?= $form->field($model, 'size')->widget(Select2::classname(), [
                     'data' => $size_arr,
@@ -72,7 +74,6 @@ use kartik\select2\Select2;
                         'allowClear' => true,
                     ],
                 ]);
-                // ->dropDownList($size_arr, ['multiple'=>'true']);
             ?>
             <?= $form->field($model, 'color')->widget(Select2::classname(), [
                     'data' => $color_arr,
@@ -81,7 +82,6 @@ use kartik\select2\Select2;
                         'allowClear' => true
                     ],
                 ]);
-                //->dropDownList($color_arr, ['multiple'=>'true']);
             ?>
             <?= $form->field($model, 'is_new')->widget(Select2::classname(), [
                     'data' => ['0' => 'Нет', '1' => 'Да'],
@@ -90,7 +90,6 @@ use kartik\select2\Select2;
                         'allowClear' => true
                     ],
                 ]);
-                //->dropDownList($color_arr, ['multiple'=>'true']);
             ?>
             <?= $form->field($model, 'is_popular')->widget(Select2::classname(), [
                     'data' => ['0' => 'Нет', '1' => 'Да'],
@@ -99,7 +98,6 @@ use kartik\select2\Select2;
                         'allowClear' => true
                     ],
                 ]);
-                //->dropDownList($color_arr, ['multiple'=>'true']);
             ?>
             <div class="form-group">
                 <?= Html::submitButton('Сохранить', ['class' => 'btn btn-primary']) ?>

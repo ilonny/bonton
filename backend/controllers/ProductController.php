@@ -29,7 +29,7 @@ class ProductController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index', 'edit', 'delete', 'create'],
+                        'actions' => ['logout', 'index', 'edit', 'delete', 'create', 'save'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -50,7 +50,7 @@ class ProductController extends Controller
      */
     public function actionIndex($category_id = 0)
     {
-        $products = Product::find()->all();
+        $products = Product::find()->andWhere(['category_id' => $category_id])->all();
         $res_cats = [];
         $cats = Category::find()->all();
         $cat_name = '';
@@ -148,6 +148,73 @@ class ProductController extends Controller
         ]);
     }   
 
+    public function actionSave($category_id = 0, $product_id  = 0) {
+        if ($product_id) {
+            $model = Product::findOne($product_id);
+        } else {
+            $model = new Product;
+        }
+        $size_arr = (new Size())->getSizeTree($category_id);
+        $size_arr = ArrayHelper::map($size_arr, 'id', 'name');
+        $colors = Color::find()->all();
+        $color_arr = [];
+        if (Yii::$app->request->isPost) {
+            $model->load(Yii::$app->request->post());
+            // var_dump($model->validate());
+            if (count($model->errors)) {
+                echo '<pre>';
+                var_dump($model->errors);
+                echo '</pre>';
+                die();
+            }
+            $uploadFormModel = new UploadForm();
+            $uploadFormModel->imageFiles = UploadedFile::getInstances($model, 'photos');
+            if ($product_id) {
+                $old_photos = $model->photos ? json_decode($model->photos) : [];
+                $marked_delete_photos = Yii::$app->request->post('deletet_photos') ? json_decode(Yii::$app->request->post('deletet_photos')) : [];
+                $saved_photos = array_filter($old_photos, function($old_photo) use ($marked_delete_photos) {
+                    return !in_array($old_photo, $marked_delete_photos);
+                });
+                // echo '<pre>';
+                // var_dump($old_photos);
+                // var_dump($marked_delete_photos);
+                // var_dump($saved_photos);
+                // echo '</pre>';
+                // die();
+                $model->photos = json_encode($saved_photos, JSON_UNESCAPED_UNICODE);
+            }
+            if ($uploadFormModel->upload($model->name)) {
+                // file is uploaded successfully
+                // var_dump($uploadFormModel->imageFiles);
+                if ($product_id) {
+                    $new_uploads = array_map(function ($image) use ($model) {
+                        return $model->name.'_'.$image->name;
+                    }, $uploadFormModel->imageFiles);
+                    $updated_photos = array_merge($saved_photos, $new_uploads);
+                    // var_dump($updated_photos);die();
+                    $model->photos = json_encode($updated_photos, JSON_UNESCAPED_UNICODE);
+                    // $old_photos = $model->photos;
+                    // var_dump($old_photos);die();
+                } else {
+                    $model->photos = json_encode(array_map(function ($image) use ($model) {
+                        return $model->name.'_'.$image->name;
+                    }, $uploadFormModel->imageFiles), JSON_UNESCAPED_UNICODE);
+                }
+            }
+            $model->color = json_encode(Yii::$app->request->post('Product')['color'], JSON_UNESCAPED_UNICODE);
+            $model->size = json_encode(Yii::$app->request->post('Product')['size'], JSON_UNESCAPED_UNICODE);
+            if ($product_id){
+                $model->update();
+            } else {
+                $model->save();
+            }
+            if ($model->load(Yii::$app->request->post())) {
+                return $this->redirect('/product/index?category_id='.$category_id);
+                // return $this->refresh();
+            }
+        }
+    }
+
     public function actionEdit($id)
     {
         $model = Product::findOne($id);
@@ -156,12 +223,39 @@ class ProductController extends Controller
         $size_arr = ArrayHelper::map($size_arr, 'id', 'name');
         $colors = Color::find()->all();
         $color_arr = [];
-        // $size_arr = Size::find()->andWhere(['category_id' => $model->id])->all();
-        // $size_arr = (new Size())->getSizeTree($model->id);
-        // echo '<pre>';
+        foreach ($colors as $key => $value) {
+            $color_arr[$value->id] = $value->name;
+        }
+        if ($model->size && $model->size !== '""') {
+            $prod_sizes = $model->size ? json_decode($model->size) : [];
+            $sizes_ids = array_map(function ($s) {return intval($s);}, $prod_sizes);
+            $sizes = Size::find()->where(['id' => $sizes_ids])->all();
+            $chosen_sizes = [];
+            foreach ($sizes as $size) {
+                $chosen_sizes[] = $size->id;
+            }
+            // $model->size = $chosen_sizes;
+        } else {
+            $chosen_sizes = [];
+            // $model->size = [];
+        }
+        if ($model->color && $model->color !== '""') {
+            $prod_colors = $model->color ? json_decode($model->color) : [];
+            $colors_ids = array_map(function ($s) {return intval($s);}, $prod_colors);
+            $colors = Color::find()->where(['id' => $colors_ids])->all();
+            $chosen_colors = [];
+            foreach ($colors as $color) {
+                $chosen_colors[] = $color->id;
+            }
+            // $model->color = $chosen_colors;
+        } else {
+            $chosen_colors = [];
+            // $model->size = [];
+        }
+        $model->size = $chosen_sizes;
+        $model->color = $chosen_colors;
         // var_dump($size_arr);
-        // echo '</pre>';
-        // die();
+        // var_dump($model->size);die();
         if (Yii::$app->request->isPost) {
             if ($model->load(Yii::$app->request->post())) {
                 $model->save();
@@ -174,19 +268,16 @@ class ProductController extends Controller
             'category_id' => $category_id,
             'size_arr' => $size_arr,
             'color_arr' => $color_arr,
+            'chosen_sizes' => $chosen_sizes,
+            'chosen_colors' => $chosen_colors
         ]);
     }   
 
     public function actionDelete($id)
     {
-        $model = Category::findOne($id);
+        $model = Product::findOne($id);
+        $category_id = $model->category_id;
         $model->delete();
-        // if (Yii::$app->request->isPost) {
-        //     if ($model->load(Yii::$app->request->post())) {
-        //         return $this->redirect('/category/index');
-        //         // return $this->refresh();
-        //     }
-        // }
-        return $this->redirect('/category/index');
+        return $this->redirect('/product/index?category_id=?'.$category_id);
     } 
 }
