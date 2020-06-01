@@ -12,5 +12,6 @@ export const sideBarReducer = (state = { isOpen: false }, action) => {
 };
 
 sideBarReducer.toggleSideBar = (params) => (dispatch) => {
+    console.log('toggleSideBar', params);
     dispatch({ type: SET_SIDEBAR_IS_OPEN, params });
 };

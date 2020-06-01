@@ -2,7 +2,7 @@ import React, {useEffect} from "react";
 import { Row } from "../../styled-components-layout";
 import { Block } from "../organisms/block";
 export const CatalogListTemplate = (props) => {
-    console.log('catalog list props', props)
+    // console.log('catalog list props', props)
     const {getProducts} = props;
     useEffect(() => {
         getProducts();

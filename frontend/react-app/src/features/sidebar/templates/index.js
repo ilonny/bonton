@@ -1,13 +1,19 @@
-import React from "react";
+import React, {useEffect} from "react";
 import styled from "styled-components";
 import { MenuHeader, MenuBottom } from "../molecules";
-import { MenuCategoryToggle, MenuCategoryLink } from "../organisms";
+import { MenuCategoryLink } from "../organisms";
+import {MenuTree} from "./menu-tree";
 export const SideBarTemplate = (props) => {
-    const { toggleSideBar } = props;
+    const { toggleSideBar, getMenuCategories } = props;
+    useEffect(() => {
+        getMenuCategories();
+    }, [getMenuCategories]);
+    console.log('sidebar props', props);
     return (
         <SideBarContainer {...props}>
             <MenuHeader action={toggleSideBar} />
-            <MenuCategoryToggle type="first" text="Мужское">
+                {props.menu && <MenuTree {...props} />}
+            {/* <MenuCategoryToggle type="first" text="Мужское">
                 <MenuCategoryToggle type="second" text="Верхняя одежда">
                     <MenuCategoryLink type="third" text="Куртки" href="/catalog" toggleSideBar={toggleSideBar} />
                     <MenuCategoryLink type="third" text="Брюки" href="/catalog" toggleSideBar={toggleSideBar} />
@@ -32,7 +38,7 @@ export const SideBarTemplate = (props) => {
                     <MenuCategoryLink type="third" text="Сумки" href="/catalog" toggleSideBar={toggleSideBar}  />
                     <MenuCategoryLink type="third" text="Ремни" href="/catalog" toggleSideBar={toggleSideBar}  />
                 </MenuCategoryToggle>
-            </MenuCategoryToggle>
+            </MenuCategoryToggle> */}
             <MenuCategoryLink type="first" text="Доставка" href="/delivery" toggleSideBar={toggleSideBar} />
             <MenuCategoryLink type="first" text="Возврат" href="/delivery" toggleSideBar={toggleSideBar} />
             <MenuCategoryLink type="first" text="Контакты" href="/contacts" toggleSideBar={toggleSideBar} />

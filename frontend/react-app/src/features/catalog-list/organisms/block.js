@@ -23,8 +23,8 @@ export const Block = ({ item, addToCart, removeFromCart, cart_products }) => {
         }
         forceUpdate();
     }
-    console.log('cart_products', cart_products);
-    console.log('active')
+    // console.log('cart_products', cart_products);
+    // console.log('active')
     return (
         <BlockWrapper>
             <Link to={`/product/${item.id}`}>
