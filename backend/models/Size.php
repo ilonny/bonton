@@ -25,6 +25,7 @@ function makeSingleArray($array){
       $result = array(); 
       foreach ($array as $key => $value) { 
         if (is_array($value)) { 
+            
           $result = array_merge($result, makeSingleArray($value)); 
         } 
         else { 
@@ -75,37 +76,50 @@ class Size extends \yii\db\ActiveRecord
             'value' => 'Value',
         ];
     }
-
+    public $res = [];
     public function getSizeTree($first_category_child_id) {
-        $res = [];
+        // $this->res = [];
         $category = Category::findOne($first_category_child_id);
         if ($category->parent_id) {
             $tmp = [];
             foreach (Size::find()->andWhere(['category_id' => $category->id])->all() as $size) {
                 $tmp = [];
-                $tmp['id'] = $size->id;
-                $tmp['name'] = $size->name;
-                $tmp['category_id'] = $size->category_id;
+                // $tmp['id'] = $size->id;
+                // $tmp['name'] = $size->name;
+                // $tmp['category_id'] = $size->category_id;
+                array_push($this->res, [
+                    'id' => $size->id,
+                    'name' => $size->name,
+                    'category_id' => $size->category_id,
+                ]);
             }
-            if (count($tmp)) {
-                $res[] = $tmp;
-                $tmp = [];
-            }
-            $res[] = Size::getSizeTree($category->parent_id);
-            // var_dump($res);
+            // if (count($tmp)) {
+            //     $this->res[] = $tmp;
+            //     // $tmp = [];
+            // }
+            $this->res[] = Size::getSizeTree($category->parent_id);
+            // var_dump($this->res);
         } else {
-            // $res[] = Size::find()->andWhere(['category_id' => $category->id])->all();
+            // $this->res[] = Size::find()->andWhere(['category_id' => $category->id])->all();
             foreach (Size::find()->andWhere(['category_id' => $category->id])->all() as $size) {
-                $res[]['id'] = $size->id;
-                $res[]['name'] = $size->name;
-                $res[]['category_id'] = $size->category_id;
+                $this->res[]['id'] = $size->id;
+                $this->res[]['name'] = $size->name;
+                $this->res[]['category_id'] = $size->category_id;
             }
         }
-        foreach ($res as $key => $value) {
-            $res[$key] = makeSingleArray($value);
+        foreach ($this->res as $key => $value) {
+            
         }
-        return array_filter($res, function($el) {
+        
+        foreach ($this->res as $key => $value) {
+            $this->res[$key] = makeSingleArray($value);
+        }
+        $this->res = array_filter($this->res, function($el) {
             return count($el) > 0;
         });
+        // $ids = array_values($this->res);
+        // $ids = array_column($ids, 'id');
+        // $res = [];
+        return array_unique($this->res, SORT_REGULAR);
     }
 }
