@@ -88,11 +88,11 @@ export const filtersMock = [
         items: [
             {
                 code: "price_min",
-                name: "4900",
+                name: "",
             },
             {
                 code: "price_max",
-                name: "16990",
+                name: "",
             },
         ],
     },

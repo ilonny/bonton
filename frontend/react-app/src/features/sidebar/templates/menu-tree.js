@@ -16,7 +16,7 @@ export const MenuTree = props => {
                                 {hasChildren(member) && <MenuTree level={level + 1} menu={member.children} toggleSideBar={props.toggleSideBar} />}
                             </MenuCategoryToggle>
                         ) : (
-                                <MenuCategoryLink type={types[level]} text={member.name} href={`/catalog?categories=${member.id}`} toggleSideBar={props.toggleSideBar} />
+                                <MenuCategoryLink type={types[level]} text={member.name} href={`/catalog?categories=${member.id}&type=${member.type}`} toggleSideBar={props.toggleSideBar} />
                             )}
                     </div>
                 )

@@ -66,6 +66,7 @@ class Category extends \yii\db\ActiveRecord
     function buildTree(array $elements, $parentId = null) {
         $branch = array();
         foreach ($elements as $element) {
+            if ($element['id'] == 2) $type = 'women';
             if ($element['parent_id'] == $parentId) {
                 $children = Category::buildTree($elements, $element['id']);
                 if ($children) {

@@ -8,7 +8,7 @@ export const SideBarTemplate = (props) => {
     useEffect(() => {
         getMenuCategories();
     }, [getMenuCategories]);
-    console.log('sidebar props', props);
+    // console.log('sidebar props', props);
     return (
         <SideBarContainer {...props}>
             <MenuHeader action={toggleSideBar} />

@@ -1,1 +1,1 @@
-export {CatalogTypeSelect} from "./templates"
+export * from "./connect"

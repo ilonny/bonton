@@ -12,7 +12,7 @@ export const CatalogPage = (props) => {
     // console.log("props", props);
     return (
         <HomeTemplate>
-            <CatalogTypeSelect />
+            <CatalogTypeSelect {...props} />
             <CatalogFilters {...props} />
             <CatalogList data={pageData.catalogList} />
             <CatalogPagination />

@@ -1,4 +1,5 @@
-import { SET_CATEGORIES, SET_FILTERS, SET_SORT, SET_PAGINATION } from "./actions";
+import { SET_CATEGORIES, SET_FILTERS, SET_SORT, SET_PAGINATION, SET_TYPE } from "./actions";
+import { SET_MENU_CATEGORIES } from "../../features";
 import {
     setSearchParams,
     getUrlParamsArray,
@@ -12,11 +13,19 @@ const initialState = {
     sort_price: 0,
     pages: undefined,
     currentPage: undefined,
+    type: undefined,
 };
 export const categoriesReducer = (state = initialState, action) => {
     switch (action.type) {
+        case SET_MENU_CATEGORIES: {
+            return { ...state, categories: action.categories.normalized.filter(el => !!el.parent_id) }
+        }
+        case SET_TYPE: {
+            return { ...state, type: action.searchType }
+        }
         case SET_CATEGORIES: {
             const urlParamArray = getUrlParamsArray("categories");
+            console.log('urlParamArray', urlParamArray)
             return {
                 ...state,
                 categories: action.params.map((cat) => {
@@ -25,7 +34,7 @@ export const categoriesReducer = (state = initialState, action) => {
                         active: (() => {
                             // console.log(urlParamArray);
                             // console.log(cat);
-                            if (urlParamArray.includes(cat.code)) {
+                            if (urlParamArray.includes(cat.code.toString())) {
                                 return true;
                             } else {
                                 return false;
@@ -90,6 +99,7 @@ export const categoriesReducer = (state = initialState, action) => {
 
 categoriesReducer.setCategories = (params) => (dispatch) => {
     // setSearchParams('categories', params);
+    console.log('set categories', params);
     dispatch({ type: SET_CATEGORIES, params });
 };
 
@@ -157,7 +167,11 @@ categoriesReducer.reset = () => dispatch => {
 }
 
 categoriesReducer.setPagination = page => dispatch => {
-    console.log('setPagination fired', {code: page});
-    setSearchParams('page', {code: page});
+    console.log('setPagination fired', { code: page });
+    setSearchParams('page', { code: page });
     dispatch({ type: SET_PAGINATION });
 }
+
+categoriesReducer.setType = (searchType) => (dispatch) => {
+    dispatch({ type: SET_TYPE, searchType: searchType.type });
+};

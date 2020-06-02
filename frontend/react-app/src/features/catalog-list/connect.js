@@ -6,6 +6,7 @@ export const CatalogList = connect(
     (state) => ({
         data: state.product.products,
         cart_products: state.cart.products,
+        menuCategories: state.main.menuCategories.tree
     }),
     (dispatch) => ({
         getProducts: () => dispatch(productReducer.getProducts()),
