@@ -111,5 +111,54 @@ class ApiController extends Controller
             'tree' => $res,
         ]);
     }
-    
+    public function actionGetProducts($category_id = 0) {
+        
+        $products = Product::find()->all();
+        // $sizes = Size::find()->all();
+        $res_products = [];
+        foreach ($products as $key => $product) {
+            if ($product->photos === '[]') $product->photos = null;
+            if (!$product->is_new) $product->is_new = null;
+            if (!$product->is_popular) $product->is_popular = null;
+            if (!$product->size || $product->size == '""') $product->size = null;
+            if (!$product->color || $product->color == '""') $product->color = null;
+            $size_arr = [];
+            $color_arr = [];
+            if ($product->size) {
+                foreach (json_decode($product->size) as $key => $size_id) {
+                    $size_model = Size::findOne($size_id);
+                    array_push($size_arr, [
+                        'id' => $size_model->id,
+                        'name' => $size_model->name,
+                    ]);
+                }
+            }
+            if ($product->color) {
+                foreach (json_decode($product->color) as $key => $color_id) {
+                    $color_model = Color::findOne($color_id);
+                    array_push($color_arr, [
+                        'id' => $color_model->id,
+                        'name' => $color_model->name,
+                    ]);
+                }
+            }
+            // $size_arr = (new Size())->getSizeTree($product->category_id);
+            // $size_arr = ArrayHelper::map($size_arr, 'id', 'name');
+
+            array_push($res_products, [
+                'id' => $product->id,
+                'name' => $product->name,
+                'description' => $product->description,
+                'photos' => $product->photos,
+                'category_id' => $product->category_id,
+                'is_new' => $product->is_new,
+                'is_popular' => $product->is_popular,
+                'size' => $product->size,
+                'color' => $product->color,
+                'size_names' => $size_arr,
+                'color_arr' => $color_arr,
+            ]);
+        }
+        return json_encode($res_products, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+    }
 }
