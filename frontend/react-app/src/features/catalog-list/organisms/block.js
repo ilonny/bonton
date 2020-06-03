@@ -10,6 +10,7 @@ import {
     Price,
 } from "../atoms";
 import { Row } from "../../styled-components-layout";
+import ImgNotFound from "../../../assets/icons/image_not_found.png"
 export const Block = ({ item, addToCart, removeFromCart, cart_products }) => {
     const [, updateState] = React.useState();
     const forceUpdate = React.useCallback(() => updateState({}), []);
@@ -23,21 +24,25 @@ export const Block = ({ item, addToCart, removeFromCart, cart_products }) => {
         }
         forceUpdate();
     }
-    // console.log('cart_products', cart_products);
-    // console.log('active')
     return (
         <BlockWrapper>
             <Link to={`/product/${item.id}`}>
                 <ImageWrapper>
-                    <img
-                        src={item.image_hover}
-                        style={{ opacity: 0, maxWidth: "100%" }}
-                        alt={item.title}
-                    />
-                    <Image src={item.image_hover} />
-                    <Image hover_hide="true" src={item.image} />
+                    {item.image ? (
+                        <>
+                            <img
+                                src={encodeURI(item.image_hover)}
+                                style={{ opacity: 0, maxWidth: "100%", maxHeight: '420px' }}
+                                alt={item.title}
+                            />
+                            <Image src={encodeURI(item.image_hover)} />
+                            <Image hover_hide="true" src={encodeURI(item.image)} />
+                        </>
+                    ) : (
+                            <img src={ImgNotFound} alt="Изображение отсутствует" style={{ maxWidth: "100%", maxHeight: '420px' }} />
+                        )}
                 </ImageWrapper>
-                <Title>{item.title}</Title>
+                <Title>{item.name}</Title>
             </Link>
             <div>
                 <Row align="center" mobile_wrap="true">
@@ -48,7 +53,8 @@ export const Block = ({ item, addToCart, removeFromCart, cart_products }) => {
                         removeFromCart={removeFromCart}
                         cart_products={cart_products}
                     />
-                    <Price>{item.price}</Price>
+                    <Price isNewPrice={!!item.new_price}>{item.price} руб.</Price>
+                    {!!item.new_price && (<Price isBold>{item.new_price} руб.</Price>)}
                 </Row>
             </div>
         </BlockWrapper>

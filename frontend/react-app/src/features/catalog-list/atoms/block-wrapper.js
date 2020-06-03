@@ -20,7 +20,7 @@ export const BlockWrapper = styled.div`
         max-width: 50%;
     }
     ${Media.mobile} {
-        flex: 1 1 100%;
-        max-width: 100%;
+        // flex: 1 1 100%;
+        // max-width: 100%;
     }
 `;

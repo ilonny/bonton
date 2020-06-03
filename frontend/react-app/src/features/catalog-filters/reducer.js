@@ -25,7 +25,7 @@ export const categoriesReducer = (state = initialState, action) => {
         }
         case SET_CATEGORIES: {
             const urlParamArray = getUrlParamsArray("categories");
-            console.log('urlParamArray', urlParamArray)
+            // console.log('urlParamArray', urlParamArray)
             return {
                 ...state,
                 categories: action.params.map((cat) => {
@@ -99,7 +99,7 @@ export const categoriesReducer = (state = initialState, action) => {
 
 categoriesReducer.setCategories = (params) => (dispatch) => {
     // setSearchParams('categories', params);
-    console.log('set categories', params);
+    // console.log('set categories', params);
     dispatch({ type: SET_CATEGORIES, params });
 };
 

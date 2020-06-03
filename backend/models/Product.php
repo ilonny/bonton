@@ -11,6 +11,8 @@ use Yii;
  * @property string $name
  * @property float $price
  * @property string|null $photos
+ * @property string|null $image
+ * @property string|null $image_hover
  * @property int $category_id
  * @property string|null $size
  * @property string|null $color
@@ -57,6 +59,8 @@ class Product extends \yii\db\ActiveRecord
             'name' => 'Name',
             'price' => 'Price',
             'photos' => 'Photos',
+            'image' => 'image',
+            'image_hover' => 'image_hover',
             'category_id' => 'Category ID',
             'size' => 'Size',
             'color' => 'Color',

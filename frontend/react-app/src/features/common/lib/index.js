@@ -10,4 +10,5 @@ export const Image = {
     homepage_advantage_1: require('../../../assets/icons/homepage_advantage_1.svg'),
     homepage_advantage_2: require('../../../assets/icons/homepage_advantage_2.svg'),
     place_flag: require('../../../assets/icons/place_flag.svg'),
+    image_not_found: require('../../../assets/icons/image_not_found.png'),
 }

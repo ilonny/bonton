@@ -5,6 +5,7 @@ export const Image = styled(WithTag)`
     background-size: cover;
     width: 100%;
     max-width: 100%;
+    max-height: 420px;
     position: absolute;
     top: 0;
     left: 0;

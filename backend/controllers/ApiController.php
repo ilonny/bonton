@@ -111,8 +111,8 @@ class ApiController extends Controller
             'tree' => $res,
         ]);
     }
-    public function actionGetProducts($category_id = 0) {
-        
+    public function actionGetProducts($category_id = 0, $page = 1) {
+        $products_on_page_count = 15;
         $products = Product::find()->all();
         // $sizes = Size::find()->all();
         $res_products = [];
@@ -129,6 +129,7 @@ class ApiController extends Controller
                     $size_model = Size::findOne($size_id);
                     array_push($size_arr, [
                         'id' => $size_model->id,
+                        'code' => $size_model->id,
                         'name' => $size_model->name,
                     ]);
                 }
@@ -138,9 +139,23 @@ class ApiController extends Controller
                     $color_model = Color::findOne($color_id);
                     array_push($color_arr, [
                         'id' => $color_model->id,
+                        'code' => $color_model->id,
                         'name' => $color_model->name,
                     ]);
                 }
+            }
+            $photos_arr = [];
+            $image = null;
+            $image_hover = null;
+            if ($product->photos) {
+                $photos_arr = json_decode($product->photos, true);
+            }
+            if (count($photos_arr) > 0) {
+                $image = Yii::$app->request->hostInfo."/uploads/".$photos_arr[0];
+                $image_hover = $image;
+            }
+            if (count($photos_arr) > 1) {
+                $image_hover = Yii::$app->request->hostInfo."/uploads/".$photos_arr[1];
             }
             // $size_arr = (new Size())->getSizeTree($product->category_id);
             // $size_arr = ArrayHelper::map($size_arr, 'id', 'name');
@@ -148,8 +163,12 @@ class ApiController extends Controller
             array_push($res_products, [
                 'id' => $product->id,
                 'name' => $product->name,
+                'price' => $product->price,
+                'new_price' => $product->new_price,
                 'description' => $product->description,
                 'photos' => $product->photos,
+                'image' => $image,
+                'image_hover' => $image_hover,
                 'category_id' => $product->category_id,
                 'is_new' => $product->is_new,
                 'is_popular' => $product->is_popular,
@@ -159,6 +178,14 @@ class ApiController extends Controller
                 'color_arr' => $color_arr,
             ]);
         }
-        return json_encode($res_products, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+
+        $products_on_page = array_slice($res_products, intval($page-1) * $products_on_page_count, $products_on_page_count);
+        $pages_count = ceil(count($res_products) / $products_on_page_count);
+        return json_encode([
+            'all_products' => $res_products,
+            'products_on_page' => $products_on_page,
+            'pages_count' => $pages_count,
+            'page' => $page,
+        ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
     }
 }

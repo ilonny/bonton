@@ -53,7 +53,7 @@ export const CatalogFiltersTemplate = (props) => {
         // setCategories(categories);
         syncCategoriesWithParams();
     }, [search, syncCategoriesWithParams]);
-    console.log('filters props', props);
+    // console.log('filters props', props);
     // console.log('urlType', urlType);
     // console.log('categories', categories);
     return (
