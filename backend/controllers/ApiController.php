@@ -111,9 +111,21 @@ class ApiController extends Controller
             'tree' => $res,
         ]);
     }
-    public function actionGetProducts($category_id = 0, $page = 1) {
+    public function actionGetProducts($category_id = 0, $page = 1, $type = 'men') {
+        if (!$category_id) {
+            if ($type = 'men') {
+                $category_id = 1;
+            }
+            if ($type = 'women') {
+                $category_id = 2;
+            }
+        }
         $products_on_page_count = 15;
-        $products = Product::find()->all();
+        if (!$category_id) {
+            $products = Product::find()->all();
+        } else {
+            $products = (new Product())->findByCategory($category_id);
+        }
         // $sizes = Size::find()->all();
         $res_products = [];
         foreach ($products as $key => $product) {

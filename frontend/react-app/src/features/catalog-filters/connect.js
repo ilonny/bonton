@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 import { CatalogFiltersTemplate, CatalogPaginationTemplate } from "./templates";
 import { categoriesReducer } from "./reducer";
+import {productReducer} from "../product";
 export const CatalogFilters = connect(
     (state) => ({
         menuCategories: state.main.menuCategories,
@@ -16,7 +17,8 @@ export const CatalogFilters = connect(
         setFilters: (params) => dispatch(categoriesReducer.setFilters(params)),
         toggleFilter: (params) => dispatch(categoriesReducer.toggleFilter(params)),
         setSorting: (params) => dispatch(categoriesReducer.setSorting(params)),
-        reset: () => dispatch(categoriesReducer.reset())
+        reset: () => dispatch(categoriesReducer.reset()),
+        getProducts: (id) => dispatch(productReducer.getProducts(id)),
     })
 )(CatalogFiltersTemplate);
 

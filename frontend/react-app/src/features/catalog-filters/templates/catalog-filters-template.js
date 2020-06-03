@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Row } from "../../styled-components-layout";
 import { FilterSelect, Sorting, ResetButton } from "../organisms";
-import { filtersMock } from "./mock-data";
+// import { filtersMock } from "./mock-data";
 import { getUrlParamsArray } from "../lib"
 
 function flatten(arr) {
@@ -26,7 +26,8 @@ export const CatalogFiltersTemplate = (props) => {
         location: { search },
         syncCategoriesWithParams,
         setSorting,
-        reset
+        reset,
+        getProducts,
     } = props;
     // console.log("categories", categories);
     // console.log("search", search);
@@ -44,15 +45,16 @@ export const CatalogFiltersTemplate = (props) => {
             }
             setCategories(categories);
             syncCategoriesWithParams();
+            getProducts();
         }
-        setFilters(filtersMock);
-    }, [setCategories, setFilters, menuCategories, syncCategoriesWithParams, search]);
+        // setFilters(filtersMock);
+    }, [setCategories, setFilters, menuCategories, syncCategoriesWithParams, search, getProducts]);
 
-    useEffect(() => {
-        // console.log("update effect", props.location.search);
-        // setCategories(categories);
-        syncCategoriesWithParams();
-    }, [search, syncCategoriesWithParams]);
+    // useEffect(() => {
+    //     // console.log("update effect", props.location.search);
+    //     // setCategories(categories);
+    //     syncCategoriesWithParams();
+    // }, [search, syncCategoriesWithParams]);
     // console.log('filters props', props);
     // console.log('urlType', urlType);
     // console.log('categories', categories);
