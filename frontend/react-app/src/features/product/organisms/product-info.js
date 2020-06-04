@@ -34,7 +34,7 @@ export const ProductInfo = props => {
                 <Row justify="space-between" align="center" wrap="wrap">
                     {!!data.new_price ? <ProductPrice>{data.new_price} руб.</ProductPrice> : <ProductPrice>{data.price} руб.</ProductPrice>}
                     <HoverButton
-                        onClick={() => inCart ? removeFromCart(data.id) : addToCart(data.id)}
+                        onClick={() => inCart ? removeFromCart(data.id) : addToCart(data.id, data.new_price ? data.new_price : data.price)}
                         maxWidth={"372px"}
                         color={"white"}
                         backgroundColor={inCart ? Color.gray : Color.red}

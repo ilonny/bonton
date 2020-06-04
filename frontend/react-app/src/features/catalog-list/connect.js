@@ -10,7 +10,7 @@ export const CatalogList = connect(
     }),
     (dispatch) => ({
         getProducts: () => dispatch(productReducer.getProducts()),
-        addToCart: product_id => dispatch(cartReducer.addToCart(product_id)),
+        addToCart: (product_id, price) => dispatch(cartReducer.addToCart(product_id, price)),
         removeFromCart: product_id => dispatch(cartReducer.removeFromCart(product_id)),
     })
 )(CatalogListTemplate);

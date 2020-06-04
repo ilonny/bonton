@@ -15,12 +15,12 @@ export const Block = ({ item, addToCart, removeFromCart, cart_products }) => {
     const [, updateState] = React.useState();
     const forceUpdate = React.useCallback(() => updateState({}), []);
     const active = !!cart_products.find(product => product.id === item.id)
-    const onClickHandler = (product_id) => {
+    const onClickHandler = (product_id, price) => {
         console.log('onClick', product_id)
         if (active) {
             removeFromCart(product_id)
         } else {
-            addToCart(product_id)
+            addToCart(product_id, price)
         }
         forceUpdate();
     }
@@ -47,7 +47,7 @@ export const Block = ({ item, addToCart, removeFromCart, cart_products }) => {
             <div>
                 <Row align="center" mobile_wrap="true">
                     <CartButton
-                        onClick={() => onClickHandler(item.id)}
+                        onClick={() => onClickHandler(item.id, item.new_price ? item.new_price : item.price )}
                         active={active}
                         addToCart={addToCart}
                         removeFromCart={removeFromCart}

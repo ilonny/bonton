@@ -24,14 +24,19 @@ export const cartReducer = (state = initialState, action) => {
     }
 }
 
-cartReducer.addToCart = product_id => (dispatch, getState) => {
+cartReducer.addToCart = (product_id, price) => (dispatch, getState) => {
     let cartProducts = getState().cart.products;
-    let productPrice = parseFloat(getState().product.products.find(item => item.id === product_id).price);
+    if (!price) {
+        let productPrice = parseFloat(getState().product.products.find(item => item.id === product_id));
+        if (productPrice) {
+            price = productPrice.new_price || productPrice.price;
+        }
+    }
     let existingProductIndex = cartProducts.findIndex(product => product.id === product_id);
     if (existingProductIndex !== -1) {
         cartProducts[existingProductIndex].count++
     } else {
-        cartProducts.push({ id: product_id, count: 1, price: productPrice })
+        cartProducts.push({ id: product_id, count: 1, price: price })
     }
     dispatch({ type: SET_CART_PRODUCTS, products: cartProducts });
     localStorage.setItem('cart', JSON.stringify(getState().cart));
