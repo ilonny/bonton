@@ -51,7 +51,7 @@ productReducer.getProducts = (id) => (dispatch, getState) => {
                 method: 'GET',
                 url: `get-products${window.location.search}`,
             }).then((response) => {
-                console.log('get product response', response);
+                // console.log('get product response', response);
                 dispatch({ type: GET_PRODUCTS_SUCCESS, products: response.products_on_page });
                 dispatch({ type: SET_PAGINATION, pages: response.pages_count });
             });

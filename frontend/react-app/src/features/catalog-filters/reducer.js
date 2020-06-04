@@ -117,6 +117,7 @@ categoriesReducer.syncCategoriesWithParams = (params) => (
 };
 
 categoriesReducer.toggleCategory = (params) => (dispatch, getState) => {
+    console.log('toggleCategory', params);
     setSearchParams("categories", params);
     const allCategories = getState().categories.categories;
     const newState = allCategories;

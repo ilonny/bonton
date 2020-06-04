@@ -1,7 +1,8 @@
 import { history } from "../../../lib";
 export const setSearchParams = (name, _value) => {
     console.log("SetSearchParams name", name, _value);
-    const { code } = _value;
+    let { code } = _value;
+    code = code.toString();
     let searchParams = new URLSearchParams(window.location.search);
     const searchArray = Array.from(searchParams.entries());
     let searchMap = {};

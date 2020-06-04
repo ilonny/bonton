@@ -26,7 +26,7 @@ export const CatalogTypeSelectTemplate = (props) => {
     const { location: { search }, setTypeStore } = props;
     useEffect(() => {
         const urlType = getUrlParamsArray('type')[0] || 'men';
-        console.log('new type', urlType)
+        // console.log('new type', urlType)
         setTypeStore({ type: urlType });
         setActiveType(types.find(el => el.type === urlType) || types[0]);
         // forceUpdate();
@@ -34,13 +34,13 @@ export const CatalogTypeSelectTemplate = (props) => {
     const onClickHandler = (type) => {
         if (isOpen) {
             setIsOpen(false);
-            console.log('href', type)
+            // console.log('href', type)
             if (type) {
                 setActiveType(type);
                 history.push(type.href);
             }
         } else {
-            console.log("click");
+            // console.log('click');
             setIsOpen(true);
         }
         if (type) {
@@ -48,8 +48,8 @@ export const CatalogTypeSelectTemplate = (props) => {
         }
     };
     const otherTypes = types.filter((t) => t.title !== activeType.title);
-    console.log('type select', props);
-    console.log('type select active type', activeType);
+    // console.log('type select', props);
+    // console.log('type select active type', activeType);
     return (
         <div style={{ position: 'relative' }}>
             <Spacer className="spacer" />
