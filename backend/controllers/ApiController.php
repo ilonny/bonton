@@ -111,7 +111,13 @@ class ApiController extends Controller
             'tree' => $res,
         ]);
     }
-    public function actionGetProducts($category_id = 0, $page = 1, $type = 'men', $categories = '') {
+    public function actionGetProducts($category_id = 0, $page = 1, $type = 'men', $categories = '', $size = '', $color = '') {
+        if ($size) {
+            $size = explode('+', $size);
+        }
+        if ($color) {
+            $color = explode('+', $color);
+        }
         if ($categories) {
             $category_id = explode('+', $categories);
         } else {
@@ -128,10 +134,22 @@ class ApiController extends Controller
         if (!$category_id) {
             $products = Product::find()->all();
         } else {
-            $products = (new Product())->findByCategory($category_id);
+            $products = (new Product())->findByCategory($category_id, $size, $color);
         }
         // $sizes = Size::find()->all();
         $res_products = [];
+        $res_filters = [
+            [
+                'code' => 'color',
+                'name' => 'Цвет',
+                'items' => []
+            ],
+            [
+                'code' => 'size',
+                'name' => 'Размер',
+                'items' => []
+            ],
+        ];
         foreach ($products as $key => $product) {
             if ($product->photos === '[]') $product->photos = null;
             if (!$product->is_new) $product->is_new = null;
@@ -193,7 +211,13 @@ class ApiController extends Controller
                 'size_names' => $size_arr,
                 'color_arr' => $color_arr,
             ]);
+            $res_filters[0]['items'] = array_merge($res_filters[0]['items'], $color_arr);
+            $res_filters[1]['items'] = array_merge($res_filters[1]['items'], $size_arr);
+            
+            $res_filters[0]['items'] = array_unique($res_filters[0]['items'], SORT_REGULAR);
+            $res_filters[1]['items'] = array_unique($res_filters[1]['items'], SORT_REGULAR);
         }
+
 
         $products_on_page = array_slice($res_products, intval($page-1) * $products_on_page_count, $products_on_page_count);
         $pages_count = ceil(count($res_products) / $products_on_page_count);
@@ -202,6 +226,7 @@ class ApiController extends Controller
             'products_on_page' => $products_on_page,
             'pages_count' => $pages_count,
             'page' => $page,
+            'filters' => $res_filters,
         ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
     }
 }

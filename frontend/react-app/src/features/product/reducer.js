@@ -1,6 +1,6 @@
 import { pageData } from "../../pages/home/data";
 import { GET_PRODUCTS_START, GET_PRODUCTS_SUCCESS, GET_CURRENT_PRODUCT_SUCCESS } from "./actions";
-import { SET_PAGINATION } from "../catalog-filters"
+import { SET_PAGINATION, SET_FILTERS } from "../catalog-filters"
 import { request } from "../../lib";
 const initialState = {
     products: [],
@@ -54,6 +54,7 @@ productReducer.getProducts = (id) => (dispatch, getState) => {
                 // console.log('get product response', response);
                 dispatch({ type: GET_PRODUCTS_SUCCESS, products: response.products_on_page });
                 dispatch({ type: SET_PAGINATION, pages: response.pages_count });
+                dispatch({ type: SET_FILTERS, params: response.filters });
             });
         }
     }

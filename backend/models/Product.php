@@ -74,8 +74,9 @@ class Product extends \yii\db\ActiveRecord
         ];
     }
 
-    public function findByCategory($category_id)
+    public function findByCategory($category_id, $size = '', $color = '')
     {
+        // var_dump($size);die();
         $cats_ids = is_array($category_id) ? $category_id : [$category_id];
         $cats = [$category_id];
         $cats_l1 = (new Category())->findSubcategories($category_id);
@@ -91,12 +92,18 @@ class Product extends \yii\db\ActiveRecord
             }
         }
         $cats_ids = array_unique($cats_ids, SORT_REGULAR);
-        $products = Product::find()->where(['in', 'category_id', $cats_ids])->all();
+        $productsQuery = Product::find()->andWhere(['in', 'category_id', $cats_ids]);
+        $products = $productsQuery->all();
+
+        if ($size) {
+            $products = array_filter($products, function ($product) use ($size) {
+                if ($product->size && $product->size !== '""') {
+                    return count(array_intersect(json_decode($product->size), $size));
+                }
+                return false;
+            });
+        }
         return $products;
-        // foreach ($products as $products) {
-        //     products = array_merge($products, );
-        // }
-        // return $res;
     }
 }
 

@@ -59,7 +59,7 @@ export const categoriesReducer = (state = initialState, action) => {
                         filter.items = filter.items.map((item) => {
                             return {
                                 ...item,
-                                active: urlValues.includes(item.code)
+                                active: urlValues.includes(item.code.toString())
                                     ? true
                                     : false,
                             };
