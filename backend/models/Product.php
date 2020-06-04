@@ -3,7 +3,7 @@
 namespace backend\models;
 
 use Yii;
-
+// use Category;
 /**
  * This is the model class for table "product".
  *
@@ -73,6 +73,32 @@ class Product extends \yii\db\ActiveRecord
             'is_popular' => 'Is Popular',
         ];
     }
+
+    public function findByCategory($category_id)
+    {
+        $cats_ids = is_array($category_id) ? $category_id : [$category_id];
+        $cats = [$category_id];
+        $cats_l1 = (new Category())->findSubcategories($category_id);
+        foreach ($cats_l1 as $key => $cat_l1) {
+            $cats_ids[] = $cat_l1->id;
+            $cats_l2 = (new Category())->findSubcategories($cat_l1->id);
+            foreach ($cats_l2 as $key2 => $cat_l2) {
+                $cats_ids[] = $cat_l2->id;
+                $cats_l3 = (new Category())->findSubcategories($cat_l2->id);
+                foreach ($cats_l3 as $key2 => $cat_l3) {
+                    $cats_ids[] = $cat_l3->id;
+                }
+            }
+        }
+        $cats_ids = array_unique($cats_ids, SORT_REGULAR);
+        $products = Product::find()->where(['in', 'category_id', $cats_ids])->all();
+        return $products;
+        // foreach ($products as $products) {
+        //     products = array_merge($products, );
+        // }
+        // return $res;
+    }
 }
 
 
+//todo: write findByCategory (all childrens);

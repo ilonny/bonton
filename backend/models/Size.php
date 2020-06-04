@@ -84,23 +84,14 @@ class Size extends \yii\db\ActiveRecord
             $tmp = [];
             foreach (Size::find()->andWhere(['category_id' => $category->id])->all() as $size) {
                 $tmp = [];
-                // $tmp['id'] = $size->id;
-                // $tmp['name'] = $size->name;
-                // $tmp['category_id'] = $size->category_id;
                 array_push($this->res, [
                     'id' => $size->id,
                     'name' => $size->name,
                     'category_id' => $size->category_id,
                 ]);
             }
-            // if (count($tmp)) {
-            //     $this->res[] = $tmp;
-            //     // $tmp = [];
-            // }
             $this->res[] = Size::getSizeTree($category->parent_id);
-            // var_dump($this->res);
         } else {
-            // $this->res[] = Size::find()->andWhere(['category_id' => $category->id])->all();
             foreach (Size::find()->andWhere(['category_id' => $category->id])->all() as $size) {
                 $this->res[]['id'] = $size->id;
                 $this->res[]['name'] = $size->name;
@@ -117,9 +108,6 @@ class Size extends \yii\db\ActiveRecord
         $this->res = array_filter($this->res, function($el) {
             return count($el) > 0;
         });
-        // $ids = array_values($this->res);
-        // $ids = array_column($ids, 'id');
-        // $res = [];
         return array_unique($this->res, SORT_REGULAR);
     }
 }
