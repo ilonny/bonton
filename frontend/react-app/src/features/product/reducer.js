@@ -37,15 +37,35 @@ productReducer.getProducts = (id) => (dispatch, getState) => {
     } else {
         id = parseInt(id);
         if (id) {
-            if (getState().product.products.length) {
-                //взять из стора
-                dispatch({ type: GET_CURRENT_PRODUCT_SUCCESS, currentProduct: getState().product.products.find(el => el.id === id) });
-            } else {
-                //сделать запрос
-                setTimeout(() => {
-                    dispatch({ type: GET_CURRENT_PRODUCT_SUCCESS, currentProduct: pageData.catalogList.list.find(el => el.id === id) });
-                }, 2000);
-            }
+            // if (getState().product.products.length) {
+            //     //взять из стора
+            //     const data = getState().product.products.find(el => el.id === id);
+            //     const { photos } = data;
+            //     dispatch({
+            //         type: GET_CURRENT_PRODUCT_SUCCESS, currentProduct: {
+            //             ...data,
+            //             photos: photos ? JSON.parse(data.photos) : [],
+            //             options: getState().categories.filters
+            //         }
+            //     });
+            // } else {
+            // }
+            //сделать запрос
+            request({
+                method: 'GET',
+                url: `get-products?id=${id}`,
+            }).then((response) => {
+                console.log('get product response', response);
+                const data = response.products_on_page[0];
+                const { photos } = data;
+                dispatch({
+                    type: GET_CURRENT_PRODUCT_SUCCESS, currentProduct: {
+                        ...data,
+                        photos: photos ? JSON.parse(data.photos) : [],
+                        options: response.filters
+                    }
+                });
+            });
         } else {
             request({
                 method: 'GET',

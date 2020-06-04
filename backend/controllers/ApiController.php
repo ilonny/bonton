@@ -120,7 +120,8 @@ class ApiController extends Controller
         $color = '',
         $price_min = '',
         $price_max = '',
-        $sort_price = ''
+        $sort_price = '',
+        $id = null
     ){
         if ($size) {
             $size = explode('+', $size);
@@ -141,10 +142,14 @@ class ApiController extends Controller
             }
         }
         $products_on_page_count = 15;
-        if (!$category_id) {
-            $products = Product::find()->all();
+        if ($id) {
+            $products = Product::find()->where(['=', 'id', $id])->all();
         } else {
-            $products = (new Product())->findByCategory($category_id, $size, $color, $price_min, $price_max, $sort_price);
+            if (!$category_id) {
+                $products = Product::find()->all();
+            } else {
+                $products = (new Product())->findByCategory($category_id, $size, $color, $price_min, $price_max, $sort_price);
+            }
         }
         // $sizes = Size::find()->all();
         $res_products = [];
@@ -207,13 +212,17 @@ class ApiController extends Controller
             $image_hover = null;
             if ($product->photos) {
                 $photos_arr = json_decode($product->photos, true);
+                foreach ($photos_arr as $key => $photo) {
+                    $photos_arr[$key] = Yii::$app->request->hostInfo."/uploads/".$photo;
+                }
             }
+            $product->photos = json_encode($photos_arr, JSON_UNESCAPED_UNICODE);
             if (count($photos_arr) > 0) {
-                $image = Yii::$app->request->hostInfo."/uploads/".$photos_arr[0];
+                $image = $photos_arr[0];
                 $image_hover = $image;
             }
             if (count($photos_arr) > 1) {
-                $image_hover = Yii::$app->request->hostInfo."/uploads/".$photos_arr[1];
+                $image_hover = $photos_arr[1];
             }
             // $size_arr = (new Size())->getSizeTree($product->category_id);
             // $size_arr = ArrayHelper::map($size_arr, 'id', 'name');

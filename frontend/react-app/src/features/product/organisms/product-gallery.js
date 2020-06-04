@@ -5,8 +5,13 @@ import { Media } from "../../../lib";
 import "./image-gallery.scss";
 export const ProductGallery = props => {
     console.log('props', props);
+    let photos = props.data.photos;
+    photos = photos.map(el => ({
+        original: el,
+        thumbnail: el,
+    }))
+    
     if (props.data) {
-        const photos = props.data.photos
         console.log('photos', props.data.photos);
         if (photos.length) {
             return (

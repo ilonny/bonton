@@ -6,28 +6,33 @@ import { Row } from "../../styled-components-layout";
 export const ProductInfo = props => {
     if (props.data) {
         const { data, addToCart, removeFromCart } = props;
-        console.log('product info props', props)
+        console.log('product info props', data)
         const inCart = props.cart.products.find(item => item.id === data.id);
         return (
             <InfoWrapper>
-                <CategoryTitle>{data.title}</CategoryTitle>
+                <CategoryTitle>{data.name}</CategoryTitle>
                 <p>{data.description}</p>
                 {data.options && (
                     <Row justify="space-between" align="center" wrap="wrap">
-                        {data.options.map(option => (
-                            <SelectWrapper key={option.title}>
-                                <label>{option.title}</label>
-                                <select>
-                                    {option.items.map(item => (
-                                        <option value={item.value} key={item.label}>{item.label}</option>
-                                    ))}
-                                </select>
-                            </SelectWrapper>
-                        ))}
+                        {data.options.map(option => {
+                            if (option.items.length && option.code !== 'price') {
+                                return (
+                                    <SelectWrapper key={option.name}>
+                                        <label>{option.name}</label>
+                                        <select>
+                                            {option.items.map(item => (
+                                                <option value={item.value} key={item.name}>{item.name}</option>
+                                            ))}
+                                        </select>
+                                    </SelectWrapper>
+                                )
+                            }
+                            return null;
+                        })}
                     </Row>
                 )}
                 <Row justify="space-between" align="center" wrap="wrap">
-                    <ProductPrice>{data.price}</ProductPrice>
+                    {!!data.new_price ? <ProductPrice>{data.new_price} руб.</ProductPrice> : <ProductPrice>{data.price} руб.</ProductPrice>}
                     <HoverButton
                         onClick={() => inCart ? removeFromCart(data.id) : addToCart(data.id)}
                         maxWidth={"372px"}
