@@ -42,8 +42,12 @@ export const FilterSelect = (props) => {
                             </FilterSelectItem>
                         ))}
                     {props.data &&
-                        type === "filters" &&
-                        props.data.map((filter) => (
+                        type === "filters" && 
+                        props.data.map((filter) => {
+                            if (!filter.items.length) {
+                                return null;
+                            }
+                            return (
                             <Fragment key={filter.name}>
                                 {filter.code !== "price" ? (
                                     <div className="filter-item">
@@ -106,7 +110,7 @@ export const FilterSelect = (props) => {
                                         </div>
                                     )}
                             </Fragment>
-                        ))}
+                        )})}
                 </div>
             )}
         </FilterSelectWrapper>

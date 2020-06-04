@@ -74,7 +74,7 @@ class Product extends \yii\db\ActiveRecord
         ];
     }
 
-    public function findByCategory($category_id, $size = '', $color = '')
+    public function findByCategory($category_id, $size = '', $color = '', $price_min = '', $price_max = '', $sort_price = '')
     {
         // var_dump($size);die();
         $cats_ids = is_array($category_id) ? $category_id : [$category_id];
@@ -93,12 +93,34 @@ class Product extends \yii\db\ActiveRecord
         }
         $cats_ids = array_unique($cats_ids, SORT_REGULAR);
         $productsQuery = Product::find()->andWhere(['in', 'category_id', $cats_ids]);
+        if ($price_min) {
+            $productsQuery->andWhere(['>=', 'price', $price_min]);
+        }
+        if ($price_max) {
+            $productsQuery->andWhere(['<=', 'price', $price_max]);
+        }
+        if ($sort_price == 'up') {
+            // var_dump(1);die();
+            $productsQuery->orderBy(['price' => 'ASC']);
+        }
+        if ($sort_price == 'down') {
+            // var_dump(2);die();
+            $productsQuery->orderBy(['price' => SORT_DESC]);
+        }
         $products = $productsQuery->all();
 
         if ($size) {
             $products = array_filter($products, function ($product) use ($size) {
                 if ($product->size && $product->size !== '""') {
                     return count(array_intersect(json_decode($product->size), $size));
+                }
+                return false;
+            });
+        }
+        if ($color) {
+            $products = array_filter($products, function ($product) use ($color) {
+                if ($product->color && $product->color !== '""') {
+                    return count(array_intersect(json_decode($product->color), $color));
                 }
                 return false;
             });

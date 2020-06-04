@@ -111,7 +111,17 @@ class ApiController extends Controller
             'tree' => $res,
         ]);
     }
-    public function actionGetProducts($category_id = 0, $page = 1, $type = 'men', $categories = '', $size = '', $color = '') {
+    public function actionGetProducts(
+        $category_id = 0,
+        $page = 1,
+        $type = 'men',
+        $categories = '',
+        $size = '',
+        $color = '',
+        $price_min = '',
+        $price_max = '',
+        $sort_price = ''
+    ){
         if ($size) {
             $size = explode('+', $size);
         }
@@ -134,7 +144,7 @@ class ApiController extends Controller
         if (!$category_id) {
             $products = Product::find()->all();
         } else {
-            $products = (new Product())->findByCategory($category_id, $size, $color);
+            $products = (new Product())->findByCategory($category_id, $size, $color, $price_min, $price_max, $sort_price);
         }
         // $sizes = Size::find()->all();
         $res_products = [];
@@ -148,6 +158,20 @@ class ApiController extends Controller
                 'code' => 'size',
                 'name' => 'Размер',
                 'items' => []
+            ],
+            [
+                "code" => "price",
+                "name" => "Цена",
+                "items" => [
+                    [
+                        "code" => "price_min",
+                        "name" => "",
+                    ],
+                    [
+                        "code" => "price_max",
+                        "name" => "",
+                    ],
+                ],
             ],
         ];
         foreach ($products as $key => $product) {

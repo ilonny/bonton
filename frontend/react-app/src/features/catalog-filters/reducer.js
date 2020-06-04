@@ -47,36 +47,41 @@ export const categoriesReducer = (state = initialState, action) => {
         // console.log("getUrlParamsArray", getUrlParamsArray("categories"));
         case SET_FILTERS: {
             let { params } = action || [];
-            params = params.map((p) => ({
-                ...p,
-                items: p.items.map((i) => ({ ...i, active: false })),
-            }));
-            const urlParamArray = getAllUrlParamsArray();
-            urlParamArray.forEach(([urlKey, urlValue]) => {
-                const urlValues = urlValue.split("+");
-                params.forEach((filter) => {
-                    if (filter.code === urlKey) {
-                        filter.items = filter.items.map((item) => {
-                            return {
-                                ...item,
-                                active: urlValues.includes(item.code.toString())
-                                    ? true
-                                    : false,
-                            };
-                        });
-                    }
-                    if (urlKey === "price_min" && filter.code === "price") {
-                        filter.items[0].name = urlValue;
-                    }
-                    if (urlKey === "price_max" && filter.code === "price") {
-                        filter.items[1].name = urlValue;
-                    }
+            try {
+                params = params.map((p) => ({
+                    ...p,
+                    items: p.items.map((i) => ({ ...i, active: false })),
+                }));
+                const urlParamArray = getAllUrlParamsArray();
+                urlParamArray.forEach(([urlKey, urlValue]) => {
+                    const urlValues = urlValue.split("+");
+                    params.forEach((filter) => {
+                        if (filter.code === urlKey) {
+                            filter.items = filter.items.map((item) => {
+                                return {
+                                    ...item,
+                                    active: urlValues.includes(item.code.toString())
+                                        ? true
+                                        : false,
+                                };
+                            });
+                        }
+                        if (urlKey === "price_min" && filter.code === "price") {
+                            filter.items[0].name = urlValue;
+                        }
+                        if (urlKey === "price_max" && filter.code === "price") {
+                            filter.items[1].name = urlValue;
+                        }
+                    });
                 });
-            });
-            return {
-                ...state,
-                filters: params,
-            };
+                return {
+                    ...state,
+                    filters: params,
+                };
+            } catch (e) {
+                return { ...state }
+            }
+
         }
         case SET_SORT: {
             return {
