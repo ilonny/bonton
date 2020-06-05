@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/bonton/static/css/main.b2d6f70e.chunk.css",
-    "main.js": "/bonton/static/js/main.0e2bc7e4.chunk.js",
-    "main.js.map": "/bonton/static/js/main.0e2bc7e4.chunk.js.map",
+    "main.js": "/bonton/static/js/main.63e26a04.chunk.js",
+    "main.js.map": "/bonton/static/js/main.63e26a04.chunk.js.map",
     "runtime-main.js": "/bonton/static/js/runtime-main.e616dea8.js",
     "runtime-main.js.map": "/bonton/static/js/runtime-main.e616dea8.js.map",
-    "static/js/2.5a6fd9fa.chunk.js": "/bonton/static/js/2.5a6fd9fa.chunk.js",
-    "static/js/2.5a6fd9fa.chunk.js.map": "/bonton/static/js/2.5a6fd9fa.chunk.js.map",
+    "static/js/2.bee30c4e.chunk.js": "/bonton/static/js/2.bee30c4e.chunk.js",
+    "static/js/2.bee30c4e.chunk.js.map": "/bonton/static/js/2.bee30c4e.chunk.js.map",
     "index.html": "/bonton/index.html",
-    "precache-manifest.f3361a7054d447c91bfffb15387581f2.js": "/bonton/precache-manifest.f3361a7054d447c91bfffb15387581f2.js",
+    "precache-manifest.0eb5c399ab57a5f63b0da792ef0c6cc3.js": "/bonton/precache-manifest.0eb5c399ab57a5f63b0da792ef0c6cc3.js",
     "service-worker.js": "/bonton/service-worker.js",
     "static/css/main.b2d6f70e.chunk.css.map": "/bonton/static/css/main.b2d6f70e.chunk.css.map",
-    "static/js/2.5a6fd9fa.chunk.js.LICENSE.txt": "/bonton/static/js/2.5a6fd9fa.chunk.js.LICENSE.txt",
+    "static/js/2.bee30c4e.chunk.js.LICENSE.txt": "/bonton/static/js/2.bee30c4e.chunk.js.LICENSE.txt",
     "static/media/FuturaPT-Bold.eot": "/bonton/static/media/FuturaPT-Bold.1ba71ffa.eot",
     "static/media/FuturaPT-Bold.ttf": "/bonton/static/media/FuturaPT-Bold.6dddddc0.ttf",
     "static/media/FuturaPT-Bold.woff": "/bonton/static/media/FuturaPT-Bold.9d2b3b49.woff",
@@ -58,6 +58,7 @@
     "static/media/close_red.svg": "/bonton/static/media/close_red.81fd49af.svg",
     "static/media/homepage_advantage_1.svg": "/bonton/static/media/homepage_advantage_1.f0fbf75f.svg",
     "static/media/homepage_advantage_2.svg": "/bonton/static/media/homepage_advantage_2.b2d07190.svg",
+    "static/media/image_not_found.png": "/bonton/static/media/image_not_found.8eb7adf9.png",
     "static/media/inst.svg": "/bonton/static/media/inst.3eaaea8d.svg",
     "static/media/logo.svg": "/bonton/static/media/logo.ac9678e6.svg",
     "static/media/menu-button.svg": "/bonton/static/media/menu-button.4f36a3de.svg",
@@ -74,8 +75,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.e616dea8.js",
-    "static/js/2.5a6fd9fa.chunk.js",
+    "static/js/2.bee30c4e.chunk.js",
     "static/css/main.b2d6f70e.chunk.css",
-    "static/js/main.0e2bc7e4.chunk.js"
+    "static/js/main.63e26a04.chunk.js"
   ]
 }
