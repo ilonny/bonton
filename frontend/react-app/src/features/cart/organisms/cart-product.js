@@ -2,16 +2,18 @@ import React from "react";
 import styled from "styled-components";
 import { Row } from "../../styled-components-layout";
 import { Media, Color } from "../../../lib";
+import ImgNotFound from "../../../assets/icons/image_not_found.png"
 export const CartProduct = props => {
     const { product, addToCart, removeFromCart } = props;
+    console.log('cart product', product)
     return (
         <ProductWrapper>
             <Row justify="space-between" align="center" tablet_wrap="true">
                 <Row justify="flex-start" align="center" tablet_wrap="true">
-                    <ImageWrapper><img src={product.image} alt={product.title} /></ImageWrapper>
+                    <ImageWrapper><img src={product.image ? product.image : ImgNotFound} alt={product.title} /></ImageWrapper>
                     <ProductInfo>
                         <p>{product.title}</p>
-                        <span>{product.price}</span>
+                        <span>{product.price} руб.</span>
                     </ProductInfo>
                 </Row>
                 <ProductButtons>

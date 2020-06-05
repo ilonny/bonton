@@ -21,6 +21,7 @@ export const CartTemplate = props => {
             ...data
         }
     })
+    console.log('cart_products', cart_products);
     // const cart_products = products.filter(item => cartProductsIds.includes(item.id));
     // console.log('cart_products', cart_products);
     if (cart_products.length) {

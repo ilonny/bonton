@@ -121,7 +121,8 @@ class ApiController extends Controller
         $price_min = '',
         $price_max = '',
         $sort_price = '',
-        $id = null
+        $id = null,
+        $is_array = null
     ){
         if ($size) {
             $size = explode('+', $size);
@@ -143,7 +144,12 @@ class ApiController extends Controller
         }
         $products_on_page_count = 15;
         if ($id) {
-            $products = Product::find()->where(['=', 'id', $id])->all();
+            if ($is_array) {
+                $ids_array = json_decode($id, true);
+                $products = Product::find()->where(['in', 'id', $ids_array])->all();
+            } else {
+                $products = Product::find()->where(['=', 'id', $id])->all();
+            }
         } else {
             if (!$category_id) {
                 $products = Product::find()->all();
@@ -250,7 +256,6 @@ class ApiController extends Controller
             $res_filters[0]['items'] = array_unique($res_filters[0]['items'], SORT_REGULAR);
             $res_filters[1]['items'] = array_unique($res_filters[1]['items'], SORT_REGULAR);
         }
-
 
         $products_on_page = array_slice($res_products, intval($page-1) * $products_on_page_count, $products_on_page_count);
         $pages_count = ceil(count($res_products) / $products_on_page_count);
