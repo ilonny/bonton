@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/bonton/static/css/main.b2d6f70e.chunk.css",
-    "main.js": "/bonton/static/js/main.63e26a04.chunk.js",
-    "main.js.map": "/bonton/static/js/main.63e26a04.chunk.js.map",
+    "main.js": "/bonton/static/js/main.d0faef94.chunk.js",
+    "main.js.map": "/bonton/static/js/main.d0faef94.chunk.js.map",
     "runtime-main.js": "/bonton/static/js/runtime-main.e616dea8.js",
     "runtime-main.js.map": "/bonton/static/js/runtime-main.e616dea8.js.map",
     "static/js/2.bee30c4e.chunk.js": "/bonton/static/js/2.bee30c4e.chunk.js",
     "static/js/2.bee30c4e.chunk.js.map": "/bonton/static/js/2.bee30c4e.chunk.js.map",
     "index.html": "/bonton/index.html",
-    "precache-manifest.0eb5c399ab57a5f63b0da792ef0c6cc3.js": "/bonton/precache-manifest.0eb5c399ab57a5f63b0da792ef0c6cc3.js",
+    "precache-manifest.53d0dc3849d82c6c5bda68a49c212ebb.js": "/bonton/precache-manifest.53d0dc3849d82c6c5bda68a49c212ebb.js",
     "service-worker.js": "/bonton/service-worker.js",
     "static/css/main.b2d6f70e.chunk.css.map": "/bonton/static/css/main.b2d6f70e.chunk.css.map",
     "static/js/2.bee30c4e.chunk.js.LICENSE.txt": "/bonton/static/js/2.bee30c4e.chunk.js.LICENSE.txt",
@@ -77,6 +77,6 @@
     "static/js/runtime-main.e616dea8.js",
     "static/js/2.bee30c4e.chunk.js",
     "static/css/main.b2d6f70e.chunk.css",
-    "static/js/main.63e26a04.chunk.js"
+    "static/js/main.d0faef94.chunk.js"
   ]
 }
