@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import {WithTag} from "../../styled-components-layout"
 export const Image = styled(WithTag)`
-    background: url(${(props) => props.src});
+    background: url('${(props) => props.src}');
     background-size: cover;
     width: 100%;
     max-width: 100%;

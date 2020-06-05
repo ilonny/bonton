@@ -31,12 +31,12 @@ export const Block = ({ item, addToCart, removeFromCart, cart_products }) => {
                     {item.image ? (
                         <>
                             <img
-                                src={encodeURI(item.image_hover)}
+                                src={item.image_hover}
                                 style={{ opacity: 0, maxWidth: "100%", maxHeight: '420px' }}
                                 alt={item.title}
                             />
-                            <Image src={encodeURI(item.image_hover)} />
-                            <Image hover_hide="true" src={encodeURI(item.image)} />
+                            <Image src={item.image_hover} />
+                            <Image hover_hide="true" src={item.image} />
                         </>
                     ) : (
                             <img src={ImgNotFound} alt="Изображение отсутствует" style={{ maxWidth: "100%", maxHeight: '420px' }} />

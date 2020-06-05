@@ -9,7 +9,7 @@ export const CatalogList = connect(
         menuCategories: state.main.menuCategories.tree
     }),
     (dispatch) => ({
-        getProducts: () => dispatch(productReducer.getProducts()),
+        getProducts: (id, _isPopular) => dispatch(productReducer.getProducts(id, _isPopular)),
         addToCart: (product_id, price) => dispatch(cartReducer.addToCart(product_id, price)),
         removeFromCart: product_id => dispatch(cartReducer.removeFromCart(product_id)),
     })

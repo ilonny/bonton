@@ -28,9 +28,9 @@ export const MenuCol = () => (
                     <Link to="/delivery">
                         <LinkStyled>Чем мы можем помочь</LinkStyled>
                     </Link>
-                    <Link to="/sitemap">
+                    {/* <Link to="/sitemap">
                         <LinkStyled>Карта сайта</LinkStyled>
-                    </Link>
+                    </Link> */}
                     <Link to="/about">
                         <LinkStyled >О нас</LinkStyled>
                     </Link>

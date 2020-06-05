@@ -13,6 +13,7 @@ import { HomePageAbout } from "../../features/homepage-about";
 import { SubscribeForm } from "../../features/subscribe-form";
 import { Color } from "../../lib";
 import { pageData } from "./data";
+import { Link } from "react-router-dom";
 export const HomePage = () => (
     <HomeTemplate>
         <Banner data={pageData.big} />
@@ -23,22 +24,23 @@ export const HomePage = () => (
             <Banner data={pageData.accessories} small={true} multiline={true} />
         </section>
         <HomePageAdvantage />
-        <CategoryTitle>Популярное</CategoryTitle>
-        <CatalogList data={pageData.catalogList} />
+        <CatalogList isPopular={true} />
         <Row justify="center" align="center">
-            <HoverButton
-                maxWidth={"372px"}
-                color={Color.red}
-                backgroundColor={"transparent"}
-                hoverColor={"white"}
-            >
-                Перейти в каталог
+            <Link to={`/catalog?type=men`}>
+                <HoverButton
+                    maxWidth={"372px"}
+                    color={Color.red}
+                    backgroundColor={"transparent"}
+                    hoverColor={"white"}
+                >
+                    Перейти в каталог
             </HoverButton>
+            </Link>
         </Row>
         <Spacer />
         <HomePageAbout />
         <Spacer />
         <SubscribeForm />
-        <Spacer/>
+        <Spacer />
     </HomeTemplate>
 );

@@ -7,7 +7,7 @@ export const MenuBottom = (props) => (
         <GrayText>
             <p>BONTON — Интернет-магазин одежды в г. Сургут</p>
             <Link to="/">Политика конфиденциальности</Link>
-            <Link to="/sitemap">Карта сайта</Link>
+            {/* <Link to="/sitemap">Карта сайта</Link> */}
         </GrayText>
     </MenuBottomWrapper>
 );

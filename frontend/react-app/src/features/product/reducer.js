@@ -25,7 +25,7 @@ export const productReducer = (state = initialState, action) => {
     }
 }
 
-productReducer.getProducts = (id) => (dispatch, getState) => {
+productReducer.getProducts = (id, _isPopular) => (dispatch, getState) => {
     dispatch({ type: GET_PRODUCTS_START })
     if (Array.isArray(id)) {
         console.log('arr id', id)
@@ -87,9 +87,17 @@ productReducer.getProducts = (id) => (dispatch, getState) => {
                 });
             });
         } else {
+            console.log('is_popular', _isPopular)
+            let search = window.location.search;
+            if (_isPopular) {
+                search += '&is_popular=1';
+            }
+            if (search.indexOf('?') === -1) {
+                search = '?' + search;
+            }
             request({
                 method: 'GET',
-                url: `get-products${window.location.search}`,
+                url: `get-products${search}`,
             }).then((response) => {
                 // console.log('get product response', response);
                 dispatch({ type: GET_PRODUCTS_SUCCESS, products: response.products_on_page });
