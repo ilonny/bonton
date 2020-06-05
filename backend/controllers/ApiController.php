@@ -122,7 +122,8 @@ class ApiController extends Controller
         $price_max = '',
         $sort_price = '',
         $id = null,
-        $is_array = null
+        $is_array = null,
+        $is_popular = null
     ){
         if ($size) {
             $size = explode('+', $size);
@@ -143,20 +144,25 @@ class ApiController extends Controller
             }
         }
         $products_on_page_count = 15;
-        if ($id) {
-            if ($is_array) {
-                $ids_array = json_decode($id, true);
-                $products = Product::find()->where(['in', 'id', $ids_array])->all();
-            } else {
-                $products = Product::find()->where(['=', 'id', $id])->all();
-            }
+        if ($is_popular) {
+            $products = Product::find()->where(['=', 'is_popular', 1])->all();
         } else {
-            if (!$category_id) {
-                $products = Product::find()->all();
+            if ($id) {
+                if ($is_array) {
+                    $ids_array = json_decode($id, true);
+                    $products = Product::find()->where(['in', 'id', $ids_array])->all();
+                } else {
+                    $products = Product::find()->where(['=', 'id', $id])->all();
+                }
             } else {
-                $products = (new Product())->findByCategory($category_id, $size, $color, $price_min, $price_max, $sort_price);
+                if (!$category_id) {
+                    $products = Product::find()->all();
+                } else {
+                    $products = (new Product())->findByCategory($category_id, $size, $color, $price_min, $price_max, $sort_price);
+                }
             }
         }
+
         // $sizes = Size::find()->all();
         $res_products = [];
         $res_filters = [
@@ -272,14 +278,19 @@ class ApiController extends Controller
         $res = [];
         $req = json_decode(Yii::$app->request->getRawBody(), true);
         if ($req['type'] == 'subscribe') {
-            Yii::$app->mailer->compose()
-            ->setFrom('admin@bonton-shop.ru')
-            ->setTo('lonnyfox@bk.ru')
-            ->setSubject('Запрос на подписку email (10% скидку)')
-            ->setTextBody('email: '. $req['mail'])
-            // ->setHtmlBody('<b>текст сообщения в формате HTML</b>')
-            ->send();
+            // Yii::$app->mailer->compose()
+            // ->setFrom('80-78-240-68.cloudvps.regruhosting.ru')
+            // ->setTo('lonnyfox@bk.ru')
+            // ->setSubject('Запрос на подписку email (10% скидку)')
+            // ->setTextBody('email: '. $req['mail'])
+            // // ->setHtmlBody('<b>текст сообщения в формате HTML</b>')
+            // ->send();
+            mail('lonnyfox@bk.ru', 'Запрос на подписку email (10% скидку)', 'email: '. $req['mail']);
             $res['message'] = 'Спасибо! Ваш запрос отправлен.';
+        }
+        if ($req['type'] == 'order') {
+            mail('lonnyfox@bk.ru', 'Новый заказ с сайта', $req['dataText']);
+            $res['message'] = 'Спасибо за ваш заказ! В ближайшее время с вами свяжутся.';
         }
         return json_encode($res, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
     }
