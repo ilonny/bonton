@@ -267,4 +267,21 @@ class ApiController extends Controller
             'filters' => $res_filters,
         ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
     }
+    
+    public function actionSendMail() {
+        $res = [];
+        $req = json_decode(Yii::$app->request->getRawBody(), true);
+        if ($req['type'] == 'subscribe') {
+            Yii::$app->mailer->compose()
+            ->setFrom('admin@bonton-shop.ru')
+            ->setTo('lonnyfox@bk.ru')
+            ->setSubject('Запрос на подписку email (10% скидку)')
+            ->setTextBody('email: '. $req['mail'])
+            // ->setHtmlBody('<b>текст сообщения в формате HTML</b>')
+            ->send();
+            $res['message'] = 'Спасибо! Ваш запрос отправлен.';
+        }
+        return json_encode($res, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+    }
+
 }
