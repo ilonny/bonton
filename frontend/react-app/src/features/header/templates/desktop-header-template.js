@@ -134,13 +134,18 @@ const LinkHover = styled.div`
 const LinkHoverContent = styled.div`
     position: absolute;
     top: 100%;
-    left: 0;
     background: #fff;
     padding: 30px;
+    max-width: 980px;
+    margin: 0 auto;
+    left: 50%;
+    margin-left: -566px;
+    margin-top: -30px;
+    padding-top: 50px;
 `
 
 const LinkHoverWrapper = styled.div`
-    position: relative;
+    // position: relative;
     & ${LinkHoverContent} {
         display: none;
     }
