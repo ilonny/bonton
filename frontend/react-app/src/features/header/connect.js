@@ -5,7 +5,8 @@ import { sideBarReducer } from "../sidebar";
 export const Header = connect(
     (state) => ({
         sidebar: state.sidebar,
-        cart: state.cart
+        cart: state.cart,
+        menu: state.main.menuCategories.tree
     }),
     (dispatch) => ({
         toggleSideBar: (params) => dispatch(sideBarReducer.toggleSideBar(params)),
