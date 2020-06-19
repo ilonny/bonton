@@ -28,7 +28,7 @@ export const HeaderTemplateDektop = props => {
                     </LinkHoverWrapper>
                     <LinkHoverWrapper>
                         <LinkHover>
-                            <Link to={"/catalog?categories=1"}>Для мужчин</Link>
+                            <Link to={"/catalog?type=men"}>Для мужчин</Link>
                         </LinkHover>
                         <LinkHoverContent>
                             {props.menu && <MenuTree menu={menu[0].children} />}
@@ -36,7 +36,7 @@ export const HeaderTemplateDektop = props => {
                     </LinkHoverWrapper>
                     <LinkHoverWrapper>
                         <LinkHover>
-                            <Link to={"/catalog?categories=2"}>Для женщин</Link>
+                            <Link to={"/catalog?type=women"}>Для женщин</Link>
                         </LinkHover>
                         <LinkHoverContent>
                             {props.menu && <MenuTree menu={menu[1].children ? menu[1].children : []} />}
