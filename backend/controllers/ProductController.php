@@ -278,6 +278,6 @@ class ProductController extends Controller
         $model = Product::findOne($id);
         $category_id = $model->category_id;
         $model->delete();
-        return $this->redirect('/product/index?category_id=?'.$category_id);
+        return $this->redirect('/product/index?category_id='.$category_id);
     } 
 }
